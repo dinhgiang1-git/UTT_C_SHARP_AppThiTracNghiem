@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace ThiTracNghiem
 {
-    public partial class exam: Form
+    public partial class Form1 : Form
     {
-        public exam()
+        public Form1()
         {
             InitializeComponent();
-            Console.WriteLine("hello world");
         }
     }
 }
