@@ -16,7 +16,7 @@ namespace ThiTracNghiem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new exam());
+            Application.Run(new login());
         }
     }
 }
