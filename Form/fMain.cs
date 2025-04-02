@@ -96,7 +96,6 @@ namespace ThiTracNghiem
                 }
             }
         }
-        
         private void LoadData_MonHoc(string maKhoa)
         {
             using (SqlConnection conn = new SqlConnection(strConn))
@@ -125,7 +124,6 @@ namespace ThiTracNghiem
                 }
             }
         }
-        
         private void LoadComboBox()
         {
             using (SqlConnection conn = new SqlConnection(strConn))
@@ -155,7 +153,7 @@ namespace ThiTracNghiem
             }
         }
      
-
+        //Quản lí Khoa
         private bool checkDuplicateMakhoa(string strMakhoa)
         {
             using (SqlConnection conn = new SqlConnection(strConn))
@@ -177,6 +175,16 @@ namespace ThiTracNghiem
                 {
                     conn.Close();
                 }
+            }
+        }
+        private void dataKhoa_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataKhoa.Rows[e.RowIndex];
+
+                qlktxtMaKhoa.Text = row.Cells["MaKhoa"].Value.ToString();
+                qlktxtTenKhoa.Text = row.Cells["TenKhoa"].Value.ToString();
             }
         }
         private void qlkbtnThemKhoa_Click(object sender, EventArgs e)
@@ -236,7 +244,97 @@ namespace ThiTracNghiem
 
 
         }
+        private void qlkbtnXoaKhoa_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string maKhoa = qlktxtMaKhoa.Text.Trim();
 
+            //Validate
+            if(string.IsNullOrEmpty(maKhoa))
+            {
+                MessageBox.Show("Vui lòng chọn một Khoa để xoá!");
+                return;
+            }
+            //Xoá
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Delete from KHOA where MaKhoa = @MaKhoa";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaKhoa", maKhoa);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Thêm thành công!");
+                        LoadData_Khoa();
+                        qlktxtMaKhoa.Clear();
+                        qlktxtTenKhoa.Clear();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message); 
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        private void qlkbtnSuaKhoa_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string maKhoa = qlktxtMaKhoa.Text.Trim();
+            string tenKhoa = qlktxtTenKhoa.Text.Trim();
+
+            //Validate
+            if(string.IsNullOrEmpty(maKhoa))
+            {
+                MessageBox.Show("Vui lòng điền Mã Khoa!");
+                return;
+            }
+            if(string.IsNullOrEmpty (tenKhoa))
+            {
+                MessageBox.Show("Vui lòng điền Tên Khoa!");
+                return;
+            }
+
+            //Sửa
+            using(SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Update KHOA set TenKhoa = @TenKhoa where MaKhoa = @MaKhoa";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@TenKhoa", tenKhoa);
+                    cmd.Parameters.AddWithValue("@MaKhoa", maKhoa);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Sửa thành công!");
+                        LoadData_Khoa();
+                        qlktxtTenKhoa.Clear();
+                        qlktxtMaKhoa.Clear();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: "+ ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        //Quản lí Môn Học
         private bool checkDuplicateMaMonHoc(string strMaMonHoc)
         {
             using (SqlConnection conn = new SqlConnection(strConn))
@@ -260,6 +358,24 @@ namespace ThiTracNghiem
                     conn.Close();
                 }
             }
+        }
+        private void dataMonHoc_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataMonHoc.Rows[e.RowIndex];
+
+                qlmhtxtMaMonHoc.Text = row.Cells["MaMonHoc"].Value.ToString();
+                qlmhtxtTenMonHoc.Text = row.Cells["TenMonHoc"].Value.ToString();
+            }
+        }
+        private void qlmhcbKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (qlmhcbKhoa.SelectedIndex == -1)
+                return;
+            
+            string slectedKhoa = qlmhcbKhoa.SelectedValue.ToString();
+            LoadData_MonHoc(slectedKhoa);
         }
         private void qlmhbtnThemMonHoc_Click(object sender, EventArgs e)
         {
@@ -327,68 +443,92 @@ namespace ThiTracNghiem
             }
 
         }
-
-        private void qlmhcbKhoa_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (qlmhcbKhoa.SelectedIndex == -1)
-                return;
-            
-            string slectedKhoa = qlmhcbKhoa.SelectedValue.ToString();
-            LoadData_MonHoc(slectedKhoa);
-        }
-
-        private void dataKhoa_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataKhoa.Rows[e.RowIndex];
-
-                qlktxtMaKhoa.Text = row.Cells["MaKhoa"].Value.ToString();
-                qlktxtTenKhoa.Text = row.Cells["TenKhoa"].Value.ToString();
-            }
-        }
-
-        private void qlkbtnSuaKhoa_Click(object sender, EventArgs e)
+        private void qlmhbtnSuaMonHoc_Click(object sender, EventArgs e)
         {
             //Lấy dữ liệu
-            string maKhoa = qlktxtMaKhoa.Text.Trim();
-            string tenKhoa = qlktxtTenKhoa.Text.Trim();
+            string maMonHoc = qlmhtxtMaMonHoc.Text.Trim();
+            string tenMonHoc = qlmhtxtTenMonHoc.Text.Trim();
+            string maKhoa = qlmhcbKhoa.SelectedValue.ToString();
 
             //Validate
-            if(string.IsNullOrEmpty(maKhoa))
+            if(string.IsNullOrEmpty(maMonHoc))
             {
-                MessageBox.Show("Vui lòng điền Mã Khoa!");
+                MessageBox.Show("Vui lòng điền mã môn học!");
                 return;
             }
-            if(string.IsNullOrEmpty (tenKhoa))
+            if(string.IsNullOrEmpty(tenMonHoc))
             {
-                MessageBox.Show("Vui lòng điền Tên Khoa!");
+                MessageBox.Show("Vui lòng điền tên môn học!");
                 return;
             }
 
             //Sửa
             using(SqlConnection conn = new SqlConnection(strConn))
-            {
+            {   
                 try
                 {
                     conn.Open();
-                    string query = "Update KHOA set TenKhoa = @TenKhoa where MaKhoa = @MaKhoa";
+                    string query = "Update MONHOC set TenMonHoc = @TenMonHoc where MaMonHoc = @MaMonHoc";
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@TenKhoa", tenKhoa);
-                    cmd.Parameters.AddWithValue("@MaKhoa", maKhoa);
+                    cmd.Parameters.AddWithValue("@TenMonHoc", tenMonHoc);
+                    cmd.Parameters.AddWithValue("@MaMonHoc", maMonHoc);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Sửa thành công!");
-                        LoadData_Khoa();
-                        qlktxtTenKhoa.Clear();
-                        qlktxtMaKhoa.Clear();
+                        MessageBox.Show("Sửa môn học thành công!");
+                        LoadData_MonHoc(maKhoa);
+                        qlmhtxtMaMonHoc.Clear();
+                        qlmhtxtTenMonHoc.Clear();
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error: "+ ex.Message);
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+               
+            }
+        }
+        private void qlmhbtnXoaMonHoc_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string maMonHoc = qlmhtxtMaMonHoc.Text.Trim();
+            string maKhoa = qlmhcbKhoa.SelectedValue.ToString();
+
+            //Validate
+            if(string.IsNullOrEmpty(maMonHoc))
+            {
+                MessageBox.Show("Vui lòng chọn một môn học để xoá!");
+                return;
+            }
+
+            //Xoá
+            using(SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Delete from MONHOC where MaMonHoc = @MaMonHoc";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaMonHoc", maMonHoc);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Xoá thành công!");
+                        LoadData_MonHoc(maKhoa);
+                        qlmhtxtTenMonHoc.Clear();
+                        qlmhtxtMaMonHoc.Clear();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
                 }
                 finally
                 {
