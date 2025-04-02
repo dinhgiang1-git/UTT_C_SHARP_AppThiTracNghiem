@@ -19,13 +19,23 @@ namespace ThiTracNghiem
         {
             InitializeComponent();
             _MaGiangVien = MaGiangVien;
-            LoadComboBox();
+            LoadComboBox_Khoa();
+
             string maKhoa = qllcbKhoa.SelectedValue.ToString();
             string maKhoa_MH = qlmhcbKhoa.SelectedValue.ToString();
+            string maKhoa_SV = qlsvcbKhoa.SelectedValue.ToString();
+
+            LoadComboBox_Lop(maKhoa_SV);
+
+            string maLop = "";
+
             Infomation_tcd();
+
             LoadData_Khoa();
             LoadData_MonHoc(maKhoa_MH);
             LoadData_Lop(maKhoa);
+            LoadData_SinhVien(maLop);
+
             ResetComboBox();
         }
 
@@ -156,7 +166,33 @@ namespace ThiTracNghiem
 
             }
         }
-        private void LoadComboBox()
+        private void LoadData_SinhVien(string maLop)
+        {
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Select MaSinhVien, Malop, HoTen, GioiTinh, NgaySinh, QueQuan from SINHVIEN where MaLop = @MaLop";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaLop", maLop);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataSinhVien.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error" + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        private void LoadComboBox_Khoa()
         {
             using (SqlConnection conn = new SqlConnection(strConn))
             {
@@ -170,13 +206,47 @@ namespace ThiTracNghiem
                     DataTable dt = new DataTable();
                     dt.Load(reader);
 
-                    qlmhcbKhoa.DataSource = dt;
+                    qlmhcbKhoa.DataSource = dt.Copy();
                     qlmhcbKhoa.DisplayMember = "TenKhoa";
                     qlmhcbKhoa.ValueMember = "MaKhoa";
 
-                    qllcbKhoa.DataSource = dt;
+                    qllcbKhoa.DataSource = dt.Copy();
                     qllcbKhoa.DisplayMember = "TenKhoa";
                     qllcbKhoa.ValueMember = "Makhoa";
+
+                    qlsvcbKhoa.DataSource = dt.Copy();
+                    qlsvcbKhoa.DisplayMember = "TenKhoa";
+                    qlsvcbKhoa.ValueMember = "MaKhoa";
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        private void LoadComboBox_Lop(string maKhoa)
+        {
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Select Malop, TenLop from LOP where MaKhoa = @MaKhoa";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaKhoa", maKhoa);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    qlsvcbLop.DataSource = dt;
+                    qlsvcbLop.DisplayMember = "TenLop";
+                    qlsvcbLop.ValueMember = "MaLop";
+
                 }
                 catch (Exception ex)
                 {
@@ -771,5 +841,268 @@ namespace ThiTracNghiem
         }
 
         //Quản lí sinh viên
+        private void qlsvcbKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(qlsvcbKhoa.SelectedIndex == -1)
+            {
+                return;
+            }
+            string maKhoa = qlsvcbKhoa.SelectedValue.ToString();
+            LoadComboBox_Lop(maKhoa);
+        }
+        private void qlsvcbLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(qlsvcbLop.SelectedIndex == -1)
+            {
+                return;
+            }
+            string maLop = qlsvcbLop.SelectedValue.ToString();
+            LoadData_SinhVien(maLop);           
+        }
+        private bool checkDuplicateMaSV(string strMaSV)
+        {
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Select count(*) from SINHVIEN where MaSinhVien = @MaSinhVien";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaSinhVien", strMaSV);
+
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("DataBase Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        private void dataSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataSinhVien.Rows[e.RowIndex];
+                qlsvtxtHoTen.Text = row.Cells["HoTen"].Value.ToString();
+                qlsvtxtMaSV.Text = row.Cells["MaSinhVien"].Value.ToString();
+                qlsvcbGioiTinh.SelectedItem = row.Cells["GioiTinh"].Value.ToString();
+                if (row.Cells["NgaySinh"].Value != null) 
+                {
+                    DateTime ngaySinh;
+                    if (DateTime.TryParse(row.Cells["NgaySinh"].Value.ToString(), out ngaySinh))
+                    {
+                        qlsvdateNgaySinh.Value = ngaySinh;
+                    }
+                }
+                qlsvtxtQueQuan.Text = row.Cells["QueQuan"].Value.ToString();
+
+                //string maLop = row.Cells["MaLop"].Value.ToString();
+                //foreach (DataRowView item in qlsvcbLop.Items)
+                //{
+                //    if (item["MaLop"].ToString() == maLop)
+                //    {
+                //        qlsvcbLop.SelectedItem = item;
+                //        break;
+                //    }
+                //}
+            }
+        }
+        private void qlsvbtnThemSV_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string hoTen = qlsvtxtHoTen.Text.Trim();
+            string maSV = qlsvtxtMaSV.Text.Trim().ToUpper();
+            string gioiTinh = qlsvcbGioiTinh.SelectedItem.ToString();
+            string ngaySinh = qlsvdateNgaySinh.Value.ToString("yyyy-MM-dd");
+            string queQuan = qlsvtxtQueQuan.Text.Trim();
+            string maLop = qlsvcbLop.SelectedValue.ToString();
+
+            //Validate
+            if(string.IsNullOrEmpty(hoTen))
+            {
+                MessageBox.Show("Vui lòng điền họ tên!");
+                return;
+            }
+            if (string.IsNullOrEmpty(maSV)) 
+            {
+                MessageBox.Show("Vui lòng điền Mã Sinh Viên");
+                return;
+            }
+            if (string.IsNullOrEmpty(gioiTinh)) 
+            {
+                MessageBox.Show("Vui lòng chọn giới tính");
+                return;
+            }
+            if(string.IsNullOrEmpty(queQuan))
+            {
+                MessageBox.Show("Vui lòng điền quê quán!");
+                return;
+            }
+            if (checkDuplicateMaSV(maSV))
+            {
+                MessageBox.Show("Mã sinh viên đã bị trùng. Vui lòng nhập mã khác!");
+                return;
+            }
+
+            //Thêm
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Insert into SINHVIEN (MaSinhVien, HoTen, GioiTinh, NgaySinh, QueQuan, MaLop, MatKhau) values (@MaSinhVien, @HoTen, @GioiTinh, @NgaySinh, @QueQuan, @MaLop, @MatKhau)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaSinhVien", maSV);
+                    cmd.Parameters.AddWithValue("@HoTen", hoTen);
+                    cmd.Parameters.AddWithValue("@GioiTinh", gioiTinh);
+                    cmd.Parameters.AddWithValue("@NgaySinh", ngaySinh);
+                    cmd.Parameters.AddWithValue("@QueQuan", queQuan);
+                    cmd.Parameters.AddWithValue("@MaLop", maLop);
+                    cmd.Parameters.AddWithValue("@MatKhau", 1);
+
+                    int rowAffected = cmd.ExecuteNonQuery();
+                    if (rowAffected > 0) 
+                    {
+                        MessageBox.Show("Thêm sinh viên thành công!");
+                        LoadData_SinhVien(maLop);
+                        qlsvtxtHoTen.Clear();
+                        qlsvtxtMaSV.Clear();
+                        qlsvcbGioiTinh.SelectedIndex = 0;
+                        qlsvtxtQueQuan.Clear();                        
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        private void qlsvbtnSuaSV_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string hoTen = qlsvtxtHoTen.Text.Trim();
+            string maSV = qlsvtxtMaSV.Text.Trim().ToUpper();
+            string gioiTinh = qlsvcbGioiTinh.SelectedItem.ToString();
+            string ngaySinh = qlsvdateNgaySinh.Value.ToString("yyyy-MM-dd");
+            string queQuan = qlsvtxtQueQuan.Text.Trim();
+            string maLop = qlsvcbLop.SelectedValue.ToString();
+
+            //Validate
+            if (string.IsNullOrEmpty(hoTen))
+            {
+                MessageBox.Show("Vui lòng điền họ tên!");
+                return;
+            }
+            if (string.IsNullOrEmpty(maSV))
+            {
+                MessageBox.Show("Vui lòng điền Mã Sinh Viên");
+                return;
+            }
+            if (string.IsNullOrEmpty(gioiTinh))
+            {
+                MessageBox.Show("Vui lòng chọn giới tính");
+                return;
+            }
+            if (string.IsNullOrEmpty(queQuan))
+            {
+                MessageBox.Show("Vui lòng điền quê quán!");
+                return;
+            }      
+
+            //Sửa
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Update SINHVIEN set HoTen = @HoTen, GioiTinh = @GioiTinh, NgaySinh = @NgaySinh, QueQuan = @QueQuan, MaLop = @MaLop where MaSinhVien = @MaSinhVien";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@HoTen", hoTen);
+                    cmd.Parameters.AddWithValue("@GioiTinh", gioiTinh);
+                    cmd.Parameters.AddWithValue("@NgaySinh", ngaySinh);
+                    cmd.Parameters.AddWithValue("@QueQuan", queQuan);
+                    cmd.Parameters.AddWithValue("@MaLop", maLop);
+                    cmd.Parameters.AddWithValue("@MaSinhVien", maSV);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0) 
+                    {
+                        MessageBox.Show("Sửa thành công sinh viên " + hoTen);
+                        LoadData_SinhVien(maLop);
+                        qlsvtxtHoTen.Clear();
+                        qlsvtxtMaSV.Clear();
+                        qlsvcbGioiTinh.SelectedIndex = 0;
+                        qlsvtxtQueQuan.Clear();
+                    }                    
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        private void qlsvbtnXoaSV_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string maLop = qlsvcbLop.SelectedValue.ToString();
+            string maSinhVien = qlsvtxtMaSV.Text.Trim();
+            string hoTen = qlsvtxtHoTen.Text.Trim();
+
+            //Validate
+            if (string.IsNullOrEmpty(maSinhVien))
+            {
+                MessageBox.Show("Vui lòng chọn một Sinh Viên để xoá!");
+                return;
+            }
+            DialogResult result = MessageBox.Show("Bạn có muốn xoá " +hoTen+" ?", "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+            //Xoá
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Delete SINHVIEN where MaSinhVien = @MaSinhVien";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaSinhVien", maSinhVien);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0) 
+                    {
+                        MessageBox.Show("Xoá sinh viên " + hoTen + "thành công!");
+                        LoadData_SinhVien(maLop);
+                        qlsvtxtHoTen.Clear();
+                        qlsvtxtMaSV.Clear();
+                        qlsvcbGioiTinh.SelectedIndex = 0;
+                        qlsvtxtQueQuan.Clear();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
     }
 }
