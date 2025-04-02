@@ -1132,10 +1132,10 @@
             this.groupBox12.Controls.Add(this.label46);
             this.groupBox12.Controls.Add(this.dataMonHoc);
             this.groupBox12.Controls.Add(this.qlmhtxtMaMonHoc);
+            this.groupBox12.Controls.Add(this.qlmhbtnSuaMonHoc);
             this.groupBox12.Controls.Add(this.qlmhcbKhoa);
             this.groupBox12.Controls.Add(this.label28);
             this.groupBox12.Controls.Add(this.qlmhbtnXoaMonHoc);
-            this.groupBox12.Controls.Add(this.qlmhbtnSuaMonHoc);
             this.groupBox12.Controls.Add(this.qlmhbtnThemMonHoc);
             this.groupBox12.Controls.Add(this.groupBox13);
             this.groupBox12.Controls.Add(this.qlmhtxtTenMonHoc);
@@ -1161,6 +1161,7 @@
             this.dataMonHoc.RowTemplate.Height = 24;
             this.dataMonHoc.Size = new System.Drawing.Size(600, 543);
             this.dataMonHoc.TabIndex = 12;
+            this.dataMonHoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMonHoc_CellClick);
             // 
             // qlmhcbKhoa
             // 
@@ -1185,23 +1186,25 @@
             // 
             // qlmhbtnXoaMonHoc
             // 
-            this.qlmhbtnXoaMonHoc.Location = new System.Drawing.Point(501, 95);
+            this.qlmhbtnXoaMonHoc.Location = new System.Drawing.Point(501, 127);
             this.qlmhbtnXoaMonHoc.Margin = new System.Windows.Forms.Padding(2);
             this.qlmhbtnXoaMonHoc.Name = "qlmhbtnXoaMonHoc";
             this.qlmhbtnXoaMonHoc.Size = new System.Drawing.Size(99, 23);
             this.qlmhbtnXoaMonHoc.TabIndex = 16;
             this.qlmhbtnXoaMonHoc.Text = "Xóa môn học";
             this.qlmhbtnXoaMonHoc.UseVisualStyleBackColor = true;
+            this.qlmhbtnXoaMonHoc.Click += new System.EventHandler(this.qlmhbtnXoaMonHoc_Click);
             // 
             // qlmhbtnSuaMonHoc
             // 
-            this.qlmhbtnSuaMonHoc.Location = new System.Drawing.Point(501, 124);
+            this.qlmhbtnSuaMonHoc.Location = new System.Drawing.Point(501, 99);
             this.qlmhbtnSuaMonHoc.Margin = new System.Windows.Forms.Padding(2);
             this.qlmhbtnSuaMonHoc.Name = "qlmhbtnSuaMonHoc";
             this.qlmhbtnSuaMonHoc.Size = new System.Drawing.Size(99, 23);
             this.qlmhbtnSuaMonHoc.TabIndex = 15;
             this.qlmhbtnSuaMonHoc.Text = "Sửa môn học";
             this.qlmhbtnSuaMonHoc.UseVisualStyleBackColor = true;
+            this.qlmhbtnSuaMonHoc.Click += new System.EventHandler(this.qlmhbtnSuaMonHoc_Click);
             // 
             // qlmhbtnThemMonHoc
             // 
@@ -1373,6 +1376,7 @@
             this.qlkbtnXoaKhoa.TabIndex = 10;
             this.qlkbtnXoaKhoa.Text = "Xóa khoa";
             this.qlkbtnXoaKhoa.UseVisualStyleBackColor = true;
+            this.qlkbtnXoaKhoa.Click += new System.EventHandler(this.qlkbtnXoaKhoa_Click);
             // 
             // qlkbtnThemKhoa
             // 
