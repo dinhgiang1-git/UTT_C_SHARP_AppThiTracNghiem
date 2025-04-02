@@ -1,6 +1,6 @@
 ﻿namespace ThiTracNghiem
 {
-    partial class main
+    partial class fMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fMain));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -175,9 +177,15 @@
             this.thôngTinTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.tcdtxtMaGiangVien = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.tcdtxtHoTen = new System.Windows.Forms.TextBox();
+            this.tcdtxtMaKhoa = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox18.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -239,6 +247,21 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Tra cứu điểm";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.tcdtxtMaKhoa);
+            this.groupBox18.Controls.Add(this.tcdtxtHoTen);
+            this.groupBox18.Controls.Add(this.label44);
+            this.groupBox18.Controls.Add(this.label43);
+            this.groupBox18.Controls.Add(this.tcdtxtMaGiangVien);
+            this.groupBox18.Controls.Add(this.label42);
+            this.groupBox18.Location = new System.Drawing.Point(898, 522);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(331, 184);
+            this.groupBox18.TabIndex = 7;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "Thông tin";
             // 
             // groupBox2
             // 
@@ -1795,32 +1818,77 @@
             // 
             // thôngTinTàiKhoảnToolStripMenuItem
             // 
+            this.thôngTinTàiKhoảnToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thôngTinTàiKhoảnToolStripMenuItem.Image")));
             this.thôngTinTàiKhoảnToolStripMenuItem.Name = "thôngTinTàiKhoảnToolStripMenuItem";
-            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản";
             // 
             // đổiMậtKhẩuToolStripMenuItem
             // 
+            this.đổiMậtKhẩuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("đổiMậtKhẩuToolStripMenuItem.Image")));
             this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
             // 
             // đăngXuấtToolStripMenuItem
             // 
+            this.đăngXuấtToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("đăngXuấtToolStripMenuItem.Image")));
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             // 
-            // groupBox18
+            // label42
             // 
-            this.groupBox18.Location = new System.Drawing.Point(898, 522);
-            this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(331, 184);
-            this.groupBox18.TabIndex = 7;
-            this.groupBox18.TabStop = false;
-            this.groupBox18.Text = "Thông tin";
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(6, 25);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(44, 15);
+            this.label42.TabIndex = 0;
+            this.label42.Text = "MaGV:";
             // 
-            // main
+            // tcdtxtMaGiangVien
+            // 
+            this.tcdtxtMaGiangVien.Location = new System.Drawing.Point(75, 22);
+            this.tcdtxtMaGiangVien.Margin = new System.Windows.Forms.Padding(2);
+            this.tcdtxtMaGiangVien.Name = "tcdtxtMaGiangVien";
+            this.tcdtxtMaGiangVien.Size = new System.Drawing.Size(251, 20);
+            this.tcdtxtMaGiangVien.TabIndex = 2;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(6, 57);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(50, 15);
+            this.label43.TabIndex = 3;
+            this.label43.Text = "Họ Tên:";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(6, 93);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(60, 15);
+            this.label44.TabIndex = 4;
+            this.label44.Text = "Mã Khoa:";
+            // 
+            // tcdtxtHoTen
+            // 
+            this.tcdtxtHoTen.Location = new System.Drawing.Point(75, 57);
+            this.tcdtxtHoTen.Margin = new System.Windows.Forms.Padding(2);
+            this.tcdtxtHoTen.Name = "tcdtxtHoTen";
+            this.tcdtxtHoTen.Size = new System.Drawing.Size(251, 20);
+            this.tcdtxtHoTen.TabIndex = 5;
+            // 
+            // tcdtxtMaKhoa
+            // 
+            this.tcdtxtMaKhoa.Location = new System.Drawing.Point(75, 93);
+            this.tcdtxtMaKhoa.Margin = new System.Windows.Forms.Padding(2);
+            this.tcdtxtMaKhoa.Name = "tcdtxtMaKhoa";
+            this.tcdtxtMaKhoa.Size = new System.Drawing.Size(251, 20);
+            this.tcdtxtMaKhoa.TabIndex = 6;
+            // 
+            // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1828,11 +1896,13 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "main";
+            this.Name = "fMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Giảng Viên";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -2034,6 +2104,12 @@
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.GroupBox groupBox18;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TextBox tcdtxtMaGiangVien;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.TextBox tcdtxtMaKhoa;
+        private System.Windows.Forms.TextBox tcdtxtHoTen;
+        private System.Windows.Forms.Label label44;
     }
 }
 

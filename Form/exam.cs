@@ -15,7 +15,6 @@ namespace ThiTracNghiem
         public exam()
         {
             InitializeComponent();
-            Console.WriteLine("hello world");
         }
     }
 }
