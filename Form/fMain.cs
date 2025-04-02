@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ThiTracNghiem
 {
-    public partial class fMain: Form
+    public partial class fMain : Form
     {
         public string _MaGiangVien;
         string strConn = "Server=DINHDUCGIANG;Database=UTT_ThiTracNghiem;Integrated Security=True;";
@@ -19,16 +19,19 @@ namespace ThiTracNghiem
         {
             InitializeComponent();
             _MaGiangVien = MaGiangVien;
+            LoadComboBox();
+            string maKhoa = qllcbKhoa.SelectedValue.ToString();
+            string maKhoa_MH = qlmhcbKhoa.SelectedValue.ToString();
             Infomation_tcd();
             LoadData_Khoa();
-            LoadData_MonHoc("");
-            LoadComboBox();
+            LoadData_MonHoc(maKhoa_MH);
+            LoadData_Lop(maKhoa);
             ResetComboBox();
         }
 
         private void ResetComboBox()
         {
-  
+
         }
         private void Infomation_tcd()
         {
@@ -52,7 +55,7 @@ namespace ThiTracNghiem
                     {
                         string magiangvien = reader["MaGiangVien"].ToString();
                         string hoten = reader["HoTen"].ToString();
-                        string makhoa= reader["MaKhoa"].ToString();
+                        string makhoa = reader["MaKhoa"].ToString();
 
                         tcdtxtHoTen.Text = hoten;
                         tcdtxtMaGiangVien.Text = magiangvien;
@@ -62,7 +65,7 @@ namespace ThiTracNghiem
             }
             catch (Exception ex)
             {
-                throw new Exception("Database Error: "+ ex.Message);
+                throw new Exception("Database Error: " + ex.Message);
             }
             finally
             {
@@ -92,7 +95,7 @@ namespace ThiTracNghiem
                 }
                 finally
                 {
-                    conn.Close();  
+                    conn.Close();
                 }
             }
         }
@@ -124,6 +127,35 @@ namespace ThiTracNghiem
                 }
             }
         }
+        private void LoadData_Lop(string maKhoa)
+        {
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Select MaLop, TenLop from LOP where MaKhoa = @MaKhoa";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaKhoa", maKhoa);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataLop.DataSource = dt;
+                }
+
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+
+                finally
+                {
+                    conn.Close();
+                }
+
+            }
+        }
         private void LoadComboBox()
         {
             using (SqlConnection conn = new SqlConnection(strConn))
@@ -141,10 +173,14 @@ namespace ThiTracNghiem
                     qlmhcbKhoa.DataSource = dt;
                     qlmhcbKhoa.DisplayMember = "TenKhoa";
                     qlmhcbKhoa.ValueMember = "MaKhoa";
+
+                    qllcbKhoa.DataSource = dt;
+                    qllcbKhoa.DisplayMember = "TenKhoa";
+                    qllcbKhoa.ValueMember = "Makhoa";
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception ("Error: "+ ex.Message);
+                    throw new Exception("Error: " + ex.Message);
                 }
                 finally
                 {
@@ -152,7 +188,7 @@ namespace ThiTracNghiem
                 }
             }
         }
-     
+
         //Quản lí Khoa
         private bool checkDuplicateMakhoa(string strMakhoa)
         {
@@ -171,7 +207,7 @@ namespace ThiTracNghiem
                 catch (Exception ex)
                 {
                     throw new Exception("DataBase Error: " + ex.Message);
-                }finally
+                } finally
                 {
                     conn.Close();
                 }
@@ -179,7 +215,7 @@ namespace ThiTracNghiem
         }
         private void dataKhoa_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataKhoa.Rows[e.RowIndex];
 
@@ -199,7 +235,7 @@ namespace ThiTracNghiem
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin Mã Khoa và Tên Khoa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(checkDuplicateMakhoa(Makhoa))
+            if (checkDuplicateMakhoa(Makhoa))
             {
                 MessageBox.Show("Mã khoa đã tồn tại. Vui lòng nhập mã khác!");
                 return;
@@ -235,9 +271,9 @@ namespace ThiTracNghiem
                 {
                     throw new Exception("Lỗi: " + ex.Message);
                 }
-                finally 
-                { 
-                    conn.Close();   
+                finally
+                {
+                    conn.Close();
                 }
 
             }
@@ -250,7 +286,7 @@ namespace ThiTracNghiem
             string maKhoa = qlktxtMaKhoa.Text.Trim();
 
             //Validate
-            if(string.IsNullOrEmpty(maKhoa))
+            if (string.IsNullOrEmpty(maKhoa))
             {
                 MessageBox.Show("Vui lòng chọn một Khoa để xoá!");
                 return;
@@ -277,7 +313,7 @@ namespace ThiTracNghiem
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error: " + ex.Message); 
+                    throw new Exception("Error: " + ex.Message);
                 }
                 finally
                 {
@@ -292,19 +328,19 @@ namespace ThiTracNghiem
             string tenKhoa = qlktxtTenKhoa.Text.Trim();
 
             //Validate
-            if(string.IsNullOrEmpty(maKhoa))
+            if (string.IsNullOrEmpty(maKhoa))
             {
                 MessageBox.Show("Vui lòng điền Mã Khoa!");
                 return;
             }
-            if(string.IsNullOrEmpty (tenKhoa))
+            if (string.IsNullOrEmpty(tenKhoa))
             {
                 MessageBox.Show("Vui lòng điền Tên Khoa!");
                 return;
             }
 
             //Sửa
-            using(SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(strConn))
             {
                 try
                 {
@@ -325,7 +361,7 @@ namespace ThiTracNghiem
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error: "+ ex.Message);
+                    throw new Exception("Error: " + ex.Message);
                 }
                 finally
                 {
@@ -361,10 +397,9 @@ namespace ThiTracNghiem
         }
         private void dataMonHoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataMonHoc.Rows[e.RowIndex];
-
                 qlmhtxtMaMonHoc.Text = row.Cells["MaMonHoc"].Value.ToString();
                 qlmhtxtTenMonHoc.Text = row.Cells["TenMonHoc"].Value.ToString();
             }
@@ -373,7 +408,7 @@ namespace ThiTracNghiem
         {
             if (qlmhcbKhoa.SelectedIndex == -1)
                 return;
-            
+
             string slectedKhoa = qlmhcbKhoa.SelectedValue.ToString();
             LoadData_MonHoc(slectedKhoa);
         }
@@ -394,7 +429,7 @@ namespace ThiTracNghiem
             {
                 MessageBox.Show("Tên môn học không được để trống!");
                 return;
-            }    
+            }
             if (string.IsNullOrEmpty(Makhoa))
             {
                 MessageBox.Show("Vui lòng chọn khoa");
@@ -405,7 +440,7 @@ namespace ThiTracNghiem
                 MessageBox.Show("Mã môn học đã bị trùng. Vui lòng nhập mã khác!");
                 return;
             }
-              
+
             //Thêm
             using (SqlConnection conn = new SqlConnection(strConn))
             {
@@ -451,20 +486,20 @@ namespace ThiTracNghiem
             string maKhoa = qlmhcbKhoa.SelectedValue.ToString();
 
             //Validate
-            if(string.IsNullOrEmpty(maMonHoc))
+            if (string.IsNullOrEmpty(maMonHoc))
             {
                 MessageBox.Show("Vui lòng điền mã môn học!");
                 return;
             }
-            if(string.IsNullOrEmpty(tenMonHoc))
+            if (string.IsNullOrEmpty(tenMonHoc))
             {
                 MessageBox.Show("Vui lòng điền tên môn học!");
                 return;
             }
 
             //Sửa
-            using(SqlConnection conn = new SqlConnection(strConn))
-            {   
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
                 try
                 {
                     conn.Open();
@@ -490,7 +525,7 @@ namespace ThiTracNghiem
                 {
                     conn.Close();
                 }
-               
+
             }
         }
         private void qlmhbtnXoaMonHoc_Click(object sender, EventArgs e)
@@ -500,14 +535,14 @@ namespace ThiTracNghiem
             string maKhoa = qlmhcbKhoa.SelectedValue.ToString();
 
             //Validate
-            if(string.IsNullOrEmpty(maMonHoc))
+            if (string.IsNullOrEmpty(maMonHoc))
             {
                 MessageBox.Show("Vui lòng chọn một môn học để xoá!");
                 return;
             }
 
             //Xoá
-            using(SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(strConn))
             {
                 try
                 {
@@ -536,5 +571,205 @@ namespace ThiTracNghiem
                 }
             }
         }
+
+        //Quản lí lớp
+        private bool checkDuplicateMaLop(string strMaLop)
+        {
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Select count(*) from LOP where MaLop = @MaLop";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaLop", strMaLop);
+
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("DataBase Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        private void qllcbKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (qllcbKhoa.SelectedIndex == -1)
+            {
+                return;
+            }
+            string maKhoa = qllcbKhoa.SelectedValue.ToString();
+            LoadData_Lop(maKhoa);
+        }
+        private void dataLop_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >=0 )
+            {
+                DataGridViewRow row = dataLop.Rows[e.RowIndex];
+                qlltxtMaLop.Text = row.Cells["MaLop"].Value.ToString();
+                qlltxtTenLop.Text = row.Cells["TenLop"].Value.ToString();
+            }
+        }
+        private void qllbtnThemLop_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string maLop = qlltxtMaLop.Text.Trim().ToUpper();
+            string tenLop = qlltxtTenLop.Text.Trim();
+            string maKhoa = qllcbKhoa.SelectedValue.ToString();
+
+            //Validate
+            if (string.IsNullOrEmpty(maLop))
+            {
+                MessageBox.Show("Vui lòng nhập mã lớp");
+                return;
+            }
+            if (string.IsNullOrEmpty(tenLop))
+            {
+                MessageBox.Show("Vui lòng nhập tên lớp");
+                return;
+            }
+            if (string.IsNullOrEmpty(maKhoa))
+            {
+                MessageBox.Show("Vui lòng chọn khoa");
+                return;
+            }
+            if (checkDuplicateMaLop(maLop)) {
+                MessageBox.Show("Mã lớp đã bị trùng. Vui lòng nhập lại!");
+                return;
+            }
+        
+            //Thêm
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Insert into LOP (MaLop, TenLop, MaKhoa) values (@MaLop, @TenLop, @MaKhoa)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaLop", maLop);
+                    cmd.Parameters.AddWithValue("@TenLop", tenLop);
+                    cmd.Parameters.AddWithValue("@MaKhoa", maKhoa);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0 )
+                    {
+                        MessageBox.Show("Thêm lớp thành công!");
+                        LoadData_Lop(maKhoa);
+                        Console.WriteLine(maKhoa);
+                        qlltxtTenLop.Clear();
+                        qlltxtMaLop.Clear();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+
+                }
+            }
+        }
+        private void qllbtnSuaLop_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string maLop = qlltxtMaLop.Text.Trim();
+            string tenLop = qlltxtTenLop.Text.Trim();
+            string maKhoa = qllcbKhoa.SelectedValue.ToString();
+
+            //Validate
+            if (string.IsNullOrEmpty(tenLop))
+            {
+                MessageBox.Show("Vui lòng điền tên lớp!");
+                return;
+            }
+
+            //Sửa
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Update LOP set TenLop = @TenLop, MaKhoa = @MaKhoa where MaLop = @MaLop";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@TenLop", tenLop);
+                    cmd.Parameters.AddWithValue("@MaKhoa", maKhoa);
+                    cmd.Parameters.AddWithValue("@MaLop", maLop);
+
+                    int rowAffected = cmd.ExecuteNonQuery();
+                    if (rowAffected > 0 )
+                    {
+                        MessageBox.Show("Sửa thành công!");
+                        LoadData_Lop(maKhoa);
+                        qlltxtMaLop.Clear();
+                        qlltxtTenLop.Clear();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+        private void qllbtnXoaLop_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string maLop = qlltxtMaLop.Text.Trim();
+            string maKhoa = qllcbKhoa.SelectedValue.ToString();
+
+            //Validate
+            if (string.IsNullOrEmpty(maLop))
+            {
+                MessageBox.Show("Vui lòng chọn một lớp để xoá!");
+                return;
+            }
+            DialogResult result = MessageBox.Show("Bạn có muốn xoá Lớp này?", "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No) 
+            {
+                return;
+            }
+
+            //Xoá
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Delete from LOP where MaLop = @MaLop";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaLop", maLop);
+                    
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0) 
+                    {
+                        MessageBox.Show("Xoá thành công");
+                        LoadData_Lop(maKhoa);
+                        qlltxtMaLop.Clear();
+                        qlltxtTenLop.Clear();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        //Quản lí sinh viên
     }
 }
