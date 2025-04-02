@@ -80,6 +80,17 @@ VALUES
     ('123', N'Đinh Đức Giang', N'Nam', '2004-01-29', N'Quảng Ninh', '123', 'K001'),
     ('345', N'Phạm Thị D', N'Nữ', '1980-03-10', N'Hà Nội', '345', 'K002');
 
-select * from GIANGVIEN 
-USE UTT_ThiTracNghiem;  -- Đảm bảo rằng bạn đang sử dụng đúng cơ sở dữ liệu
+INSERT INTO KHOA (MaKhoa, TenKhoa)
+VALUES 
+    ('K001', N'Công Nghệ Thông Tin'),
+    ('K002', N'Kinh Tế');
+
+-- Chèn dữ liệu mẫu vào bảng MONHOC
+INSERT INTO MONHOC (MaMonHoc, TenMonHoc, MaKhoa)
+VALUES 
+    ('MH001', N'Cơ Sở Dữ Liệu', 'K001'),
+    ('MH002', N'Kinh Tế Vi Mô', 'K002');
+
+select * from KHOA 
+
 
