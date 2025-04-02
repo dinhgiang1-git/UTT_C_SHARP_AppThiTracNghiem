@@ -85,12 +85,16 @@ VALUES
     ('K001', N'Công Nghệ Thông Tin'),
     ('K002', N'Kinh Tế');
 
--- Chèn dữ liệu mẫu vào bảng MONHOC
 INSERT INTO MONHOC (MaMonHoc, TenMonHoc, MaKhoa)
 VALUES 
     ('MH001', N'Cơ Sở Dữ Liệu', 'K001'),
     ('MH002', N'Kinh Tế Vi Mô', 'K002');
 
-select * from KHOA 
+INSERT INTO LOP (MaLop, TenLop, MaKhoa)
+VALUES 
+    ('L001', N'Lớp CNTT K55', 'K001'),
+    ('L002', N'Lớp Kinh Tế K56', 'K002');
+
+select * from MONHOC
 
 
