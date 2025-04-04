@@ -7,7 +7,7 @@
 CREATE TABLE MONHOC (
     MaMonHoc VARCHAR(10) PRIMARY KEY,
     TenMonHoc NVARCHAR(50),
-    MaKhoa VARCHAR(10) -- Không dùng foreign key
+    MaLop VARCHAR(10) -- Không dùng foreign key
 );
 
 -- Tạo bảng LOP
@@ -17,9 +17,11 @@ CREATE TABLE LOP (
     MaKhoa VARCHAR(10) -- Không dùng foreign key
 );
 
+
+
 -- Tạo bảng SINHVIEN
 CREATE TABLE SINHVIEN (
-    MaSinhVien VARCHAR(10) PRIMARY KEY,
+    MaSinhVien VARCHAR(20) PRIMARY KEY,
     HoTen NVARCHAR(50),
     GioiTinh NVARCHAR(10),
     NgaySinh DATE,
@@ -57,7 +59,6 @@ CREATE TABLE DETHI (
     TenDeThi NVARCHAR(100),
     MaKhoa VARCHAR(10), -- Không dùng foreign key
     MaMonHoc VARCHAR(10), -- Không dùng foreign key
-    MaSinhVien VARCHAR(10), -- Không dùng foreign key
     ThoiGianThi INT,
     ThoiGianBatDau DATETIME,
     ThoiGianKetThuc DATETIME,
@@ -95,6 +96,20 @@ VALUES
     ('L001', N'Lớp CNTT K55', 'K001'),
     ('L002', N'Lớp Kinh Tế K56', 'K002');
 
-select * from MONHOC
+INSERT INTO SINHVIEN (MaSinhVien, HoTen, GioiTinh, NgaySinh, QueQuan, MaLop, MatKhau)
+VALUES 
+    ('qwe', N'Nguyễn Văn A', N'Nam', '2000-05-15', N'Hà Nội', 'L001', 'qwe'),
+    ('giang', N'Trần Thị B', N'Nữ', '2001-08-20', N'TP HCM', 'L002', '123');
+delete SINHVIEN
+drop table SINHVIEN
 
+select * from SINHVIEN
+select * from LOP
+select * from KHOA
+
+drop table DeThi
+
+
+ALTER TABLE SINHVIEN
+ALTER COLUMN MaSinhVien VARCHAR(15);
 
