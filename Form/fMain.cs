@@ -30,9 +30,11 @@ namespace ThiTracNghiem
             string maKhoa_MH = qlmhcbKhoa.SelectedValue.ToString();
             string maKhoa_SV = qlsvcbKhoa.SelectedValue.ToString();
             string maKhoa_DT = qldtcbKhoa.SelectedValue.ToString();
+            string maKhoa_CH = qlchcbKhoa.SelectedValue.ToString();
 
             LoadComboBox_Lop(maKhoa_SV);
             LoadCombox_MonHoc(maKhoa_DT);
+            //LoadCombox_MonHoc(maKhoa_CH);
 
             string maLop = qlsvcbLop.SelectedValue.ToString();
             string maLop_DT = qldtcbLop.SelectedValue.ToString();
@@ -45,14 +47,14 @@ namespace ThiTracNghiem
             LoadData_SinhVien(maLop);
             LoadData_DeThi("MaLop", maLop_DT);
 
-            ResetComboBox();
+            Config_Component();
 
             FormatDateTimePicker();
         }
 
-        private void ResetComboBox()
+        private void Config_Component()
         {
-
+            qlchtxtMaCauHoi.Enabled = false;
         }
         private void Infomation_tcd()
         {
@@ -238,6 +240,32 @@ namespace ThiTracNghiem
                 }
             }
         }
+        private void LoadData_CauHoi(string maDeThi)
+        {
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Select MaCauHoi, NoiDungCauHoi, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung from CAUHOI where MaDeThi = @MaDeThi";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaDeThi", maDeThi);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataCauHoi.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error" + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
         private void LoadComboBox_Khoa()
         {
             using (SqlConnection conn = new SqlConnection(strConn))
@@ -267,6 +295,10 @@ namespace ThiTracNghiem
                     qldtcbKhoa.DataSource = dt.Copy();
                     qldtcbKhoa.DisplayMember = "TenKhoa";
                     qldtcbKhoa.ValueMember = "MaKhoa";
+
+                    qlchcbKhoa.DataSource = dt.Copy();
+                    qlchcbKhoa.DisplayMember = "Tenkhoa";
+                    qlchcbKhoa.ValueMember = "Makhoa";
                 }
                 catch (Exception ex)
                 {
@@ -301,6 +333,10 @@ namespace ThiTracNghiem
                     qldtcbLop.DisplayMember = "TenLop";
                     qldtcbLop.ValueMember = "MaLop";
 
+                    qlchcbLop.DataSource = dt.Copy();
+                    qlchcbLop.DisplayMember = "TenLop";
+                    qlchcbLop.ValueMember = "MaLop";
+
                 }
                 catch (Exception ex)
                 {
@@ -329,7 +365,41 @@ namespace ThiTracNghiem
 
                     qldtcbMonHoc.DataSource = dt.Copy();
                     qldtcbMonHoc.DisplayMember = "TenMonHoc";
-                    qldtcbMonHoc.ValueMember = "MaMonHoc";                   
+                    qldtcbMonHoc.ValueMember = "MaMonHoc";
+
+                    qlchcbMonHoc.DataSource = dt.Copy();
+                    qlchcbMonHoc.DisplayMember = "TenMonHoc";
+                    qlchcbMonHoc.ValueMember = "MaMonHoc";
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        private void LoadCombox_DeThi (string maMonHoc)
+        {
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Select MaDeThi, TenDeThi from DETHI where MaMonHoc = @MaMonHoc";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaMonHoc", maMonHoc);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    qlchcbDeThi.DataSource = dt.Copy();
+                    qlchcbDeThi.DisplayMember = "TenDeThi";
+                    qlchcbDeThi.ValueMember = "MaDeThi";            
 
                 }
                 catch (Exception ex)
@@ -1570,6 +1640,310 @@ namespace ThiTracNghiem
                     }
                 }
                 catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        //Quản lí câu hỏi
+        private void qlchcbKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (qlchcbKhoa.SelectedIndex == -1)
+            {
+                return;
+            }
+            string maKhoa = qlchcbKhoa.SelectedValue.ToString();          
+            LoadComboBox_Lop(maKhoa);
+            LoadCombox_MonHoc(maKhoa);            
+        }
+        private void qlchcbMonHoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (qlchcbMonHoc.SelectedIndex == -1)
+            {
+                return;
+            }
+            string maMonHoc = qlchcbMonHoc.SelectedValue.ToString();
+            LoadCombox_DeThi(maMonHoc);
+        }
+        private void qlchcbDeThi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string maDeThi = qlchcbDeThi.SelectedValue.ToString();
+            LoadData_CauHoi(maDeThi);
+        }
+        private void dataCauHoi_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataCauHoi.Rows[e.RowIndex];
+                qlchtxtMaCauHoi.Text = row.Cells["MaCauHoi"].Value.ToString();
+                qlchrichtxtNoiDungCauHoi.Text = row.Cells["NoiDungCauHoi"].Value.ToString();
+                qlchtxtDapAnA.Text = row.Cells["DapAnA"].Value.ToString();
+                qlchtxtDapAnB.Text = row.Cells["DapAnB"].Value.ToString();
+                qlchtxtDapAnC.Text = row.Cells["DapAnC"].Value.ToString();
+                qlchtxtDapAnD.Text = row.Cells["DapAnD"].Value.ToString();
+
+                string dapAnDung = row.Cells["DapAnDung"].Value.ToString();
+                if (dapAnDung == qlchtxtDapAnA.Text)
+                {
+                    qlchradioA.Checked = true;
+                }
+                else if (dapAnDung == qlchtxtDapAnB.Text)
+                {
+                    qlchradioB.Checked = true;
+                }
+                else if (dapAnDung == qlchtxtDapAnC.Text)
+                {
+                    qlchradioC.Checked = true;
+                }
+                else if (dapAnDung == qlchtxtDapAnD.Text)
+                {
+                    qlchradioD.Checked = true;
+                }               
+            }
+        }
+        private void qlchbtnThemCauHoi_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string noiDungCauHoi = qlchrichtxtNoiDungCauHoi.Text;
+            string dapAnA = qlchtxtDapAnA.Text;
+            string dapAnB = qlchtxtDapAnB.Text;
+            string dapAnC = qlchtxtDapAnC.Text;
+            string dapAnD = qlchtxtDapAnD.Text;
+            string dapAnDung = "";
+            if (qlchradioA.Checked)
+            {
+                dapAnDung = dapAnA;
+            }
+            else if (qlchradioB.Checked)
+            {
+                dapAnDung = dapAnB;
+            }
+            else if (qlchradioC.Checked)
+            {
+                dapAnDung = dapAnC;
+            }
+            else if (qlchradioD.Checked) {
+                dapAnDung = dapAnD;
+            }
+            string maDeThi = qlchcbDeThi.SelectedValue.ToString();
+
+            //Validate
+            if(string.IsNullOrEmpty(noiDungCauHoi))
+            {
+                MessageBox.Show("Vui lòng điền nội dung câu hỏi!");
+                return;
+            }
+            if(string.IsNullOrEmpty(dapAnA))
+            {
+                MessageBox.Show("Vui lòng điền nội dung Đáp Án A");
+                return;
+            }
+            if(string.IsNullOrEmpty(dapAnB))
+            {
+                MessageBox.Show("Vui lòng điền nội dung Đáp Án B");
+                return;
+            }
+            if (string.IsNullOrEmpty(dapAnC))
+            {
+                MessageBox.Show("Vui lòng điền nội dung Đáp Án C");
+                return;
+            }
+            if (string.IsNullOrEmpty(dapAnD))
+            {
+                MessageBox.Show("Vui lòng điền nội dung Đáp Án D");
+                return;
+            }
+
+            //Thêm
+            using(SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Insert into CAUHOI (NoiDungCauHoi, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung, MaDeThi) values (@NoiDungCauHoi, @DapAnA, @DapAnB, @DapAnC, @DapAnD, @DapAnDung, @MaDeThi)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@NoiDungCauHoi", noiDungCauHoi);
+                    cmd.Parameters.AddWithValue("@DapAnA", dapAnA);
+                    cmd.Parameters.AddWithValue("@DapAnB", dapAnB);
+                    cmd.Parameters.AddWithValue("@DapAnC", dapAnC);
+                    cmd.Parameters.AddWithValue("@DapAnD", dapAnD);
+                    cmd.Parameters.AddWithValue("@DapAnDung", dapAnDung);
+                    cmd.Parameters.AddWithValue("@MaDeThi", maDeThi);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0) 
+                    {
+                        MessageBox.Show("Thêm câu hỏi thành công!");
+                        LoadData_CauHoi(maDeThi);
+                        qlchrichtxtNoiDungCauHoi.Clear();                        
+                        qlchtxtDapAnA.Clear();
+                        qlchtxtDapAnB.Clear();
+                        qlchtxtDapAnC.Clear();
+                        qlchtxtDapAnD.Clear();
+                        qlchradioA.Checked = false;
+                        qlchradioB.Checked = false;
+                        qlchradioC.Checked = false;
+                        qlchradioD.Checked = false;
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        private void qlchbtnSuaCauHoi_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string maCauHoi = qlchtxtMaCauHoi.Text;
+            string noiDungCauHoi = qlchrichtxtNoiDungCauHoi.Text;
+            string dapAnA = qlchtxtDapAnA.Text;
+            string dapAnB = qlchtxtDapAnB.Text;
+            string dapAnC = qlchtxtDapAnC.Text;
+            string dapAnD = qlchtxtDapAnD.Text;
+            string dapAnDung = "";
+            if (qlchradioA.Checked)
+            {
+                dapAnDung = dapAnA;
+            }
+            else if (qlchradioB.Checked)
+            {
+                dapAnDung = dapAnB;
+            }
+            else if (qlchradioC.Checked)
+            {
+                dapAnDung = dapAnC;
+            }
+            else if (qlchradioD.Checked)
+            {
+                dapAnDung = dapAnD;
+            }
+            string maDeThi = qlchcbDeThi.SelectedValue.ToString();
+
+            //Validate
+            if (string.IsNullOrEmpty(noiDungCauHoi))
+            {
+                MessageBox.Show("Vui lòng điền nội dung câu hỏi!");
+                return;
+            }
+            if (string.IsNullOrEmpty(dapAnA))
+            {
+                MessageBox.Show("Vui lòng điền nội dung Đáp Án A");
+                return;
+            }
+            if (string.IsNullOrEmpty(dapAnB))
+            {
+                MessageBox.Show("Vui lòng điền nội dung Đáp Án B");
+                return;
+            }
+            if (string.IsNullOrEmpty(dapAnC))
+            {
+                MessageBox.Show("Vui lòng điền nội dung Đáp Án C");
+                return;
+            }
+            if (string.IsNullOrEmpty(dapAnD))
+            {
+                MessageBox.Show("Vui lòng điền nội dung Đáp Án D");
+                return;
+            }
+
+            //Sửa
+            using(SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Update CAUHOI set NoiDungCauHoi = @NoiDungCauHoi, DapAnA = @DapAnA, DapAnB = @DapAnB, DapAnC = @DapAnC, DapAnD = @DapAnD, DapAnDung = @DapAnDung, MaDeThi = @MaDeThi where MaCauHoi = @MaCauHoi";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@NoiDungCauHoi", noiDungCauHoi);
+                    cmd.Parameters.AddWithValue("@DapAnA", dapAnA);
+                    cmd.Parameters.AddWithValue("@DapAnB", dapAnB);
+                    cmd.Parameters.AddWithValue("@DapAnC", dapAnC);
+                    cmd.Parameters.AddWithValue("@DapAnD", dapAnD);
+                    cmd.Parameters.AddWithValue("@DapAnDung", dapAnDung);
+                    cmd.Parameters.AddWithValue("@MaDeThi", maDeThi);
+                    cmd.Parameters.AddWithValue("@MaCauHoi", maCauHoi);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0) {
+                        MessageBox.Show("Sửa câu hỏi " + maCauHoi + " thành công!");
+                        LoadData_CauHoi(maDeThi);
+                        qlchrichtxtNoiDungCauHoi.Clear();
+                        qlchtxtDapAnA.Clear();
+                        qlchtxtDapAnB.Clear();
+                        qlchtxtDapAnC.Clear();
+                        qlchtxtDapAnD.Clear();
+                        qlchradioA.Checked = false;
+                        qlchradioB.Checked = false;
+                        qlchradioC.Checked = false;
+                        qlchradioD.Checked = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        private void qlchbtnXoaCauHoi_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string maCauHoi = qlchtxtMaCauHoi.Text;
+            string maDeThi = qlchcbDeThi.SelectedValue.ToString();
+
+            //Validate
+            if (string.IsNullOrEmpty(maCauHoi))
+            {
+                MessageBox.Show("Vui lòng chọn một Câu hỏi để xoá!");
+                return;
+            }
+            DialogResult result = MessageBox.Show("Bạn có muốn xoá " + maDeThi + " ?", "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
+            //Xoá
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Delete CAUHOI where MaCauHoi = @MaCauHoi";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaCauHoi", maCauHoi);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0) {
+                        MessageBox.Show("Xoá câu hỏi " + maCauHoi + " thành công!");
+                        LoadData_CauHoi(maDeThi);
+                        qlchrichtxtNoiDungCauHoi.Clear();
+                        qlchtxtDapAnA.Clear();
+                        qlchtxtDapAnB.Clear();
+                        qlchtxtDapAnC.Clear();
+                        qlchtxtDapAnD.Clear();
+                        qlchradioA.Checked = false;
+                        qlchradioB.Checked = false;
+                        qlchradioC.Checked = false;
+                        qlchradioD.Checked = false;
+                    }
+                }
+                catch (Exception ex) 
                 {
                     throw new Exception("Error: " + ex.Message);
                 }
