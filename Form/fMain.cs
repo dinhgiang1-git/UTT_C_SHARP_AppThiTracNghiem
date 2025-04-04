@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Spreadsheet;
 using ExcelDataReader;
 
@@ -214,7 +215,10 @@ namespace ThiTracNghiem
                         dataDeThi.DataSource = null;
                         return;
                     }
-                    string query = $"Select MaDeThi, TenDeThi, ThoiGianThi, ThoiGianBatDau, ThoiGianKetThuc, SoLuongCauHoi from DETHI where {columnName} = @Value";
+                    string query = $"SELECT MaDeThi, TenDeThi, ThoiGianThi, " +
+                           $"FORMAT(ThoiGianBatDau, 'dd-MM-yyyy HH:mm') AS ThoiGianBatDau, " +
+                           $"FORMAT(ThoiGianKetThuc, 'dd-MM-yyyy HH:mm') AS ThoiGianKetThuc, " +
+                           $"SoLuongCauHoi FROM DETHI WHERE {columnName} = @Value";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Value", value);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -222,6 +226,7 @@ namespace ThiTracNghiem
                     adapter.Fill(dt);
 
                     dataDeThi.DataSource = dt;
+                    
                 }
                 catch (Exception ex)
                 {
@@ -1269,6 +1274,74 @@ namespace ThiTracNghiem
         }
 
         //Quản lí đề thi
+        private void qldtcbKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (qldtcbKhoa.SelectedIndex == -1)
+            {
+                return;
+            }
+            string maKhoa = qldtcbKhoa.SelectedValue.ToString();
+            LoadComboBox_Lop(maKhoa);
+            LoadCombox_MonHoc(maKhoa);
+            LoadData_DeThi("MaKhoa", maKhoa);
+        }
+        private void qldtcbLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (qldtcbLop.SelectedIndex != -1 && qldtcbLop.SelectedValue != null)
+            {
+                LoadData_DeThi("MaLop", qldtcbLop.SelectedValue.ToString());
+            }
+        }
+        private void qldtcbMonHoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (qldtcbMonHoc.SelectedIndex != -1 && qldtcbLop.SelectedValue != null)
+            {
+                LoadData_DeThi("MaMonHoc", qldtcbMonHoc.SelectedValue.ToString());
+            }
+        }
+        private void dataDeThi_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataDeThi.Rows[e.RowIndex];
+                qldttxtMaDeThi.Text = row.Cells["MaDeThi"].Value.ToString();
+                qldttxtTenDeThi.Text = row.Cells["TenDeThi"].Value.ToString();
+                qldttxtThoiGianLamBai.Text = row.Cells["ThoiGianThi"].Value.ToString();
+
+                if (row.Cells["ThoiGianBatDau"].Value != null)
+                {
+                    DateTime thoiGianBatDau;
+                    string timeString = row.Cells["ThoiGianBatDau"].Value.ToString();
+                    string[] formats = { "dd-MM-yyyy HH:mm", "yyyy-MM-dd HH:mm:ss.fff", "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd h:mm:ss tt" };
+                    try
+                    {
+                        thoiGianBatDau = DateTime.ParseExact(timeString, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None);
+                        qldtdateThoiGianBatDau.Value = thoiGianBatDau;
+                    }
+                    catch (FormatException)
+                    {
+                        MessageBox.Show("Định dạng thời gian bắt đầu không hợp lệ!");
+                    }
+                }
+
+                if (row.Cells["ThoiGianKetThuc"].Value != null)
+                {
+                    DateTime thoiGianKetThuc;
+                    string timeString = row.Cells["ThoiGianKetThuc"].Value.ToString();
+                    string[] formats = { "dd-MM-yyyy HH:mm", "yyyy-MM-dd HH:mm:ss.fff", "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd h:mm:ss tt" };
+                    try
+                    {
+                        thoiGianKetThuc = DateTime.ParseExact(timeString, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None);
+                        qldtdateThoiGianKetThuc.Value = thoiGianKetThuc;
+                    }
+                    catch (FormatException)
+                    {
+                        MessageBox.Show("Định dạng thời gian kết thúc không hợp lệ!");
+                    }
+                }
+                qldttxtSoLuongCauHoi.Text = row.Cells["SoLuongCauHoi"].Value.ToString();
+            }
+        }
         private bool checkDuplicateMaDeThi(string strMaDeThi)
         {
             using (SqlConnection conn = new SqlConnection(strConn))
@@ -1374,61 +1447,136 @@ namespace ThiTracNghiem
                 }
             }
         }
-        private void qldtcbKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        private void qldtbtnSuaDeThi_Click(object sender, EventArgs e)
         {
-            if (qldtcbKhoa.SelectedIndex == -1)
+            //Lấy dữ liệu
+            string maDeThi = qldttxtMaDeThi.Text.Trim().ToUpper();
+            string tenDeThi = qldttxtTenDeThi.Text.Trim();
+            string maKhoa = qldtcbKhoa.SelectedValue.ToString();
+            string maMonHoc = qldtcbMonHoc.SelectedValue.ToString();
+            int thoiGianThi = int.Parse(qldttxtThoiGianLamBai.Text);
+            //string thoiGianBatDau = qldtdateThoiGianBatDau.Value.ToString("dd-MM-yyyy HH:mm");
+            //string thoiGianKetThuc = qldtdateThoiGianKetThuc.Value.ToString("dd-MM-yyyy HH:mm");
+            DateTime thoiGianBatDau = qldtdateThoiGianBatDau.Value;
+            DateTime thoiGianKetThuc = qldtdateThoiGianKetThuc.Value;
+            int soLuongCauHoi = int.Parse(qldttxtSoLuongCauHoi.Text);
+            string maLop = qldtcbLop.SelectedValue.ToString();
+
+            //Validate
+            if (string.IsNullOrEmpty(maDeThi))
+            {
+                MessageBox.Show("Vui lòng nhập Mã đề thi!");
+                return;
+            }
+            if (string.IsNullOrEmpty(tenDeThi))
+            {
+                MessageBox.Show("Vui lòng nhập Tên đề thi!");
+                return;
+            }
+            if (thoiGianThi == 0)
+            {
+                MessageBox.Show("Vui lòng nhập Thời lượng của đề thi");
+                return;
+            }
+            if (soLuongCauHoi == 0)
+            {
+                MessageBox.Show("Vui lòng nhập số lượng câu hỏi!");
+                return;
+            }
+            if (!checkDuplicateMaDeThi(maDeThi))
+            {
+                MessageBox.Show("Không tìm thấy Mã đề thi cần sửa! Vui lòng nhập lại");
+                return;
+            }
+
+            //Sửa
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "Update DETHI set TenDeThi = @TenDeThi, MaKhoa = @MaKhoa, MaMonHoc = @MaMonHoc, ThoiGianThi = @ThoiGianThi, ThoiGianBatDau = @ThoiGianBatDau, ThoiGianKetThuc = @ThoiGianKetThuc, SoLuongCauHoi = @SoLuongCauHoi, MaLop = @MaLop where MaDeThi = @MaDeThi";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@TenDeThi", tenDeThi);
+                    cmd.Parameters.AddWithValue("@Makhoa", maKhoa);
+                    cmd.Parameters.AddWithValue("@MaMonHoc", maMonHoc);
+                    cmd.Parameters.AddWithValue("@ThoiGianThi", thoiGianThi);
+                    cmd.Parameters.AddWithValue("@ThoiGianBatDau", thoiGianBatDau);
+                    cmd.Parameters.AddWithValue("ThoiGianKetThuc", thoiGianKetThuc);
+                    cmd.Parameters.AddWithValue("@SoLuongCauHoi", soLuongCauHoi);
+                    cmd.Parameters.AddWithValue("@MaLop", maLop);
+                    cmd.Parameters.AddWithValue("@MaDeThi", maDeThi);
+
+                    int rowAffected = cmd.ExecuteNonQuery();
+                    if (rowAffected > 0) 
+                    {
+                        MessageBox.Show("Sửa Đề Thi " + tenDeThi + " Thành công!");
+                        LoadData_DeThi("MaLop", maLop);
+                        qldttxtMaDeThi.Clear();
+                        qldttxtTenDeThi.Clear();
+                        qldttxtThoiGianLamBai.Clear();
+                        qldttxtSoLuongCauHoi.Clear();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();   
+                }
+            }
+        }
+        private void qldtbtnXoaDeThi_Click(object sender, EventArgs e)
+        {
+            //Lấy dữ liệu
+            string maDeThi = qldttxtMaDeThi.Text.Trim();
+            string tenDeThi = qldttxtTenDeThi.Text.Trim();
+            string maLop = qldtcbLop.SelectedValue.ToString();
+
+            //Validate
+            if(string.IsNullOrEmpty(maDeThi))
+            {
+                MessageBox.Show("Vui lòng chọn một Đề Thi để xoá!");
+                return;
+            }
+            DialogResult result = MessageBox.Show("Bạn có muốn xoá " + tenDeThi + " ?", "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
             {
                 return;
             }
-            string maKhoa = qldtcbKhoa.SelectedValue.ToString();
-            LoadComboBox_Lop(maKhoa);
-            LoadCombox_MonHoc(maKhoa);
-            LoadData_DeThi("MaKhoa", maKhoa);
-        }
-        private void qldtcbLop_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (qldtcbLop.SelectedIndex != -1 && qldtcbLop.SelectedValue != null)
-            {
-                LoadData_DeThi("MaLop", qldtcbLop.SelectedValue.ToString());
-            }
-        }
-        private void qldtcbMonHoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (qldtcbMonHoc.SelectedIndex != -1 && qldtcbLop.SelectedValue != null)
-            {
-                LoadData_DeThi("MaMonHoc", qldtcbMonHoc.SelectedValue.ToString());
-            }
-        }
-        private void qldtbtnSuaDeThi_Click(object sender, EventArgs e)
-        {
 
-        }
-        private void dataDeThi_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
+            //Xoá
+            using(SqlConnection conn = new SqlConnection(strConn))
             {
-                DataGridViewRow row = dataDeThi.Rows[e.RowIndex];
-                qldttxtMaDeThi.Text = row.Cells["MaDeThi"].Value.ToString();
-                qldttxtTenDeThi.Text = row.Cells["TenDeThi"].Value.ToString();
-                qldttxtThoiGianLamBai.Text = row.Cells["ThoiGianThi"].Value.ToString();
-                
-                if (row.Cells["ThoiGianBatDau"].Value != null)
+                try
                 {
-                    DateTime thoiGianBatDau;
-                    if (DateTime.TryParse(row.Cells["ThoiGianBatDau"].Value.ToString(), out thoiGianBatDau))
+                    conn.Open();
+                    string query = "Delete DETHI where MaDeThi = @MaDeThi";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaDeThi", maDeThi);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0) 
                     {
-                        qldtdateThoiGianBatDau.Value = thoiGianBatDau;
+                        MessageBox.Show("Xoá " + tenDeThi + " thành công !");
+                        LoadData_DeThi("MaLop", maLop);
+                        qldttxtMaDeThi.Clear();
+                        qldttxtTenDeThi.Clear();
+                        qldttxtThoiGianLamBai.Clear();
+                        qldttxtSoLuongCauHoi.Clear();
                     }
                 }
-                if (row.Cells["ThoiGianKetThuc"].Value != null)
+                catch (Exception ex)
                 {
-                    DateTime thoiGianKetThuc;
-                    if (DateTime.TryParse(row.Cells["ThoiGianKetThuc"].Value.ToString(), out thoiGianKetThuc))
-                    {
-                        qldtdateThoiGianKetThuc.Value = thoiGianKetThuc;
-                    }
+                    throw new Exception("Error: " + ex.Message);
                 }
-                qldttxtSoLuongCauHoi.Text = row.Cells["SoLuongCauHoi"].Value.ToString();
+                finally
+                {
+                    conn.Close();
+                }
             }
         }
     }

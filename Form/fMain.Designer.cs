@@ -1047,6 +1047,7 @@
             this.qldtbtnXoaDeThi.TabIndex = 7;
             this.qldtbtnXoaDeThi.Text = "Xóa đề thi";
             this.qldtbtnXoaDeThi.UseVisualStyleBackColor = true;
+            this.qldtbtnXoaDeThi.Click += new System.EventHandler(this.qldtbtnXoaDeThi_Click);
             // 
             // qldtcbMonHoc
             // 
