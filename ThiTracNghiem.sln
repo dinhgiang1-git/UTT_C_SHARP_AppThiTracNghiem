@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35919.96 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThiTracNghiem", "ThiTracNghiem.csproj", "{135C368F-8B78-4520-934D-DAD3B9783AF1}"
 EndProject
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {84C0D03F-8F24-4F58-9312-BCCE10BA63CD}
+		SolutionGuid = {4D8E9C7B-6375-4CEC-9F99-D3C32EB3EF06}
 	EndGlobalSection
 EndGlobal

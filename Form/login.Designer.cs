@@ -36,11 +36,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.logincbVaiTro = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(337, 232);
+            this.btnThoat.Location = new System.Drawing.Point(337, 257);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(2);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(119, 30);
@@ -51,7 +53,7 @@
             // 
             // btnDangNhap
             // 
-            this.btnDangNhap.Location = new System.Drawing.Point(206, 232);
+            this.btnDangNhap.Location = new System.Drawing.Point(206, 257);
             this.btnDangNhap.Margin = new System.Windows.Forms.Padding(2);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(127, 30);
@@ -111,11 +113,36 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "ĐĂNG NHẬP HỆ THỐNG";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(203, 211);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Vai trò: ";
+            // 
+            // logincbVaiTro
+            // 
+            this.logincbVaiTro.FormattingEnabled = true;
+            this.logincbVaiTro.Items.AddRange(new object[] {
+            "Chọn vai trò",
+            "Sinh Viên",
+            "Giảng Viên"});
+            this.logincbVaiTro.Location = new System.Drawing.Point(252, 208);
+            this.logincbVaiTro.Name = "logincbVaiTro";
+            this.logincbVaiTro.Size = new System.Drawing.Size(204, 21);
+            this.logincbVaiTro.TabIndex = 14;
+            // 
             // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 337);
+            this.Controls.Add(this.logincbVaiTro);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnDangNhap);
             this.Controls.Add(this.txtMatKhau);
@@ -124,7 +151,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
@@ -142,5 +169,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox logincbVaiTro;
     }
 }

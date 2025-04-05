@@ -266,6 +266,10 @@ namespace ThiTracNghiem
                 }
             }
         }
+        private void LoadData_TraCuuDiem()
+        {
+           
+        }
         private void LoadComboBox_Khoa()
         {
             using (SqlConnection conn = new SqlConnection(strConn))
@@ -299,6 +303,10 @@ namespace ThiTracNghiem
                     qlchcbKhoa.DataSource = dt.Copy();
                     qlchcbKhoa.DisplayMember = "Tenkhoa";
                     qlchcbKhoa.ValueMember = "Makhoa";
+
+                    tcdcbKhoa.DataSource = dt.Copy();
+                    tcdcbKhoa.DisplayMember = "TenKhoa";
+                    tcdcbKhoa.ValueMember = "MaKhoa";
                 }
                 catch (Exception ex)
                 {
@@ -337,6 +345,11 @@ namespace ThiTracNghiem
                     qlchcbLop.DisplayMember = "TenLop";
                     qlchcbLop.ValueMember = "MaLop";
 
+                    tcdcbLop.DataSource = dt.Copy();
+                    tcdcbLop.DisplayMember = "TenLop";
+                    tcdcbLop.ValueMember = "MaLop";
+
+
                 }
                 catch (Exception ex)
                 {
@@ -371,6 +384,10 @@ namespace ThiTracNghiem
                     qlchcbMonHoc.DisplayMember = "TenMonHoc";
                     qlchcbMonHoc.ValueMember = "MaMonHoc";
 
+                    tcdcbMonHoc.DataSource = dt.Copy();
+                    tcdcbMonHoc.DisplayMember = "TenMonHoc";
+                    tcdcbMonHoc.ValueMember = "MaMonHoc";
+
                 }
                 catch (Exception ex)
                 {
@@ -399,7 +416,11 @@ namespace ThiTracNghiem
 
                     qlchcbDeThi.DataSource = dt.Copy();
                     qlchcbDeThi.DisplayMember = "TenDeThi";
-                    qlchcbDeThi.ValueMember = "MaDeThi";            
+                    qlchcbDeThi.ValueMember = "MaDeThi";
+
+                    tcdcbDeThi.DataSource = dt.Copy();
+                    tcdcbDeThi.DisplayMember = "TenDeThi";
+                    tcdcbDeThi.ValueMember = "MaDeThi";
 
                 }
                 catch (Exception ex)
@@ -1912,7 +1933,7 @@ namespace ThiTracNghiem
                 MessageBox.Show("Vui lòng chọn một Câu hỏi để xoá!");
                 return;
             }
-            DialogResult result = MessageBox.Show("Bạn có muốn xoá " + maDeThi + " ?", "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Bạn có muốn xoá " + maCauHoi + " ?", "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No)
             {
                 return;
@@ -1952,6 +1973,117 @@ namespace ThiTracNghiem
                     conn.Close();
                 }
             }
+        }
+        private void qlchbtnNhapFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Excel Files|*.xls;*.xlsx;";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                using (var stream = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))
+                {
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        var result = reader.AsDataSet();
+                        var table = result.Tables[0]; // Sheet đầu tiên
+
+                        for (int i = 1; i < table.Rows.Count; i++) // Bỏ qua dòng tiêu đề
+                        {
+                            string noiDung = table.Rows[i][0].ToString().Trim();
+                            string dapAnA = table.Rows[i][1].ToString().Trim();
+                            string dapAnB = table.Rows[i][2].ToString().Trim();
+                            string dapAnC = table.Rows[i][3].ToString().Trim();
+                            string dapAnD = table.Rows[i][4].ToString().Trim();
+                            string dapAnDung = table.Rows[i][5].ToString().Trim();
+                            string maDeThi = qlchcbDeThi.SelectedValue.ToString();
+
+                            if (string.IsNullOrEmpty(noiDung) || string.IsNullOrEmpty(dapAnA) ||
+                            string.IsNullOrEmpty(dapAnB) || string.IsNullOrEmpty(dapAnC) ||
+                            string.IsNullOrEmpty(dapAnD) || string.IsNullOrEmpty(dapAnDung))
+                                continue;
+
+                            using (SqlConnection conn = new SqlConnection(strConn))
+                            {
+                                conn.Open();
+                                string query = "INSERT INTO CAUHOI (NoiDungCauHoi, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung, MaDeThi) " +
+                                               "VALUES (@NoiDung, @A, @B, @C, @D, @Dung, @MaDeThi)";
+                                SqlCommand cmd = new SqlCommand(query, conn);
+                                cmd.Parameters.AddWithValue("@NoiDung", noiDung);
+                                cmd.Parameters.AddWithValue("@A", dapAnA);
+                                cmd.Parameters.AddWithValue("@B", dapAnB);
+                                cmd.Parameters.AddWithValue("@C", dapAnC);
+                                cmd.Parameters.AddWithValue("@D", dapAnD);
+                                cmd.Parameters.AddWithValue("@Dung", dapAnDung);        
+                                cmd.Parameters.AddWithValue("@MaDeThi", maDeThi);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        MessageBox.Show("Import danh sách câu hỏi thành công!");
+                        LoadData_CauHoi(qlchcbDeThi.SelectedValue.ToString());
+                    }
+                }
+            }
+        }
+        private void qlchbtnXuatFile_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx", FileName = "DanhSachCauHoi.xlsx" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (XLWorkbook wb = new XLWorkbook())
+                        {
+                            DataTable dt = new DataTable();
+
+                            // Thêm tiêu đề cột từ DataGridView
+                            foreach (DataGridViewColumn col in dataCauHoi.Columns)
+                            {
+                                dt.Columns.Add(col.HeaderText);
+                            }
+
+                            // Thêm từng hàng dữ liệu
+                            foreach (DataGridViewRow row in dataCauHoi.Rows)
+                            {
+                                if (row.IsNewRow) continue;
+                                dt.Rows.Add(row.Cells.Cast<DataGridViewCell>().Select(c => c.Value?.ToString() ?? "").ToArray());
+                            }
+
+                            // Thêm sheet vào file Excel
+                            wb.Worksheets.Add(dt, "Danh Sach Cau Hoi");
+                            wb.SaveAs(sfd.FileName);
+
+                            MessageBox.Show("Xuất Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xuất Excel: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        //Tra cứu điểm
+        private void tcdcbKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (qldtcbKhoa.SelectedIndex == -1)
+            {
+                return;
+            }
+            string maKhoa = tcdcbKhoa.SelectedValue.ToString();
+            LoadComboBox_Lop(maKhoa);
+            LoadCombox_MonHoc(maKhoa);         
+        }
+        private void tcdcbMonHoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (qlchcbMonHoc.SelectedIndex == -1)
+            {
+                return;
+            }
+            string maMonHoc = tcdcbMonHoc.SelectedValue.ToString();
+            LoadCombox_DeThi(maMonHoc);
         }
     }
 }

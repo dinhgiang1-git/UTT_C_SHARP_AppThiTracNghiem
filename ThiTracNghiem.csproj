@@ -110,11 +110,20 @@
     <Compile Include="Form\login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\fSinhVienMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\fSinhVienMain.Designer.cs">
+      <DependentUpon>fSinhVienMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Library\LGiangVien.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form\exam.resx">
       <DependentUpon>exam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\fSinhVienMain.resx">
+      <DependentUpon>fSinhVienMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\login.resx">
       <DependentUpon>login.cs</DependentUpon>

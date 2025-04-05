@@ -12,9 +12,14 @@ namespace ThiTracNghiem
 {
     public partial class exam: Form
     {
-        public exam()
+        public exam(string username)
         {
             InitializeComponent();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

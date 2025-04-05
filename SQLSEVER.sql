@@ -7,8 +7,10 @@
 CREATE TABLE MONHOC (
     MaMonHoc VARCHAR(10) PRIMARY KEY,
     TenMonHoc NVARCHAR(50),
-    MaLop VARCHAR(10) -- Không dùng foreign key
+    MaKhoa VARCHAR(10) -- Không dùng foreign key
 );
+
+drop table MONHOC
 
 -- Tạo bảng LOP
 CREATE TABLE LOP (
@@ -106,6 +108,11 @@ drop table SINHVIEN
 select * from SINHVIEN
 select * from LOP
 select * from KHOA
+select * from MONHOC
+select* from DETHI
+select * from CAUHOI
+select * from BANGDIEM
+select* from DETHI
 
 drop table DeThi
 
@@ -113,3 +120,25 @@ drop table DeThi
 ALTER TABLE SINHVIEN
 ALTER COLUMN MaSinhVien VARCHAR(15);
 
+select SINHVIEN.MaSinhVien, SINHVIEN.HoTen, SINHVIEN.GioiTinh, SINHVIEN.NgaySinh, SINHVIEN.QueQuan, LOP.TenLop, KHOA.TenKhoa
+from SINHVIEN 
+join LOP on SINHVIEN.MaLop = LOP.MaLop 
+join KHOA on LOP.MaKhoa = KHOA.MaKhoa
+where SINHVIEN.MaSinhVien = 'qwe'
+
+select MONHOC.TenMonHoc, MONHOC.MaMonHoc 
+from MONHOC  join KHOA on KHOA.MaKhoa = MONHOC.MaKhoa  
+join LOP on LOP.MaKhoa = KHOA.MaKhoa 
+join SINHVIEN on SINHVIEN.MaLop = LOP.MaLop 
+where SINHVIEN.MaSinhVien = 'qwe'
+
+select DETHI.MaDeThi, DETHI.TenDeThi from DETHI  
+join MONHOC on MONHOC.MaMonHoc = DETHI.MaMonHoc  
+join LOP on LOP.MaLop = DETHI.MaLop 
+join SINHVIEN on SINHVIEN.MaLop = Lop.MaLop 
+where MONHOC.MaMonHoc = DETHI.MaMonHoc and SINHVIEN.MaSinhVien = 'qwe'
+
+select BANGDIEM.MaBangDiem, DETHI.TenDeThi, BANGDIEM.Diem, DETHI.ThoiGianThi, DETHI.SoLuongCauHoi, DETHI.ThoiGianBatDau, DETHI.ThoiGianKetThuc
+from BANGDIEM
+join DETHI on DETHI.MaDeThi = BANGDIEM.MaDeThi
+where BANGDIEM.MaDeThi = DETHI.MaDeThi
