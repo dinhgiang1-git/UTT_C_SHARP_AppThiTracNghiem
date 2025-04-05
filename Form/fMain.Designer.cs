@@ -44,18 +44,23 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
+            this.tcdcbDeThi = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.tcdcbMonHoc = new System.Windows.Forms.ComboBox();
+            this.tcdcbLop = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tcdcbKhoa = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataTraCuuDiem = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.qlchbtnXuatFile = new System.Windows.Forms.Button();
             this.qlchbtnNhapFile = new System.Windows.Forms.Button();
             this.dataCauHoi = new System.Windows.Forms.DataGridView();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.qlchradioD = new System.Windows.Forms.RadioButton();
+            this.qlchradioC = new System.Windows.Forms.RadioButton();
+            this.qlchradioB = new System.Windows.Forms.RadioButton();
+            this.qlchradioA = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.qlchtxtDapAnD = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -71,6 +76,8 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.qlchrichtxtNoiDungCauHoi = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.qlchtxtMaCauHoi = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.qlchcbDeThi = new System.Windows.Forms.ComboBox();
             this.label40 = new System.Windows.Forms.Label();
             this.qlchcbLop = new System.Windows.Forms.ComboBox();
@@ -97,7 +104,9 @@
             this.qldttxtThoiGianLamBai = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.qldttxtMaDeThi = new System.Windows.Forms.TextBox();
             this.qldtcbLop = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.qldtbtnXoaDeThi = new System.Windows.Forms.Button();
             this.qldtcbMonHoc = new System.Windows.Forms.ComboBox();
@@ -182,21 +191,12 @@
             this.thôngTinTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.qldttxtMaDeThi = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.qlchbtnXuatFile = new System.Windows.Forms.Button();
-            this.qlchradioA = new System.Windows.Forms.RadioButton();
-            this.qlchradioB = new System.Windows.Forms.RadioButton();
-            this.qlchradioC = new System.Windows.Forms.RadioButton();
-            this.qlchradioD = new System.Windows.Forms.RadioButton();
-            this.label23 = new System.Windows.Forms.Label();
-            this.qlchtxtMaCauHoi = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTraCuuDiem)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataCauHoi)).BeginInit();
             this.groupBox6.SuspendLayout();
@@ -245,7 +245,7 @@
             this.tabPage1.Controls.Add(this.groupBox18);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.dataTraCuuDiem);
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
@@ -358,12 +358,12 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label29);
-            this.groupBox1.Controls.Add(this.comboBox12);
+            this.groupBox1.Controls.Add(this.tcdcbDeThi);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox3);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.tcdcbMonHoc);
+            this.groupBox1.Controls.Add(this.tcdcbLop);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.tcdcbKhoa);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(898, 67);
@@ -386,14 +386,14 @@
             this.label29.TabIndex = 7;
             this.label29.Text = "Đề thi:";
             // 
-            // comboBox12
+            // tcdcbDeThi
             // 
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Location = new System.Drawing.Point(75, 164);
-            this.comboBox12.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(256, 21);
-            this.comboBox12.TabIndex = 6;
+            this.tcdcbDeThi.FormattingEnabled = true;
+            this.tcdcbDeThi.Location = new System.Drawing.Point(75, 164);
+            this.tcdcbDeThi.Margin = new System.Windows.Forms.Padding(2);
+            this.tcdcbDeThi.Name = "tcdcbDeThi";
+            this.tcdcbDeThi.Size = new System.Drawing.Size(256, 21);
+            this.tcdcbDeThi.TabIndex = 6;
             // 
             // label3
             // 
@@ -406,23 +406,24 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Môn học:";
             // 
-            // comboBox3
+            // tcdcbMonHoc
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(75, 114);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(256, 21);
-            this.comboBox3.TabIndex = 4;
+            this.tcdcbMonHoc.FormattingEnabled = true;
+            this.tcdcbMonHoc.Location = new System.Drawing.Point(75, 114);
+            this.tcdcbMonHoc.Margin = new System.Windows.Forms.Padding(2);
+            this.tcdcbMonHoc.Name = "tcdcbMonHoc";
+            this.tcdcbMonHoc.Size = new System.Drawing.Size(256, 21);
+            this.tcdcbMonHoc.TabIndex = 4;
+            this.tcdcbMonHoc.SelectedIndexChanged += new System.EventHandler(this.tcdcbMonHoc_SelectedIndexChanged);
             // 
-            // comboBox2
+            // tcdcbLop
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(75, 64);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(256, 21);
-            this.comboBox2.TabIndex = 3;
+            this.tcdcbLop.FormattingEnabled = true;
+            this.tcdcbLop.Location = new System.Drawing.Point(75, 64);
+            this.tcdcbLop.Margin = new System.Windows.Forms.Padding(2);
+            this.tcdcbLop.Name = "tcdcbLop";
+            this.tcdcbLop.Size = new System.Drawing.Size(256, 21);
+            this.tcdcbLop.TabIndex = 3;
             // 
             // label2
             // 
@@ -435,14 +436,15 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Lớp:";
             // 
-            // comboBox1
+            // tcdcbKhoa
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(75, 16);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(256, 21);
-            this.comboBox1.TabIndex = 1;
+            this.tcdcbKhoa.FormattingEnabled = true;
+            this.tcdcbKhoa.Location = new System.Drawing.Point(75, 16);
+            this.tcdcbKhoa.Margin = new System.Windows.Forms.Padding(2);
+            this.tcdcbKhoa.Name = "tcdcbKhoa";
+            this.tcdcbKhoa.Size = new System.Drawing.Size(256, 21);
+            this.tcdcbKhoa.TabIndex = 1;
+            this.tcdcbKhoa.SelectedIndexChanged += new System.EventHandler(this.tcdcbKhoa_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -455,16 +457,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Khoa:";
             // 
-            // dataGridView1
+            // dataTraCuuDiem
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 5);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(890, 702);
-            this.dataGridView1.TabIndex = 0;
+            this.dataTraCuuDiem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataTraCuuDiem.Location = new System.Drawing.Point(4, 5);
+            this.dataTraCuuDiem.Margin = new System.Windows.Forms.Padding(2);
+            this.dataTraCuuDiem.Name = "dataTraCuuDiem";
+            this.dataTraCuuDiem.RowHeadersWidth = 51;
+            this.dataTraCuuDiem.RowTemplate.Height = 24;
+            this.dataTraCuuDiem.Size = new System.Drawing.Size(890, 702);
+            this.dataTraCuuDiem.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -487,6 +489,17 @@
             this.tabPage2.Text = "Quản lý câu hỏi";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // qlchbtnXuatFile
+            // 
+            this.qlchbtnXuatFile.Location = new System.Drawing.Point(451, 113);
+            this.qlchbtnXuatFile.Margin = new System.Windows.Forms.Padding(2);
+            this.qlchbtnXuatFile.Name = "qlchbtnXuatFile";
+            this.qlchbtnXuatFile.Size = new System.Drawing.Size(92, 28);
+            this.qlchbtnXuatFile.TabIndex = 9;
+            this.qlchbtnXuatFile.Text = "Xuất file";
+            this.qlchbtnXuatFile.UseVisualStyleBackColor = true;
+            this.qlchbtnXuatFile.Click += new System.EventHandler(this.qlchbtnXuatFile_Click);
+            // 
             // qlchbtnNhapFile
             // 
             this.qlchbtnNhapFile.Location = new System.Drawing.Point(355, 113);
@@ -496,6 +509,7 @@
             this.qlchbtnNhapFile.TabIndex = 8;
             this.qlchbtnNhapFile.Text = "Nhập file";
             this.qlchbtnNhapFile.UseVisualStyleBackColor = true;
+            this.qlchbtnNhapFile.Click += new System.EventHandler(this.qlchbtnNhapFile_Click);
             // 
             // dataCauHoi
             // 
@@ -524,6 +538,50 @@
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Chọn đáp án đúng";
+            // 
+            // qlchradioD
+            // 
+            this.qlchradioD.AutoSize = true;
+            this.qlchradioD.Location = new System.Drawing.Point(5, 108);
+            this.qlchradioD.Name = "qlchradioD";
+            this.qlchradioD.Size = new System.Drawing.Size(33, 17);
+            this.qlchradioD.TabIndex = 7;
+            this.qlchradioD.TabStop = true;
+            this.qlchradioD.Text = "D";
+            this.qlchradioD.UseVisualStyleBackColor = true;
+            // 
+            // qlchradioC
+            // 
+            this.qlchradioC.AutoSize = true;
+            this.qlchradioC.Location = new System.Drawing.Point(5, 76);
+            this.qlchradioC.Name = "qlchradioC";
+            this.qlchradioC.Size = new System.Drawing.Size(32, 17);
+            this.qlchradioC.TabIndex = 6;
+            this.qlchradioC.TabStop = true;
+            this.qlchradioC.Text = "C";
+            this.qlchradioC.UseVisualStyleBackColor = true;
+            // 
+            // qlchradioB
+            // 
+            this.qlchradioB.AutoSize = true;
+            this.qlchradioB.Location = new System.Drawing.Point(5, 47);
+            this.qlchradioB.Name = "qlchradioB";
+            this.qlchradioB.Size = new System.Drawing.Size(32, 17);
+            this.qlchradioB.TabIndex = 5;
+            this.qlchradioB.TabStop = true;
+            this.qlchradioB.Text = "B";
+            this.qlchradioB.UseVisualStyleBackColor = true;
+            // 
+            // qlchradioA
+            // 
+            this.qlchradioA.AutoSize = true;
+            this.qlchradioA.Location = new System.Drawing.Point(5, 18);
+            this.qlchradioA.Name = "qlchradioA";
+            this.qlchradioA.Size = new System.Drawing.Size(32, 17);
+            this.qlchradioA.TabIndex = 4;
+            this.qlchradioA.TabStop = true;
+            this.qlchradioA.Text = "A";
+            this.qlchradioA.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -689,6 +747,22 @@
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin";
+            // 
+            // qlchtxtMaCauHoi
+            // 
+            this.qlchtxtMaCauHoi.Location = new System.Drawing.Point(302, 39);
+            this.qlchtxtMaCauHoi.Name = "qlchtxtMaCauHoi";
+            this.qlchtxtMaCauHoi.Size = new System.Drawing.Size(100, 20);
+            this.qlchtxtMaCauHoi.TabIndex = 11;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(267, 45);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(28, 13);
+            this.label23.TabIndex = 10;
+            this.label23.Text = "Mã: ";
             // 
             // qlchcbDeThi
             // 
@@ -987,6 +1061,14 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Thông tin";
             // 
+            // qldttxtMaDeThi
+            // 
+            this.qldttxtMaDeThi.Location = new System.Drawing.Point(406, 56);
+            this.qldttxtMaDeThi.Margin = new System.Windows.Forms.Padding(2);
+            this.qldttxtMaDeThi.Name = "qldttxtMaDeThi";
+            this.qldttxtMaDeThi.Size = new System.Drawing.Size(182, 20);
+            this.qldttxtMaDeThi.TabIndex = 18;
+            // 
             // qldtcbLop
             // 
             this.qldtcbLop.FormattingEnabled = true;
@@ -996,6 +1078,17 @@
             this.qldtcbLop.Size = new System.Drawing.Size(250, 21);
             this.qldtcbLop.TabIndex = 12;
             this.qldtcbLop.SelectedIndexChanged += new System.EventHandler(this.qldtcbLop_SelectedIndexChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(341, 59);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(61, 15);
+            this.label22.TabIndex = 17;
+            this.label22.Text = "Mã đề thi:";
             // 
             // label41
             // 
@@ -1899,7 +1992,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1265, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1265, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1910,7 +2003,7 @@
             this.đổiMậtKhẩuToolStripMenuItem,
             this.đăngXuấtToolStripMenuItem});
             this.tàiKhoảnToolStripMenuItem.Name = "tàiKhoảnToolStripMenuItem";
-            this.tàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
+            this.tàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(75, 21);
             this.tàiKhoảnToolStripMenuItem.Text = "Tài khoản";
             // 
             // thôngTinTàiKhoảnToolStripMenuItem
@@ -1934,95 +2027,6 @@
             this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             // 
-            // qldttxtMaDeThi
-            // 
-            this.qldttxtMaDeThi.Location = new System.Drawing.Point(406, 56);
-            this.qldttxtMaDeThi.Margin = new System.Windows.Forms.Padding(2);
-            this.qldttxtMaDeThi.Name = "qldttxtMaDeThi";
-            this.qldttxtMaDeThi.Size = new System.Drawing.Size(182, 20);
-            this.qldttxtMaDeThi.TabIndex = 18;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(341, 59);
-            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(61, 15);
-            this.label22.TabIndex = 17;
-            this.label22.Text = "Mã đề thi:";
-            // 
-            // qlchbtnXuatFile
-            // 
-            this.qlchbtnXuatFile.Location = new System.Drawing.Point(451, 113);
-            this.qlchbtnXuatFile.Margin = new System.Windows.Forms.Padding(2);
-            this.qlchbtnXuatFile.Name = "qlchbtnXuatFile";
-            this.qlchbtnXuatFile.Size = new System.Drawing.Size(92, 28);
-            this.qlchbtnXuatFile.TabIndex = 9;
-            this.qlchbtnXuatFile.Text = "Xuất file";
-            this.qlchbtnXuatFile.UseVisualStyleBackColor = true;
-            // 
-            // qlchradioA
-            // 
-            this.qlchradioA.AutoSize = true;
-            this.qlchradioA.Location = new System.Drawing.Point(5, 18);
-            this.qlchradioA.Name = "qlchradioA";
-            this.qlchradioA.Size = new System.Drawing.Size(32, 17);
-            this.qlchradioA.TabIndex = 4;
-            this.qlchradioA.TabStop = true;
-            this.qlchradioA.Text = "A";
-            this.qlchradioA.UseVisualStyleBackColor = true;
-            // 
-            // qlchradioB
-            // 
-            this.qlchradioB.AutoSize = true;
-            this.qlchradioB.Location = new System.Drawing.Point(5, 47);
-            this.qlchradioB.Name = "qlchradioB";
-            this.qlchradioB.Size = new System.Drawing.Size(32, 17);
-            this.qlchradioB.TabIndex = 5;
-            this.qlchradioB.TabStop = true;
-            this.qlchradioB.Text = "B";
-            this.qlchradioB.UseVisualStyleBackColor = true;
-            // 
-            // qlchradioC
-            // 
-            this.qlchradioC.AutoSize = true;
-            this.qlchradioC.Location = new System.Drawing.Point(5, 76);
-            this.qlchradioC.Name = "qlchradioC";
-            this.qlchradioC.Size = new System.Drawing.Size(32, 17);
-            this.qlchradioC.TabIndex = 6;
-            this.qlchradioC.TabStop = true;
-            this.qlchradioC.Text = "C";
-            this.qlchradioC.UseVisualStyleBackColor = true;
-            // 
-            // qlchradioD
-            // 
-            this.qlchradioD.AutoSize = true;
-            this.qlchradioD.Location = new System.Drawing.Point(5, 108);
-            this.qlchradioD.Name = "qlchradioD";
-            this.qlchradioD.Size = new System.Drawing.Size(33, 17);
-            this.qlchradioD.TabIndex = 7;
-            this.qlchradioD.TabStop = true;
-            this.qlchradioD.Text = "D";
-            this.qlchradioD.UseVisualStyleBackColor = true;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(267, 45);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(28, 13);
-            this.label23.TabIndex = 10;
-            this.label23.Text = "Mã: ";
-            // 
-            // qlchtxtMaCauHoi
-            // 
-            this.qlchtxtMaCauHoi.Location = new System.Drawing.Point(302, 39);
-            this.qlchtxtMaCauHoi.Name = "qlchtxtMaCauHoi";
-            this.qlchtxtMaCauHoi.Size = new System.Drawing.Size(100, 20);
-            this.qlchtxtMaCauHoi.TabIndex = 11;
-            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2042,7 +2046,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTraCuuDiem)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataCauHoi)).EndInit();
             this.groupBox6.ResumeLayout(false);
@@ -2102,15 +2106,15 @@
         private System.Windows.Forms.ToolStripMenuItem thôngTinTàiKhoảnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem đổiMậtKhẩuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataTraCuuDiem;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox tcdcbKhoa;
+        private System.Windows.Forms.ComboBox tcdcbLop;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox tcdcbMonHoc;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label6;
@@ -2188,7 +2192,7 @@
         private System.Windows.Forms.Button qlmhbtnTim;
         private System.Windows.Forms.Button qlkbtnTim;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.ComboBox comboBox12;
+        private System.Windows.Forms.ComboBox tcdcbDeThi;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.TextBox qlltxtTenLop;
         private System.Windows.Forms.Label label32;
