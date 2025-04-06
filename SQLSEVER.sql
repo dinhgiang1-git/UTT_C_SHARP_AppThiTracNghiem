@@ -166,3 +166,13 @@ group by
 
 select * from DETHI
 select * from CAUHOI
+
+select CAUHOI.MaCauHoi
+from CAUHOI
+join DETHI on DETHI.MaDeThi = CauHoi.MaDeThi
+
+select CAUHOI.NoiDungCauHoi, CAUHOI.DapAnA, CAUHOI.DapAnB, CAUHOI.DapAnC, CAUHOI.DapAnD 
+from CAUHOI 
+where CAUHOI.MaCauHoi = '1'
+
+select * from BANGDIEM
