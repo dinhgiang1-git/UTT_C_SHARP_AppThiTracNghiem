@@ -16,8 +16,10 @@ using ExcelDataReader;
 using System.Configuration;
 namespace ThiTracNghiem
 {
+    
     public partial class fMain : Form
     {
+        string conkec = "";
         public string _MaGiangVien;
         string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         public fMain(string MaGiangVien)
@@ -1491,6 +1493,11 @@ namespace ThiTracNghiem
             if(soLuongCauHoi == 0)
             {
                 MessageBox.Show("Vui lòng nhập số lượng câu hỏi!");
+                return;
+            }
+            if (thoiGianThi == null)
+            {
+                MessageBox.Show("Vui long nhap thoi gian thi!");
                 return;
             }
             if(checkDuplicateMaDeThi(maDeThi))
