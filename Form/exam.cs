@@ -377,9 +377,9 @@ namespace ThiTracNghiem
                 if (result == DialogResult.No)
                 {
                     return;
-                }
-                TinhDiemVaKetQua();
+                }                
             }
+            TinhDiemVaKetQua();
         }
     }
 }
