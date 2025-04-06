@@ -119,7 +119,7 @@ namespace ThiTracNghiem
                 try
                 {
                     conn.Open();
-                    string query = "select CAUHOI.MaCauHoi from CAUHOI join DETHI on DETHI.MaDeThi = @MaDeThi";
+                    string query = "SELECT MaCauHoi FROM CAUHOI WHERE MaDeThi = @MaDeThi";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@MaDeThi", maDeThi);
                     SqlDataReader reader = cmd.ExecuteReader();
