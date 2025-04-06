@@ -30,37 +30,39 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.examtxtThoiGianConLai = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.examtxtSoLuongCauHoi = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.examtxtThoiGianLamBai = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.examtxtBaiKiemTra = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.examtxtHoTen = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.examtxtMaSinhVien = new System.Windows.Forms.TextBox();
+            this.exambtnNopBai = new System.Windows.Forms.Button();
+            this.examcheckboxHoanThanhBaiKiemTra = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.examrichtxtNoiDungCauHoi = new System.Windows.Forms.RichTextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.examradioA = new System.Windows.Forms.RadioButton();
+            this.examradioB = new System.Windows.Forms.RadioButton();
+            this.examradioC = new System.Windows.Forms.RadioButton();
+            this.examradioD = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.exambtnCauDau = new System.Windows.Forms.Button();
+            this.exambtnCauTruoc = new System.Windows.Forms.Button();
+            this.exambtnCauSau = new System.Windows.Forms.Button();
+            this.exambtnCauCuoi = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.examlvDanhSachCauHoi = new System.Windows.Forms.ListView();
             this.label6 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.examtxtMaDeThi = new System.Windows.Forms.TextBox();
+            this.exambtnXoaDanhDau = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -81,19 +83,20 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.examtxtMaDeThi);
+            this.groupBox1.Controls.Add(this.examtxtThoiGianConLai);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.examtxtSoLuongCauHoi);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.examtxtThoiGianLamBai);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.examtxtBaiKiemTra);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.examtxtHoTen);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.examtxtMaSinhVien);
             this.groupBox1.Location = new System.Drawing.Point(9, 10);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -103,18 +106,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
             // 
-            // textBox6
+            // examtxtThoiGianConLai
             // 
-            this.textBox6.Location = new System.Drawing.Point(981, 17);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(142, 20);
-            this.textBox6.TabIndex = 15;
+            this.examtxtThoiGianConLai.Location = new System.Drawing.Point(1000, 56);
+            this.examtxtThoiGianConLai.Margin = new System.Windows.Forms.Padding(2);
+            this.examtxtThoiGianConLai.Name = "examtxtThoiGianConLai";
+            this.examtxtThoiGianConLai.Size = new System.Drawing.Size(142, 20);
+            this.examtxtThoiGianConLai.TabIndex = 15;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(889, 20);
+            this.label10.Location = new System.Drawing.Point(889, 59);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(88, 13);
@@ -131,31 +134,31 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "Số lượng câu hỏi:";
             // 
-            // textBox5
+            // examtxtSoLuongCauHoi
             // 
-            this.textBox5.Location = new System.Drawing.Point(506, 60);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(313, 20);
-            this.textBox5.TabIndex = 10;
+            this.examtxtSoLuongCauHoi.Location = new System.Drawing.Point(535, 60);
+            this.examtxtSoLuongCauHoi.Margin = new System.Windows.Forms.Padding(2);
+            this.examtxtSoLuongCauHoi.Name = "examtxtSoLuongCauHoi";
+            this.examtxtSoLuongCauHoi.Size = new System.Drawing.Size(296, 20);
+            this.examtxtSoLuongCauHoi.TabIndex = 10;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(413, 26);
+            this.label5.Location = new System.Drawing.Point(888, 22);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Thời lượng:";
             // 
-            // textBox4
+            // examtxtThoiGianLamBai
             // 
-            this.textBox4.Location = new System.Drawing.Point(506, 21);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(313, 20);
-            this.textBox4.TabIndex = 7;
+            this.examtxtThoiGianLamBai.Location = new System.Drawing.Point(1000, 17);
+            this.examtxtThoiGianLamBai.Margin = new System.Windows.Forms.Padding(2);
+            this.examtxtThoiGianLamBai.Name = "examtxtThoiGianLamBai";
+            this.examtxtThoiGianLamBai.Size = new System.Drawing.Size(142, 20);
+            this.examtxtThoiGianLamBai.TabIndex = 7;
             // 
             // label4
             // 
@@ -167,13 +170,13 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Bài Kiểm Tra:";
             // 
-            // textBox3
+            // examtxtBaiKiemTra
             // 
-            this.textBox3.Location = new System.Drawing.Point(74, 102);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(1434, 20);
-            this.textBox3.TabIndex = 5;
+            this.examtxtBaiKiemTra.Location = new System.Drawing.Point(97, 102);
+            this.examtxtBaiKiemTra.Margin = new System.Windows.Forms.Padding(2);
+            this.examtxtBaiKiemTra.Name = "examtxtBaiKiemTra";
+            this.examtxtBaiKiemTra.Size = new System.Drawing.Size(1411, 20);
+            this.examtxtBaiKiemTra.TabIndex = 5;
             // 
             // label3
             // 
@@ -185,13 +188,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Họ Tên:";
             // 
-            // textBox2
+            // examtxtHoTen
             // 
-            this.textBox2.Location = new System.Drawing.Point(74, 60);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(300, 20);
-            this.textBox2.TabIndex = 3;
+            this.examtxtHoTen.Location = new System.Drawing.Point(97, 60);
+            this.examtxtHoTen.Margin = new System.Windows.Forms.Padding(2);
+            this.examtxtHoTen.Name = "examtxtHoTen";
+            this.examtxtHoTen.Size = new System.Drawing.Size(277, 20);
+            this.examtxtHoTen.TabIndex = 3;
             // 
             // label2
             // 
@@ -203,34 +206,35 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Mã SV:";
             // 
-            // textBox1
+            // examtxtMaSinhVien
             // 
-            this.textBox1.Location = new System.Drawing.Point(74, 22);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(300, 20);
-            this.textBox1.TabIndex = 0;
+            this.examtxtMaSinhVien.Location = new System.Drawing.Point(97, 22);
+            this.examtxtMaSinhVien.Margin = new System.Windows.Forms.Padding(2);
+            this.examtxtMaSinhVien.Name = "examtxtMaSinhVien";
+            this.examtxtMaSinhVien.Size = new System.Drawing.Size(277, 20);
+            this.examtxtMaSinhVien.TabIndex = 0;
             // 
-            // button1
+            // exambtnNopBai
             // 
-            this.button1.Location = new System.Drawing.Point(171, 72);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Nộp bài";
-            this.button1.UseVisualStyleBackColor = true;
+            this.exambtnNopBai.Location = new System.Drawing.Point(171, 72);
+            this.exambtnNopBai.Margin = new System.Windows.Forms.Padding(2);
+            this.exambtnNopBai.Name = "exambtnNopBai";
+            this.exambtnNopBai.Size = new System.Drawing.Size(98, 23);
+            this.exambtnNopBai.TabIndex = 13;
+            this.exambtnNopBai.Text = "Nộp bài";
+            this.exambtnNopBai.UseVisualStyleBackColor = true;
+            this.exambtnNopBai.Click += new System.EventHandler(this.exambtnNopBai_Click);
             // 
-            // checkBox1
+            // examcheckboxHoanThanhBaiKiemTra
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(9, 76);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(139, 17);
-            this.checkBox1.TabIndex = 12;
-            this.checkBox1.Text = "Hoàn thành bài kiểm tra";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.examcheckboxHoanThanhBaiKiemTra.AutoSize = true;
+            this.examcheckboxHoanThanhBaiKiemTra.Location = new System.Drawing.Point(9, 76);
+            this.examcheckboxHoanThanhBaiKiemTra.Margin = new System.Windows.Forms.Padding(2);
+            this.examcheckboxHoanThanhBaiKiemTra.Name = "examcheckboxHoanThanhBaiKiemTra";
+            this.examcheckboxHoanThanhBaiKiemTra.Size = new System.Drawing.Size(139, 17);
+            this.examcheckboxHoanThanhBaiKiemTra.TabIndex = 12;
+            this.examcheckboxHoanThanhBaiKiemTra.Text = "Hoàn thành bài kiểm tra";
+            this.examcheckboxHoanThanhBaiKiemTra.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -248,28 +252,28 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.richTextBox1);
+            this.groupBox6.Controls.Add(this.examrichtxtNoiDungCauHoi);
             this.groupBox6.Location = new System.Drawing.Point(278, 19);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(1218, 280);
             this.groupBox6.TabIndex = 9;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Câu hỏi 1:";
+            this.groupBox6.Text = "Câu hỏi:";
             // 
-            // richTextBox1
+            // examrichtxtNoiDungCauHoi
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(6, 19);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1206, 255);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "Đâu là ngôn ngữ lập trình hướng đối tượng ?";
+            this.examrichtxtNoiDungCauHoi.Location = new System.Drawing.Point(6, 19);
+            this.examrichtxtNoiDungCauHoi.Name = "examrichtxtNoiDungCauHoi";
+            this.examrichtxtNoiDungCauHoi.Size = new System.Drawing.Size(1206, 255);
+            this.examrichtxtNoiDungCauHoi.TabIndex = 1;
+            this.examrichtxtNoiDungCauHoi.Text = "";
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.radioButton1);
-            this.groupBox5.Controls.Add(this.radioButton2);
-            this.groupBox5.Controls.Add(this.radioButton4);
-            this.groupBox5.Controls.Add(this.radioButton3);
+            this.groupBox5.Controls.Add(this.examradioA);
+            this.groupBox5.Controls.Add(this.examradioB);
+            this.groupBox5.Controls.Add(this.examradioC);
+            this.groupBox5.Controls.Add(this.examradioD);
             this.groupBox5.Location = new System.Drawing.Point(275, 305);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(1221, 294);
@@ -277,58 +281,55 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Câu trả lời";
             // 
-            // radioButton1
+            // examradioA
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 33);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.examradioA.AutoSize = true;
+            this.examradioA.Location = new System.Drawing.Point(6, 33);
+            this.examradioA.Name = "examradioA";
+            this.examradioA.Size = new System.Drawing.Size(14, 13);
+            this.examradioA.TabIndex = 2;
+            this.examradioA.TabStop = true;
+            this.examradioA.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // examradioB
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 103);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.examradioB.AutoSize = true;
+            this.examradioB.Location = new System.Drawing.Point(6, 103);
+            this.examradioB.Name = "examradioB";
+            this.examradioB.Size = new System.Drawing.Size(14, 13);
+            this.examradioB.TabIndex = 3;
+            this.examradioB.TabStop = true;
+            this.examradioB.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // examradioC
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(6, 177);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(85, 17);
-            this.radioButton4.TabIndex = 4;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "radioButton4";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.examradioC.AutoSize = true;
+            this.examradioC.Location = new System.Drawing.Point(6, 177);
+            this.examradioC.Name = "examradioC";
+            this.examradioC.Size = new System.Drawing.Size(14, 13);
+            this.examradioC.TabIndex = 4;
+            this.examradioC.TabStop = true;
+            this.examradioC.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // examradioD
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 251);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
-            this.radioButton3.TabIndex = 5;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.examradioD.AutoSize = true;
+            this.examradioD.Location = new System.Drawing.Point(6, 251);
+            this.examradioD.Name = "examradioD";
+            this.examradioD.Size = new System.Drawing.Size(14, 13);
+            this.examradioD.TabIndex = 5;
+            this.examradioD.TabStop = true;
+            this.examradioD.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button5);
-            this.groupBox4.Controls.Add(this.button4);
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.checkBox1);
-            this.groupBox4.Controls.Add(this.button3);
-            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.exambtnXoaDanhDau);
+            this.groupBox4.Controls.Add(this.exambtnCauDau);
+            this.groupBox4.Controls.Add(this.exambtnCauTruoc);
+            this.groupBox4.Controls.Add(this.exambtnNopBai);
+            this.groupBox4.Controls.Add(this.examcheckboxHoanThanhBaiKiemTra);
+            this.groupBox4.Controls.Add(this.exambtnCauSau);
+            this.groupBox4.Controls.Add(this.exambtnCauCuoi);
             this.groupBox4.Location = new System.Drawing.Point(275, 605);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1227, 106);
@@ -336,45 +337,49 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Navigation";
             // 
-            // button5
+            // exambtnCauDau
             // 
-            this.button5.Location = new System.Drawing.Point(751, 66);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(113, 34);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "<< Câu đầu";
-            this.button5.UseVisualStyleBackColor = true;
+            this.exambtnCauDau.Location = new System.Drawing.Point(751, 66);
+            this.exambtnCauDau.Name = "exambtnCauDau";
+            this.exambtnCauDau.Size = new System.Drawing.Size(113, 34);
+            this.exambtnCauDau.TabIndex = 3;
+            this.exambtnCauDau.Text = "<< Câu đầu";
+            this.exambtnCauDau.UseVisualStyleBackColor = true;
+            this.exambtnCauDau.Click += new System.EventHandler(this.exambtnCauDau_Click);
             // 
-            // button4
+            // exambtnCauTruoc
             // 
-            this.button4.Location = new System.Drawing.Point(870, 66);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(113, 34);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Câu trước <";
-            this.button4.UseVisualStyleBackColor = true;
+            this.exambtnCauTruoc.Location = new System.Drawing.Point(870, 66);
+            this.exambtnCauTruoc.Name = "exambtnCauTruoc";
+            this.exambtnCauTruoc.Size = new System.Drawing.Size(113, 34);
+            this.exambtnCauTruoc.TabIndex = 2;
+            this.exambtnCauTruoc.Text = "Câu trước <";
+            this.exambtnCauTruoc.UseVisualStyleBackColor = true;
+            this.exambtnCauTruoc.Click += new System.EventHandler(this.exambtnCauTruoc_Click);
             // 
-            // button3
+            // exambtnCauSau
             // 
-            this.button3.Location = new System.Drawing.Point(989, 66);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(113, 34);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Câu sau >";
-            this.button3.UseVisualStyleBackColor = true;
+            this.exambtnCauSau.Location = new System.Drawing.Point(989, 66);
+            this.exambtnCauSau.Name = "exambtnCauSau";
+            this.exambtnCauSau.Size = new System.Drawing.Size(113, 34);
+            this.exambtnCauSau.TabIndex = 1;
+            this.exambtnCauSau.Text = "Câu sau >";
+            this.exambtnCauSau.UseVisualStyleBackColor = true;
+            this.exambtnCauSau.Click += new System.EventHandler(this.exambtnCauSau_Click);
             // 
-            // button2
+            // exambtnCauCuoi
             // 
-            this.button2.Location = new System.Drawing.Point(1108, 66);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 34);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Câu cuối >>";
-            this.button2.UseVisualStyleBackColor = true;
+            this.exambtnCauCuoi.Location = new System.Drawing.Point(1108, 66);
+            this.exambtnCauCuoi.Name = "exambtnCauCuoi";
+            this.exambtnCauCuoi.Size = new System.Drawing.Size(113, 34);
+            this.exambtnCauCuoi.TabIndex = 0;
+            this.exambtnCauCuoi.Text = "Câu cuối >>";
+            this.exambtnCauCuoi.UseVisualStyleBackColor = true;
+            this.exambtnCauCuoi.Click += new System.EventHandler(this.exambtnCauCuoi_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.listView1);
+            this.groupBox3.Controls.Add(this.examlvDanhSachCauHoi);
             this.groupBox3.Location = new System.Drawing.Point(6, 19);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(263, 692);
@@ -382,14 +387,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Danh sách câu hỏi";
             // 
-            // listView1
+            // examlvDanhSachCauHoi
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(6, 19);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(251, 667);
-            this.listView1.TabIndex = 7;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.examlvDanhSachCauHoi.HideSelection = false;
+            this.examlvDanhSachCauHoi.Location = new System.Drawing.Point(6, 19);
+            this.examlvDanhSachCauHoi.Name = "examlvDanhSachCauHoi";
+            this.examlvDanhSachCauHoi.Size = new System.Drawing.Size(251, 667);
+            this.examlvDanhSachCauHoi.TabIndex = 7;
+            this.examlvDanhSachCauHoi.UseCompatibleStateImageBehavior = false;
+            this.examlvDanhSachCauHoi.SelectedIndexChanged += new System.EventHandler(this.examlvDanhSachCauHoi_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -399,15 +405,33 @@
             this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 0;
             // 
-            // button6
+            // label8
             // 
-            this.button6.Location = new System.Drawing.Point(1432, 10);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 16;
-            this.button6.Text = "Thoát";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(413, 24);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Mã đề thi:";
+            // 
+            // examtxtMaDeThi
+            // 
+            this.examtxtMaDeThi.Location = new System.Drawing.Point(535, 21);
+            this.examtxtMaDeThi.Margin = new System.Windows.Forms.Padding(2);
+            this.examtxtMaDeThi.Name = "examtxtMaDeThi";
+            this.examtxtMaDeThi.Size = new System.Drawing.Size(296, 20);
+            this.examtxtMaDeThi.TabIndex = 17;
+            // 
+            // exambtnXoaDanhDau
+            // 
+            this.exambtnXoaDanhDau.Location = new System.Drawing.Point(1030, 9);
+            this.exambtnXoaDanhDau.Name = "exambtnXoaDanhDau";
+            this.exambtnXoaDanhDau.Size = new System.Drawing.Size(191, 23);
+            this.exambtnXoaDanhDau.TabIndex = 14;
+            this.exambtnXoaDanhDau.Text = "Xoá đánh dấu câu trả lời";
+            this.exambtnXoaDanhDau.UseVisualStyleBackColor = true;
+            this.exambtnXoaDanhDau.Click += new System.EventHandler(this.exambtnXoaDanhDau_Click);
             // 
             // exam
             // 
@@ -440,36 +464,38 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button exambtnNopBai;
+        private System.Windows.Forms.CheckBox examcheckboxHoanThanhBaiKiemTra;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox examtxtSoLuongCauHoi;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox examtxtThoiGianLamBai;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox examtxtBaiKiemTra;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox examtxtHoTen;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox examtxtMaSinhVien;
+        private System.Windows.Forms.TextBox examtxtThoiGianConLai;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RadioButton examradioA;
+        private System.Windows.Forms.RichTextBox examrichtxtNoiDungCauHoi;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton examradioB;
+        private System.Windows.Forms.RadioButton examradioC;
+        private System.Windows.Forms.RadioButton examradioD;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button exambtnCauDau;
+        private System.Windows.Forms.Button exambtnCauTruoc;
+        private System.Windows.Forms.Button exambtnCauSau;
+        private System.Windows.Forms.Button exambtnCauCuoi;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView examlvDanhSachCauHoi;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox examtxtMaDeThi;
+        private System.Windows.Forms.Button exambtnXoaDanhDau;
     }
 }

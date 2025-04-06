@@ -1738,18 +1738,18 @@ namespace ThiTracNghiem
             string dapAnDung = "";
             if (qlchradioA.Checked)
             {
-                dapAnDung = dapAnA;
+                dapAnDung = "A";
             }
             else if (qlchradioB.Checked)
             {
-                dapAnDung = dapAnB;
+                dapAnDung = "B";
             }
             else if (qlchradioC.Checked)
             {
-                dapAnDung = dapAnC;
+                dapAnDung = "C";
             }
             else if (qlchradioD.Checked) {
-                dapAnDung = dapAnD;
+                dapAnDung = "D";
             }
             string maDeThi = qlchcbDeThi.SelectedValue.ToString();
 

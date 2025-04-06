@@ -28,6 +28,7 @@ namespace ThiTracNghiem
             LoadCB_DeThi(maSinhVien, maMonHoc);
             string maDeThi = tcdcbDeThi.SelectedValue.ToString();
             LoadData_BangDiem(maDeThi);
+            LoadData_DeThi(maMonHoc);
         }
 
         private void fSinhVienMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -54,7 +55,7 @@ namespace ThiTracNghiem
                         string masinhvien = reader["MaSinhVien"].ToString();
                         string hoTen = reader["HoTen"].ToString();
                         string gioiTinh = reader["GioiTinh"].ToString();
-                        string ngaySinh = Convert.ToDateTime(reader["NgaySinh"]).ToString("dd/MM/yyyy HH:mm");
+                        string ngaySinh = Convert.ToDateTime(reader["NgaySinh"]).ToString("dd/MM/yyyy");
                         string queQuan = reader["QueQuan"].ToString();
                         string tenLop = reader["TenLop"].ToString();
                         string tenKhoa = reader["Tenkhoa"].ToString();
@@ -66,6 +67,14 @@ namespace ThiTracNghiem
                         tcdtxtQueQuan.Text = queQuan;
                         tcdtxtLop.Text = tenLop;
                         tcdtxtTenKhoa.Text = tenKhoa;
+
+                        btktxtMaSinhVien.Text = masinhvien;
+                        btktxtHoTen.Text = hoTen;
+                        btktxtGioiTinh.Text = gioiTinh;
+                        btktxtNgaySinh.Text = ngaySinh;
+                        btktxtQueQuan.Text = queQuan;  
+                        btktxtLop.Text = tenLop;
+                        btktxtKhoa.Text= tenKhoa;
                     }
                 }
             }
@@ -96,7 +105,11 @@ namespace ThiTracNghiem
 
                     tcdcbMonHoc.DataSource = dt.Copy();
                     tcdcbMonHoc.DisplayMember = "TenMonHoc";
-                    tcdcbMonHoc.ValueMember = "MaMonHoc";                  
+                    tcdcbMonHoc.ValueMember = "MaMonHoc";     
+                    
+                    btkcbMonHoc.DataSource = dt.Copy();
+                    btkcbMonHoc.DisplayMember = "TenMonHoc";
+                    btkcbMonHoc.ValueMember = "MaMonHoc";
 
                 }
                 catch (Exception ex)
@@ -167,6 +180,32 @@ namespace ThiTracNghiem
                 }
             }
         }
+        private void LoadData_DeThi(string maMonHoc)
+        {
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "select DETHI.MaDeThi, DETHI.TenDeThi, DETHI.ThoiGianThi, DETHI.ThoiGianBatDau, DETHI.ThoiGianKetThuc, DETHI.SoLuongCauHoi from DETHI join MONHOC on MONHOC.MaMonHoc = DETHI.MaMonHoc where MONHOC.MaMonHoc = @MaMonHoc";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaMonHoc", maMonHoc);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataDeThi.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error" + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
 
         private void tcdcbMonHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -178,6 +217,35 @@ namespace ThiTracNghiem
         {
             string maDeThi = tcdcbDeThi.SelectedValue.ToString();
             LoadData_BangDiem(maDeThi);
+        }
+
+        private void btkcbMonHoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string maMonHoc = btkcbMonHoc.SelectedValue.ToString();
+            LoadData_DeThi(maMonHoc);
+        }
+
+        private void dataDeThi_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataDeThi.Rows[e.RowIndex];
+                btktxtMaDeThi.Text = row.Cells["MaDeThi"].Value.ToString();               
+            }
+        }
+
+        private void bktbtnLamBaiThi_Click(object sender, EventArgs e)
+        {
+            string maDeThi = btktxtMaDeThi.Text;
+            string maSinhVien = btktxtMaSinhVien.Text;
+
+            if (string.IsNullOrEmpty(maDeThi)) {
+                MessageBox.Show("Vui lòng chọn một đề thi để làm bài!");
+                return;
+            }
+
+            exam xam = new exam(maDeThi, maSinhVien);
+            xam.Show();
         }
     }
 }
