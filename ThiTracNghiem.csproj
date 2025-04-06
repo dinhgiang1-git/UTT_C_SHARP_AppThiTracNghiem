@@ -91,6 +91,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\CauHoiItem.cs" />
     <Compile Include="Class\CGiangVien.cs" />
     <Compile Include="Form\exam.cs">
       <SubType>Form</SubType>

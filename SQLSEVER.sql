@@ -113,6 +113,7 @@ select* from DETHI
 select * from CAUHOI
 select * from BANGDIEM
 select* from DETHI
+select * from CAUHOI
 
 drop table DeThi
 
@@ -139,6 +140,29 @@ join SINHVIEN on SINHVIEN.MaLop = Lop.MaLop
 where MONHOC.MaMonHoc = DETHI.MaMonHoc and SINHVIEN.MaSinhVien = 'qwe'
 
 select BANGDIEM.MaBangDiem, DETHI.TenDeThi, BANGDIEM.Diem, DETHI.ThoiGianThi, DETHI.SoLuongCauHoi, DETHI.ThoiGianBatDau, DETHI.ThoiGianKetThuc
-from BANGDIEM
+from BANGDIEM 
 join DETHI on DETHI.MaDeThi = BANGDIEM.MaDeThi
 where BANGDIEM.MaDeThi = DETHI.MaDeThi
+
+select DETHI.MaDeThi, DETHI.TenDeThi, DETHI.ThoiGianThi, DETHI.ThoiGianBatDau, DETHI.ThoiGianKetThuc, DETHI.SoLuongCauHoi
+from DETHI join MONHOC on MONHOC.MaMonHoc = DETHI.MaMonHoc
+where MONHOC.MaMonHoc = 'MH001'
+
+select * from DETHI
+select * from CAUHOI
+select * from SINHVIEN
+
+select SINHVIEN.MaSinhVien, SINHVIEN.HoTen, DETHI.MaDeThi, count(CAUHOI.MaCauHoi) as SoLuongCauHoi, DETHI.ThoiGianThi, DETHI.TenDeThi
+from SINHVIEN
+join DETHI on DETHI.MaLop = SINHVIEN.MaLop
+join CAUHOI on CAUHOI.MaDeThi = DETHI.MaDeThi
+where SINHVIEN.MaSinhVien = 'giang' and DETHI.MaDeThi = 'DTCNTT054'
+group by 
+	SINHVIEN.MaSinhVien, 
+    SINHVIEN.HoTen, 
+    DETHI.MaDeThi, 
+    DETHI.ThoiGianThi, 
+    DETHI.TenDeThi
+
+select * from DETHI
+select * from CAUHOI
