@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml.Spreadsheet;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Configuration;
 
 namespace ThiTracNghiem
 {
