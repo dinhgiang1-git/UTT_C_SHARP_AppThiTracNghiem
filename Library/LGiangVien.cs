@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ThiTracNghiem.Class;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace ThiTracNghiem.Library
 {
@@ -14,7 +15,7 @@ namespace ThiTracNghiem.Library
         public static bool IsExitsAccount(CGiangVien gv)
         {
             //Thực kiện kết nối cơ sở dữ liệu.
-            string strConn = "Server=DINHDUCGIANG;Database=UTT_ThiTracNghiem;Integrated Security=True;";
+            string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
             SqlConnection conn = new SqlConnection(strConn);
             string querry = @"Select count(*) from GIANGVIEN where MaGiangVien = @MaGiangVien and MatKhau = @MatKhau";
 

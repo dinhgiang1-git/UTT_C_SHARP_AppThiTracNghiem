@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml.Office.Word;
+using System.Configuration;
 using ThiTracNghiem.Class;
 using ThiTracNghiem.Library;
 
@@ -17,7 +18,7 @@ namespace ThiTracNghiem
 {
     public partial class login: Form
     {
-        string strConn = "Server=DINHDUCGIANG;Database=UTT_ThiTracNghiem;Integrated Security=True;";
+        string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         public login()
         {
             InitializeComponent();
@@ -87,7 +88,7 @@ namespace ThiTracNghiem
                         if (count > 0) 
                         {
                             fSinhVienMain sv = new fSinhVienMain(username);
-                            sv.Show();
+                            sv.Show(); 
                             this.Hide();
                         } else
                         {

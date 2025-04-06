@@ -13,13 +13,13 @@ using ClosedXML.Excel;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Spreadsheet;
 using ExcelDataReader;
-
+using System.Configuration;
 namespace ThiTracNghiem
 {
     public partial class fMain : Form
     {
         public string _MaGiangVien;
-        string strConn = "Server=DINHDUCGIANG;Database=UTT_ThiTracNghiem;Integrated Security=True;";
+        string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         public fMain(string MaGiangVien)
         {
             InitializeComponent();
