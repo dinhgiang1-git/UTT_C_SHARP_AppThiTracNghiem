@@ -15,7 +15,7 @@ namespace ThiTracNghiem
 {
     public partial class fSinhVienMain : Form
     {
-        string strConn = "Server=DINHDUCGIANG;Database=UTT_ThiTracNghiem;Integrated Security=True;";
+        string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         string maSinhVien = "";
         public fSinhVienMain(string username)
         {
