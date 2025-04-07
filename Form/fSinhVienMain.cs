@@ -18,6 +18,7 @@ namespace ThiTracNghiem
     {
         string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         string maSinhVien = "";
+        string maKhoa = "";
         public fSinhVienMain(string username)
         {
             maSinhVien = username;
@@ -38,9 +39,9 @@ namespace ThiTracNghiem
         }
         private void Load_ThongTinSinhVien(string maSinhVien)
         {
-            
+
             SqlConnection conn = new SqlConnection(strConn);
-            string query = "select SINHVIEN.MaSinhVien, SINHVIEN.HoTen, SINHVIEN.GioiTinh, SINHVIEN.NgaySinh, SINHVIEN.QueQuan, LOP.TenLop, KHOA.TenKhoa from SINHVIEN join LOP on SINHVIEN.MaLop = LOP.MaLop join KHOA on LOP.MaKhoa = KHOA.MaKhoa where SINHVIEN.MaSinhVien = @MaSinhVien";
+            string query = "select SINHVIEN.MaSinhVien, SINHVIEN.HoTen, SINHVIEN.GioiTinh, SINHVIEN.NgaySinh, SINHVIEN.QueQuan, LOP.TenLop, KHOA.TenKhoa, KHOA.MaKhoa from SINHVIEN join LOP on SINHVIEN.MaLop = LOP.MaLop join KHOA on LOP.MaKhoa = KHOA.MaKhoa where SINHVIEN.MaSinhVien = @MaSinhVien";
 
             try
             {
@@ -60,6 +61,7 @@ namespace ThiTracNghiem
                         string queQuan = reader["QueQuan"].ToString();
                         string tenLop = reader["TenLop"].ToString();
                         string tenKhoa = reader["Tenkhoa"].ToString();
+                        maKhoa = reader["MaKhoa"].ToString();
 
                         tcdtxtMaSinhVien.Text = masinhvien;
                         tcdtxtHoTen.Text = hoTen;
@@ -73,9 +75,9 @@ namespace ThiTracNghiem
                         btktxtHoTen.Text = hoTen;
                         btktxtGioiTinh.Text = gioiTinh;
                         btktxtNgaySinh.Text = ngaySinh;
-                        btktxtQueQuan.Text = queQuan;  
+                        btktxtQueQuan.Text = queQuan;
                         btktxtLop.Text = tenLop;
-                        btktxtKhoa.Text= tenKhoa;
+                        btktxtKhoa.Text = tenKhoa;
                     }
                 }
             }
@@ -92,7 +94,7 @@ namespace ThiTracNghiem
         {
             using (SqlConnection conn = new SqlConnection(strConn))
             {
-                
+
                 try
                 {
                     conn.Open();
@@ -106,8 +108,8 @@ namespace ThiTracNghiem
 
                     tcdcbMonHoc.DataSource = dt.Copy();
                     tcdcbMonHoc.DisplayMember = "TenMonHoc";
-                    tcdcbMonHoc.ValueMember = "MaMonHoc";     
-                    
+                    tcdcbMonHoc.ValueMember = "MaMonHoc";
+
                     btkcbMonHoc.DataSource = dt.Copy();
                     btkcbMonHoc.DisplayMember = "TenMonHoc";
                     btkcbMonHoc.ValueMember = "MaMonHoc";
@@ -210,7 +212,7 @@ namespace ThiTracNghiem
 
         private void tcdcbMonHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string maMonHoc = tcdcbMonHoc.SelectedValue.ToString(); 
+            string maMonHoc = tcdcbMonHoc.SelectedValue.ToString();
             LoadCB_DeThi(maSinhVien, maMonHoc);
         }
 
@@ -228,24 +230,41 @@ namespace ThiTracNghiem
 
         private void dataDeThi_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataDeThi.Rows[e.RowIndex];
-                btktxtMaDeThi.Text = row.Cells["MaDeThi"].Value.ToString();               
+                btktxtMaDeThi.Text = row.Cells["MaDeThi"].Value.ToString();
             }
         }
 
+        public DateTime g_ThoiGianBatDau;
+        public DateTime g_ThoiGianKetThuc;
         private void bktbtnLamBaiThi_Click(object sender, EventArgs e)
         {
             string maDeThi = btktxtMaDeThi.Text;
             string maSinhVien = btktxtMaSinhVien.Text;
+            string maMonHoc = btkcbMonHoc.SelectedValue.ToString();
 
-            if (string.IsNullOrEmpty(maDeThi)) {
+            if (string.IsNullOrEmpty(maDeThi))
+            {
                 MessageBox.Show("Vui lòng chọn một đề thi để làm bài!");
                 return;
             }
+            DateTime now = DateTime.Now;
 
-            exam xam = new exam(maDeThi, maSinhVien);
+            if (now < g_ThoiGianBatDau)
+            {
+                MessageBox.Show("Chưa đến thời gian làm bài. Vui lòng quay lại sau!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (now > g_ThoiGianKetThuc)
+            {
+                MessageBox.Show("Thời gian làm bài đã kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            exam xam = new exam(maDeThi, maSinhVien, maMonHoc, maKhoa);
             xam.Show();
         }
     }

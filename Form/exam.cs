@@ -13,21 +13,25 @@ using DocumentFormat.OpenXml.Math;
 
 namespace ThiTracNghiem
 {
-    public partial class exam: Form
+    public partial class exam : Form
     {
         string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         string g_maSinhVien = "";
         string g_maDeThi = "";
+        string g_maMonHoc = "";
+        string g_maKhoa = "";
 
         List<string> danhSachMaCauHoi = new List<string>();
         int currentQuestionIndex = 0;
         Dictionary<string, string> dapAnChon = new Dictionary<string, string>();
         Dictionary<string, string> dapAnDung = new Dictionary<string, string>();
-        public exam(string maDeThi, string username)
+        public exam(string maDeThi, string username, string maMonHoc, string maKhoa)
         {
             InitializeComponent();
             g_maSinhVien = username;
             g_maDeThi = maDeThi;
+            g_maMonHoc = maMonHoc;
+            g_maKhoa = maKhoa;
 
             LoadExam_ThongTin(g_maSinhVien, g_maDeThi);
             LoadExam_DanhSachCauHoi(g_maDeThi);
@@ -63,7 +67,7 @@ namespace ThiTracNghiem
                     {
                         string masinhvien = reader["MaSinhVien"].ToString();
                         string hoten = reader["HoTen"].ToString();
-                        string madethi = reader["MaDeThi"].ToString();                       
+                        string madethi = reader["MaDeThi"].ToString();
                         string soluongcauhoi = reader["SoLuongCauHoi"].ToString();
                         string thoigianthi = reader["ThoiGianThi"].ToString();
                         string tendethi = reader["TenDeThi"].ToString();
@@ -114,7 +118,7 @@ namespace ThiTracNghiem
             }
         }
         private void LoadExam_DanhSachCauHoi(string maDeThi)
-        {           
+        {
             using (SqlConnection conn = new SqlConnection(strConn))
             {
                 try
@@ -164,7 +168,7 @@ namespace ThiTracNghiem
         private void LoadExam_ChiTietCauHoi(string maCauHoi)
         {
             SqlConnection conn = new SqlConnection(strConn);
-            
+
             try
             {
                 conn.Open();
@@ -182,7 +186,7 @@ namespace ThiTracNghiem
                         string dapanB = reader["DapAnB"].ToString();
                         string dapanC = reader["DapAnC"].ToString();
                         string dapanD = reader["DapAnD"].ToString();
-                        
+
                         examrichtxtNoiDungCauHoi.Text = noidungcauhoi;
                         examradioA.Text = dapanA;
                         examradioB.Text = dapanB;
@@ -194,7 +198,7 @@ namespace ThiTracNghiem
                         examradioB.Checked = false;
                         examradioC.Checked = false;
                         examradioD.Checked = false;
-                    
+
                         if (dapAnChon.ContainsKey(maCauHoi))
                         {
                             string daChon = dapAnChon[maCauHoi];
@@ -238,14 +242,14 @@ namespace ThiTracNghiem
                 currentQuestionIndex = index;
                 LoadExam_ChiTietCauHoi(danhSachMaCauHoi[currentQuestionIndex]);
 
-              
+
                 foreach (ListViewItem item in examlvDanhSachCauHoi.Items)
                 {
                     item.Selected = false;
                 }
 
                 examlvDanhSachCauHoi.Items[currentQuestionIndex].Selected = true;
-                examlvDanhSachCauHoi.Select(); 
+                examlvDanhSachCauHoi.Select();
             }
         }
         private void LuuDapAnSinhVien()
@@ -260,7 +264,7 @@ namespace ThiTracNghiem
             
             if (dapAn != "")
             {
-                dapAnChon[maCauHoi] = dapAn;               
+                dapAnChon[maCauHoi] = dapAn;
                 examlvDanhSachCauHoi.Items[currentQuestionIndex].BackColor = Color.LightGreen;
             }
         }
@@ -337,20 +341,56 @@ namespace ThiTracNghiem
                             "Kết quả bài kiểm tra",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+            LuuBangDiemSQL(diemTong);
         }
 
-        private void LuuBangDiemSQL()
+        private void LuuBangDiemSQL(float diemTong)
         {
             //Lấy dữ liệu
+            string maDethi = examtxtMaDeThi.Text;
+            string maMonHoc = g_maMonHoc;
+            string maSinhVien = g_maSinhVien;
+            string maKhoa = g_maKhoa;
+
             //Validate
+
             //Thêm
+
+            SqlConnection conn = new SqlConnection(strConn);
+
+            try
+            {
+                conn.Open();
+                string query = "Insert into BANGDIEM(Diem, MaDeThi, MaMonHoc, MaSinhVien, MaKhoa) values (@Diem, @MaDeThi, @MaMonHoc, @MaSinhVien, @MaKhoa)";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Diem", diemTong);
+                cmd.Parameters.AddWithValue("@MaDeThi", maDethi);
+                cmd.Parameters.AddWithValue("@MaMonHoc", maMonHoc);
+                cmd.Parameters.AddWithValue("@MaSinhVien", maSinhVien);
+                cmd.Parameters.AddWithValue("@MaKhoa", maKhoa);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void exambtnNopBai_Click(object sender, EventArgs e)
         {
             LuuDapAnSinhVien();
+<<<<<<< HEAD
             
             if(!examcheckboxHoanThanhBaiKiemTra.Checked)
+=======
+
+            if (!examcheckboxHoanThanhBaiKiemTra.Checked)
+>>>>>>> a70f26b75d4484ff0ef68f3159557bca1e58b801
             {
                 MessageBox.Show("Bạn chưa xác nhận hoàn thành bài kiểm tra.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -379,7 +419,11 @@ namespace ThiTracNghiem
                 if (result == DialogResult.No)
                 {
                     return;
+<<<<<<< HEAD
                 }                
+=======
+                }
+>>>>>>> a70f26b75d4484ff0ef68f3159557bca1e58b801
             }
             TinhDiemVaKetQua();
         }
