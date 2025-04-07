@@ -147,6 +147,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\thongTinTaiKhoan.resx">
       <DependentUpon>thongTinTaiKhoan.cs</DependentUpon>

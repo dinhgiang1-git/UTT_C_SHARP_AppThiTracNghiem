@@ -459,6 +459,7 @@
             // 
             // dataTraCuuDiem
             // 
+            this.dataTraCuuDiem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTraCuuDiem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTraCuuDiem.Location = new System.Drawing.Point(4, 5);
             this.dataTraCuuDiem.Margin = new System.Windows.Forms.Padding(2);
