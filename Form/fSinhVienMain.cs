@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml.Spreadsheet;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Configuration;
 
 namespace ThiTracNghiem
 {
     public partial class fSinhVienMain : Form
     {
-        string strConn = "Server=DINHDUCGIANG;Database=UTT_ThiTracNghiem;Integrated Security=True;";
+        string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         string maSinhVien = "";
         string maKhoa = "";
         public fSinhVienMain(string username)

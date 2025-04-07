@@ -13,14 +13,18 @@ using ClosedXML.Excel;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Spreadsheet;
 using ExcelDataReader;
-
+using System.Configuration;
 namespace ThiTracNghiem
 {
+    
     public partial class fMain : Form
     {
+        string conkec = "";
         public string _MaGiangVien;
+
         public string g_maDeThi;
         string strConn = "Server=DINHDUCGIANG;Database=UTT_ThiTracNghiem;Integrated Security=True;";
+
         public fMain(string MaGiangVien)
         {
             InitializeComponent();
@@ -1517,6 +1521,11 @@ namespace ThiTracNghiem
             if(soLuongCauHoi == 0)
             {
                 MessageBox.Show("Vui lòng nhập số lượng câu hỏi!");
+                return;
+            }
+            if (thoiGianThi == null)
+            {
+                MessageBox.Show("Vui long nhap thoi gian thi!");
                 return;
             }
             if(checkDuplicateMaDeThi(maDeThi))
