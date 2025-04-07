@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -14,7 +15,7 @@ namespace ThiTracNghiem
 {
     public partial class exam: Form
     {
-        string strConn = "Server=DINHDUCGIANG;Database=UTT_ThiTracNghiem;Integrated Security=True;";
+        string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         string g_maSinhVien = "";
         string g_maDeThi = "";
 
@@ -256,7 +257,7 @@ namespace ThiTracNghiem
             else if (examradioB.Checked) dapAn = "B";
             else if (examradioC.Checked) dapAn = "C";
             else if (examradioD.Checked) dapAn = "D";
-
+            
             if (dapAn != "")
             {
                 dapAnChon[maCauHoi] = dapAn;               
@@ -320,6 +321,7 @@ namespace ThiTracNghiem
 
                     if (dapAnSV == dapAnDungHeThong)
                     {
+
                         soCauDung++;
                     }
                 }
@@ -347,7 +349,7 @@ namespace ThiTracNghiem
         private void exambtnNopBai_Click(object sender, EventArgs e)
         {
             LuuDapAnSinhVien();
-
+            
             if(!examcheckboxHoanThanhBaiKiemTra.Checked)
             {
                 MessageBox.Show("Bạn chưa xác nhận hoàn thành bài kiểm tra.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -377,9 +379,9 @@ namespace ThiTracNghiem
                 if (result == DialogResult.No)
                 {
                     return;
-                }
-                TinhDiemVaKetQua();
+                }                
             }
+            TinhDiemVaKetQua();
         }
     }
 }
