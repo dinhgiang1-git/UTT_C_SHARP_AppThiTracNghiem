@@ -18,7 +18,6 @@ namespace ThiTracNghiem
     {
         string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         string maSinhVien = "";
-        string maKhoa = "";
         public fSinhVienMain(string username)
         {
             maSinhVien = username;
@@ -41,7 +40,7 @@ namespace ThiTracNghiem
         {
             
             SqlConnection conn = new SqlConnection(strConn);
-            string query = "select SINHVIEN.MaSinhVien, SINHVIEN.HoTen, SINHVIEN.GioiTinh, SINHVIEN.NgaySinh, SINHVIEN.QueQuan, LOP.TenLop, KHOA.TenKhoa, KHOA.MaKhoa from SINHVIEN join LOP on SINHVIEN.MaLop = LOP.MaLop join KHOA on LOP.MaKhoa = KHOA.MaKhoa where SINHVIEN.MaSinhVien = @MaSinhVien";
+            string query = "select SINHVIEN.MaSinhVien, SINHVIEN.HoTen, SINHVIEN.GioiTinh, SINHVIEN.NgaySinh, SINHVIEN.QueQuan, LOP.TenLop, KHOA.TenKhoa from SINHVIEN join LOP on SINHVIEN.MaLop = LOP.MaLop join KHOA on LOP.MaKhoa = KHOA.MaKhoa where SINHVIEN.MaSinhVien = @MaSinhVien";
 
             try
             {
@@ -61,7 +60,6 @@ namespace ThiTracNghiem
                         string queQuan = reader["QueQuan"].ToString();
                         string tenLop = reader["TenLop"].ToString();
                         string tenKhoa = reader["Tenkhoa"].ToString();
-                        maKhoa = reader["MaKhoa"].ToString();
 
                         tcdtxtMaSinhVien.Text = masinhvien;
                         tcdtxtHoTen.Text = hoTen;
@@ -270,28 +268,11 @@ namespace ThiTracNghiem
         {
             string maDeThi = btktxtMaDeThi.Text;
             string maSinhVien = btktxtMaSinhVien.Text;
-            string maMonHoc = btkcbMonHoc.SelectedValue.ToString();
 
             if (string.IsNullOrEmpty(maDeThi)) {
                 MessageBox.Show("Vui lòng chọn một đề thi để làm bài!");
                 return;
             }
-
-            DateTime now = DateTime.Now;
-
-            if (now < g_ThoiGianBatDau)
-            {
-                MessageBox.Show("Chưa đến thời gian làm bài. Vui lòng quay lại sau!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (now > g_ThoiGianKetThuc)
-            {
-                MessageBox.Show("Thời gian làm bài đã kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            exam xam = new exam(maDeThi, maSinhVien, maMonHoc, maKhoa);
             xam.Show();
         }
     }

@@ -20,10 +20,7 @@ namespace ThiTracNghiem
     public partial class fMain : Form
     {
         public string _MaGiangVien;
-
-        public string g_maDeThi;
-        string strConn = "Server=DINHDUCGIANG;Database=UTT_ThiTracNghiem;Integrated Security=True;";
-
+        string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         public fMain(string MaGiangVien)
         {
             InitializeComponent();
@@ -34,7 +31,7 @@ namespace ThiTracNghiem
             string maKhoa_MH = qlmhcbKhoa.SelectedValue.ToString();
             string maKhoa_SV = qlsvcbKhoa.SelectedValue.ToString();
             string maKhoa_DT = qldtcbKhoa.SelectedValue.ToString();
-            string maKhoa_CH = qlchcbKhoa.SelectedValue.ToString();         
+            string maKhoa_CH = qlchcbKhoa.SelectedValue.ToString();
 
             LoadComboBox_Lop(maKhoa_SV);
             LoadCombox_MonHoc(maKhoa_DT);
@@ -50,7 +47,6 @@ namespace ThiTracNghiem
             LoadData_Lop(maKhoa);
             LoadData_SinhVien(maLop);
             LoadData_DeThi("MaLop", maLop_DT);
-            LoadData_TraCuuDiem(g_maDeThi);
 
             Config_Component();
 
@@ -271,32 +267,9 @@ namespace ThiTracNghiem
                 }
             }
         }
-
-        private void LoadData_TraCuuDiem(string maDeThi)
+        private void LoadData_TraCuuDiem()
         {
-           using (SqlConnection conn = new SqlConnection(strConn))
-            {
-                try
-                {
-                    conn.Open();
-                    string query = "select SINHVIEN.MaSinhVien, SINHVIEN.HoTen, SINHVIEN.GioiTinh, SINHVIEN.NgaySinh, BANGDIEM.Diem from SINHVIEN join BANGDIEM on BANGDIEM.MaSinhVien = SINHVIEN.MaSinhVien where BANGDIEM.MaDeThi = @MaDeThi";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@MaDeThi", maDeThi);
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-
-                    dataTraCuuDiem.DataSource = dt;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Eroor " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
+           
         }
         private void LoadComboBox_Khoa()
         {
@@ -449,7 +422,6 @@ namespace ThiTracNghiem
                     tcdcbDeThi.DataSource = dt.Copy();
                     tcdcbDeThi.DisplayMember = "TenDeThi";
                     tcdcbDeThi.ValueMember = "MaDeThi";
-                    g_maDeThi = tcdcbDeThi.SelectedValue.ToString();
 
                 }
                 catch (Exception ex)
@@ -1743,19 +1715,19 @@ namespace ThiTracNghiem
                 qlchtxtDapAnD.Text = row.Cells["DapAnD"].Value.ToString();
 
                 string dapAnDung = row.Cells["DapAnDung"].Value.ToString();
-                if (dapAnDung == "A")
+                if (dapAnDung == qlchtxtDapAnA.Text)
                 {
                     qlchradioA.Checked = true;
                 }
-                else if (dapAnDung == "B")
+                else if (dapAnDung == qlchtxtDapAnB.Text)
                 {
                     qlchradioB.Checked = true;
                 }
-                else if (dapAnDung == "C")
+                else if (dapAnDung == qlchtxtDapAnC.Text)
                 {
                     qlchradioC.Checked = true;
                 }
-                else if (dapAnDung == "D")
+                else if (dapAnDung == qlchtxtDapAnD.Text)
                 {
                     qlchradioD.Checked = true;
                 }               
@@ -1870,19 +1842,19 @@ namespace ThiTracNghiem
             string dapAnDung = "";
             if (qlchradioA.Checked)
             {
-                dapAnDung = "A";
+                dapAnDung = dapAnA;
             }
             else if (qlchradioB.Checked)
             {
-                dapAnDung = "B";
+                dapAnDung = dapAnB;
             }
             else if (qlchradioC.Checked)
             {
-                dapAnDung = "C";
+                dapAnDung = dapAnC;
             }
             else if (qlchradioD.Checked)
             {
-                dapAnDung = "D";
+                dapAnDung = dapAnD;
             }
             string maDeThi = qlchcbDeThi.SelectedValue.ToString();
 
@@ -2117,7 +2089,7 @@ namespace ThiTracNghiem
                 return;
             }
             string maMonHoc = tcdcbMonHoc.SelectedValue.ToString();
-            LoadCombox_DeThi(maMonHoc);            
+            LoadCombox_DeThi(maMonHoc);
         }
     }
 }
