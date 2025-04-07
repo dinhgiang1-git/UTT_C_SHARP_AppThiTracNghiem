@@ -19,7 +19,6 @@ namespace ThiTracNghiem
     
     public partial class fMain : Form
     {
-        string conkec = "";
         public string _MaGiangVien;
 
         public string g_maDeThi;

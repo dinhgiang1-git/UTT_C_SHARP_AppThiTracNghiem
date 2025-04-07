@@ -228,12 +228,41 @@ namespace ThiTracNghiem
             LoadData_DeThi(maMonHoc);
         }
 
+        public DateTime g_ThoiGianBatDau;
+        public DateTime g_ThoiGianKetThuc;
         private void dataDeThi_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataDeThi.Rows[e.RowIndex];
-                btktxtMaDeThi.Text = row.Cells["MaDeThi"].Value.ToString();               
+                btktxtMaDeThi.Text = row.Cells["MaDeThi"].Value.ToString();
+
+                if (row.Cells["ThoiGianBatDau"].Value != null)
+                {   
+                    string timeString = row.Cells["ThoiGianBatDau"].Value.ToString();
+                    string[] formats = { "dd-MM-yyyy HH:mm", "yyyy-MM-dd HH:mm:ss.fff", "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd h:mm:ss tt" };
+                    try
+                    {
+                        g_ThoiGianBatDau = DateTime.ParseExact(timeString, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None);                   
+                    }
+                    catch (FormatException)
+                    {
+                        MessageBox.Show("Định dạng thời gian bắt đầu không hợp lệ!");
+                    }
+                }
+                if (row.Cells["ThoiGianKetThuc"].Value != null)
+                {
+                    string timeString = row.Cells["ThoiGianKetThuc"].Value.ToString();
+                    string[] formats = { "dd-MM-yyyy HH:mm", "yyyy-MM-dd HH:mm:ss.fff", "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd h:mm:ss tt" };
+                    try
+                    {
+                        g_ThoiGianKetThuc = DateTime.ParseExact(timeString, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None);                
+                    }
+                    catch (FormatException)
+                    {
+                        MessageBox.Show("Định dạng thời gian kết thúc không hợp lệ!");
+                    }
+                }
             }
         }
 
@@ -245,6 +274,20 @@ namespace ThiTracNghiem
 
             if (string.IsNullOrEmpty(maDeThi)) {
                 MessageBox.Show("Vui lòng chọn một đề thi để làm bài!");
+                return;
+            }
+
+            DateTime now = DateTime.Now;
+
+            if (now < g_ThoiGianBatDau)
+            {
+                MessageBox.Show("Chưa đến thời gian làm bài. Vui lòng quay lại sau!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (now > g_ThoiGianKetThuc)
+            {
+                MessageBox.Show("Thời gian làm bài đã kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
