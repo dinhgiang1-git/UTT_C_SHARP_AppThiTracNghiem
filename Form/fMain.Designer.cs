@@ -273,7 +273,7 @@
             // 
             // tcdtxtMaKhoa
             // 
-            this.tcdtxtMaKhoa.Location = new System.Drawing.Point(75, 93);
+            this.tcdtxtMaKhoa.Location = new System.Drawing.Point(75, 126);
             this.tcdtxtMaKhoa.Margin = new System.Windows.Forms.Padding(2);
             this.tcdtxtMaKhoa.Name = "tcdtxtMaKhoa";
             this.tcdtxtMaKhoa.Size = new System.Drawing.Size(251, 20);
@@ -281,7 +281,7 @@
             // 
             // tcdtxtHoTen
             // 
-            this.tcdtxtHoTen.Location = new System.Drawing.Point(75, 57);
+            this.tcdtxtHoTen.Location = new System.Drawing.Point(75, 90);
             this.tcdtxtHoTen.Margin = new System.Windows.Forms.Padding(2);
             this.tcdtxtHoTen.Name = "tcdtxtHoTen";
             this.tcdtxtHoTen.Size = new System.Drawing.Size(251, 20);
@@ -290,7 +290,7 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(6, 93);
+            this.label44.Location = new System.Drawing.Point(6, 126);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(60, 15);
             this.label44.TabIndex = 4;
@@ -299,7 +299,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(6, 57);
+            this.label43.Location = new System.Drawing.Point(6, 90);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(50, 15);
             this.label43.TabIndex = 3;
@@ -307,7 +307,7 @@
             // 
             // tcdtxtMaGiangVien
             // 
-            this.tcdtxtMaGiangVien.Location = new System.Drawing.Point(75, 22);
+            this.tcdtxtMaGiangVien.Location = new System.Drawing.Point(75, 55);
             this.tcdtxtMaGiangVien.Margin = new System.Windows.Forms.Padding(2);
             this.tcdtxtMaGiangVien.Name = "tcdtxtMaGiangVien";
             this.tcdtxtMaGiangVien.Size = new System.Drawing.Size(251, 20);
@@ -316,7 +316,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(6, 25);
+            this.label42.Location = new System.Drawing.Point(6, 58);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(44, 15);
             this.label42.TabIndex = 0;
@@ -327,7 +327,7 @@
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(898, 5);
+            this.groupBox2.Location = new System.Drawing.Point(898, 28);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -366,7 +366,7 @@
             this.groupBox1.Controls.Add(this.tcdcbKhoa);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(898, 67);
+            this.groupBox1.Location = new System.Drawing.Point(898, 186);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -459,6 +459,7 @@
             // 
             // dataTraCuuDiem
             // 
+            this.dataTraCuuDiem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTraCuuDiem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTraCuuDiem.Location = new System.Drawing.Point(4, 5);
             this.dataTraCuuDiem.Margin = new System.Windows.Forms.Padding(2);
