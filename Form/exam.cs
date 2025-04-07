@@ -17,20 +17,16 @@ namespace ThiTracNghiem
         string strConn = "Server=DINHDUCGIANG;Database=UTT_ThiTracNghiem;Integrated Security=True;";
         string g_maSinhVien = "";
         string g_maDeThi = "";
-        string g_maMonHoc = "";
-        string g_maKhoa = "";
 
         List<string> danhSachMaCauHoi = new List<string>();
         int currentQuestionIndex = 0;
         Dictionary<string, string> dapAnChon = new Dictionary<string, string>();
         Dictionary<string, string> dapAnDung = new Dictionary<string, string>();
-        public exam(string maDeThi, string username, string maMonHoc, string maKhoa)
+        public exam(string maDeThi, string username)
         {
             InitializeComponent();
             g_maSinhVien = username;
             g_maDeThi = maDeThi;
-            g_maMonHoc = maMonHoc;
-            g_maKhoa = maKhoa;
 
             LoadExam_ThongTin(g_maSinhVien, g_maDeThi);
             LoadExam_DanhSachCauHoi(g_maDeThi);
@@ -339,44 +335,13 @@ namespace ThiTracNghiem
                             "Kết quả bài kiểm tra",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
-            LuuBangDiemSQL(diemTong);
         }
 
-        private void LuuBangDiemSQL(float diemTong)
+        private void LuuBangDiemSQL()
         {
             //Lấy dữ liệu
-            string maDethi = examtxtMaDeThi.Text;
-            string maMonHoc = g_maMonHoc;
-            string maSinhVien = g_maSinhVien;
-            string maKhoa = g_maKhoa;
-
             //Validate
-
             //Thêm
-
-            SqlConnection conn = new SqlConnection(strConn);
-
-            try
-            {
-                conn.Open();
-                string query = "Insert into BANGDIEM(Diem, MaDeThi, MaMonHoc, MaSinhVien, MaKhoa) values (@Diem, @MaDeThi, @MaMonHoc, @MaSinhVien, @MaKhoa)";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Diem", diemTong);
-                cmd.Parameters.AddWithValue("@MaDeThi", maDethi);
-                cmd.Parameters.AddWithValue("@MaMonHoc", maMonHoc);
-                cmd.Parameters.AddWithValue("@MaSinhVien", maSinhVien);
-                cmd.Parameters.AddWithValue("@MaKhoa", maKhoa);
-
-                int rowsAffected = cmd.ExecuteNonQuery();                
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error: " + ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
         }
 
         private void exambtnNopBai_Click(object sender, EventArgs e)
