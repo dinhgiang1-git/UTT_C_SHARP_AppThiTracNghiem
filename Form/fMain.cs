@@ -19,7 +19,6 @@ namespace ThiTracNghiem
     
     public partial class fMain : Form
     {
-        string conkec = "";
         public string _MaGiangVien;
         string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         public fMain(string MaGiangVien)

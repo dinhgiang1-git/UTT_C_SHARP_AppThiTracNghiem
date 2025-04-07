@@ -94,6 +94,12 @@
   <ItemGroup>
     <Compile Include="Class\CauHoiItem.cs" />
     <Compile Include="Class\CGiangVien.cs" />
+    <Compile Include="doiMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doiMatKhau.Designer.cs">
+      <DependentUpon>doiMatKhau.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\exam.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,15 @@
     <Compile Include="Library\LGiangVien.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Form\thongTinTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\thongTinTaiKhoan.Designer.cs">
+      <DependentUpon>thongTinTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="doiMatKhau.resx">
+      <DependentUpon>doiMatKhau.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\exam.resx">
       <DependentUpon>exam.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\thongTinTaiKhoan.resx">
+      <DependentUpon>thongTinTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
