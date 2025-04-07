@@ -2091,10 +2091,5 @@ namespace ThiTracNghiem
             string maMonHoc = tcdcbMonHoc.SelectedValue.ToString();
             LoadCombox_DeThi(maMonHoc);
         }
-
-        private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
     }
 }
