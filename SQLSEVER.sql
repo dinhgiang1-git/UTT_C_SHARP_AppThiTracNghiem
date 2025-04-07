@@ -70,15 +70,13 @@ CREATE TABLE DETHI (
 
 -- Tạo bảng BANGDIEM
 CREATE TABLE BANGDIEM (
-    MaBangDiem INT IDENTITY(1,1) PRIMARY KEY,
+    MaBangDiem VARCHAR(10) PRIMARY KEY,
     Diem FLOAT,
     MaDeThi VARCHAR(10), -- Không dùng foreign key
     MaMonHoc VARCHAR(10), -- Không dùng foreign key
     MaSinhVien VARCHAR(10), -- Không dùng foreign key
     MaKhoa VARCHAR(10) -- Không dùng foreign key
 );
-
-drop table BANGDIEM
 
 INSERT INTO GIANGVIEN (MaGiangVien, HoTen, GioiTinh, NgaySinh, QueQuan, MatKhau, MaKhoa)
 VALUES 
@@ -178,6 +176,3 @@ from CAUHOI
 where CAUHOI.MaCauHoi = '1'
 
 select * from BANGDIEM
-select * from CAUHOI
-
-update CAUHOI set DapAnDung = 'C' where MaCauHoi = '2'
