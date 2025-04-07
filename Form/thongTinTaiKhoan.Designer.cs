@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tttktxtId = new System.Windows.Forms.TextBox();
+            this.tttktxtHoTen = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tttktxtGioiTinh = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tttktxtNgaySinh = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tttktxtQueQuan = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -49,19 +49,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã";
             // 
-            // textBox1
+            // tttktxtId
             // 
-            this.textBox1.Location = new System.Drawing.Point(147, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(340, 20);
-            this.textBox1.TabIndex = 1;
+            this.tttktxtId.Location = new System.Drawing.Point(147, 46);
+            this.tttktxtId.Name = "tttktxtId";
+            this.tttktxtId.Size = new System.Drawing.Size(340, 20);
+            this.tttktxtId.TabIndex = 1;
             // 
-            // textBox2
+            // tttktxtHoTen
             // 
-            this.textBox2.Location = new System.Drawing.Point(147, 106);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(340, 20);
-            this.textBox2.TabIndex = 3;
+            this.tttktxtHoTen.Location = new System.Drawing.Point(147, 106);
+            this.tttktxtHoTen.Name = "tttktxtHoTen";
+            this.tttktxtHoTen.Size = new System.Drawing.Size(340, 20);
+            this.tttktxtHoTen.TabIndex = 3;
             // 
             // label2
             // 
@@ -72,12 +72,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Họ Tên";
             // 
-            // textBox3
+            // tttktxtGioiTinh
             // 
-            this.textBox3.Location = new System.Drawing.Point(147, 163);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(340, 20);
-            this.textBox3.TabIndex = 5;
+            this.tttktxtGioiTinh.Location = new System.Drawing.Point(147, 163);
+            this.tttktxtGioiTinh.Name = "tttktxtGioiTinh";
+            this.tttktxtGioiTinh.Size = new System.Drawing.Size(340, 20);
+            this.tttktxtGioiTinh.TabIndex = 5;
             // 
             // label3
             // 
@@ -88,12 +88,12 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Giới Tính";
             // 
-            // textBox4
+            // tttktxtNgaySinh
             // 
-            this.textBox4.Location = new System.Drawing.Point(147, 227);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(340, 20);
-            this.textBox4.TabIndex = 7;
+            this.tttktxtNgaySinh.Location = new System.Drawing.Point(147, 227);
+            this.tttktxtNgaySinh.Name = "tttktxtNgaySinh";
+            this.tttktxtNgaySinh.Size = new System.Drawing.Size(340, 20);
+            this.tttktxtNgaySinh.TabIndex = 7;
             // 
             // label4
             // 
@@ -104,12 +104,12 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Ngày Sinh";
             // 
-            // textBox5
+            // tttktxtQueQuan
             // 
-            this.textBox5.Location = new System.Drawing.Point(147, 287);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(340, 20);
-            this.textBox5.TabIndex = 9;
+            this.tttktxtQueQuan.Location = new System.Drawing.Point(147, 287);
+            this.tttktxtQueQuan.Name = "tttktxtQueQuan";
+            this.tttktxtQueQuan.Size = new System.Drawing.Size(340, 20);
+            this.tttktxtQueQuan.TabIndex = 9;
             // 
             // label5
             // 
@@ -125,17 +125,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 350);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.tttktxtQueQuan);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.tttktxtNgaySinh);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.tttktxtGioiTinh);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tttktxtHoTen);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tttktxtId);
             this.Controls.Add(this.label1);
             this.Name = "thongTinTaiKhoan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "thongTinTaiKhoan";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -145,14 +146,14 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tttktxtId;
+        private System.Windows.Forms.TextBox tttktxtHoTen;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tttktxtGioiTinh;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tttktxtNgaySinh;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tttktxtQueQuan;
         private System.Windows.Forms.Label label5;
     }
 }
