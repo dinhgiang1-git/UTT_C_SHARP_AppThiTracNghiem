@@ -20,6 +20,7 @@ namespace ThiTracNghiem
     public partial class fMain : Form
     {
         public string _MaGiangVien;
+        public string g_maDeThi;
         string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         public fMain(string MaGiangVien)
         {
@@ -47,6 +48,7 @@ namespace ThiTracNghiem
             LoadData_Lop(maKhoa);
             LoadData_SinhVien(maLop);
             LoadData_DeThi("MaLop", maLop_DT);
+            LoadData_TraCuuDiem(g_maDeThi);
 
             Config_Component();
 
@@ -267,9 +269,31 @@ namespace ThiTracNghiem
                 }
             }
         }
-        private void LoadData_TraCuuDiem()
+        private void LoadData_TraCuuDiem(string maDeThi)
         {
-           
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "select SINHVIEN.MaSinhVien, SINHVIEN.HoTen, SINHVIEN.GioiTinh, SINHVIEN.NgaySinh, BANGDIEM.Diem from SINHVIEN join BANGDIEM on BANGDIEM.MaSinhVien = SINHVIEN.MaSinhVien where BANGDIEM.MaDeThi = @MaDeThi";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaDeThi", maDeThi);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataTraCuuDiem.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Eroor " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
         private void LoadComboBox_Khoa()
         {
@@ -422,6 +446,7 @@ namespace ThiTracNghiem
                     tcdcbDeThi.DataSource = dt.Copy();
                     tcdcbDeThi.DisplayMember = "TenDeThi";
                     tcdcbDeThi.ValueMember = "MaDeThi";
+                    g_maDeThi = tcdcbDeThi.SelectedValue.ToString();
 
                 }
                 catch (Exception ex)

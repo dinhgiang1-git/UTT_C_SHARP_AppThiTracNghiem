@@ -94,10 +94,10 @@
   <ItemGroup>
     <Compile Include="Class\CauHoiItem.cs" />
     <Compile Include="Class\CGiangVien.cs" />
-    <Compile Include="doiMatKhau.cs">
+    <Compile Include="Form\doiMatKhau.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="doiMatKhau.Designer.cs">
+    <Compile Include="Form\doiMatKhau.Designer.cs">
       <DependentUpon>doiMatKhau.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\exam.cs">
@@ -133,7 +133,7 @@
     <Compile Include="Form\thongTinTaiKhoan.Designer.cs">
       <DependentUpon>thongTinTaiKhoan.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="doiMatKhau.resx">
+    <EmbeddedResource Include="Form\doiMatKhau.resx">
       <DependentUpon>doiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\exam.resx">
