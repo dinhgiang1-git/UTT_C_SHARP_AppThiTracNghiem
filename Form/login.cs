@@ -116,8 +116,7 @@ namespace ThiTracNghiem
                                 MessageBox.Show("Tài khoản hoặc mật khẩu không đúng");
                             }
                         }
-                    }
-                    Console.WriteLine(query);             
+                    }                        
                 }
                 catch (Exception ex)
                 {

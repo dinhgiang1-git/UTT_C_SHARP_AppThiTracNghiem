@@ -28,7 +28,9 @@ namespace ThiTracNghiem
             LoadCB_MonHoc(maSinhVien);
             string maMonHoc = tcdcbMonHoc.SelectedValue.ToString();
             LoadCB_DeThi(maSinhVien, maMonHoc);
-            string maDeThi = tcdcbDeThi.SelectedValue.ToString();
+            LoadCB_DeThi(maSinhVien, maMonHoc);
+            //string maDeThi = tcdcbDeThi.SelectedValue.ToString();
+            string maDeThi = "";
             LoadData_BangDiem(maDeThi);
             LoadData_DeThi(maMonHoc);
         }
@@ -250,19 +252,19 @@ namespace ThiTracNghiem
                 MessageBox.Show("Vui lòng chọn một đề thi để làm bài!");
                 return;
             }
-            //DateTime now = DateTime.Now;
+            DateTime now = DateTime.Now;
 
-            //if (now < g_ThoiGianBatDau)
-            //{
-            //    MessageBox.Show("Chưa đến thời gian làm bài. Vui lòng quay lại sau!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
+            if (now < g_ThoiGianBatDau)
+            {
+                MessageBox.Show("Chưa đến thời gian làm bài. Vui lòng quay lại sau!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            //if (now > g_ThoiGianKetThuc)
-            //{
-            //    MessageBox.Show("Thời gian làm bài đã kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
+            if (now > g_ThoiGianKetThuc)
+            {
+                MessageBox.Show("Thời gian làm bài đã kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             exam xam = new exam(maDeThi, maSinhVien, maMonHoc, maKhoa);
             xam.Show();

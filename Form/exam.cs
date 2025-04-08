@@ -459,6 +459,7 @@ namespace ThiTracNghiem
                 }
             }
             TinhDiemVaKetQua();
+            this.Close();
         }
     }
 }

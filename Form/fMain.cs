@@ -462,7 +462,8 @@ namespace ThiTracNghiem
                     tcdcbDeThi.DataSource = dt.Copy();
                     tcdcbDeThi.DisplayMember = "TenDeThi";
                     tcdcbDeThi.ValueMember = "MaDeThi";
-                    g_maDeThi = tcdcbDeThi.SelectedValue.ToString();
+                    //g_maDeThi = tcdcbDeThi.SelectedValue.ToString();
+                    g_maDeThi = "";
 
                 }
                 catch (Exception ex)
@@ -1318,6 +1319,7 @@ namespace ThiTracNghiem
         }
         private void qlsvbtnImportExcel_Click(object sender, EventArgs e)
         {
+            string maLop = qlsvcbLop.SelectedValue.ToString();
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Excel Files|*.xls;*.xlsx;";
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -1336,7 +1338,6 @@ namespace ThiTracNghiem
                             string gioiTinh = table.Rows[i][2].ToString().Trim();
                             string ngaySinh = DateTime.Parse(table.Rows[i][3].ToString()).ToString("yyyy-MM-dd");
                             string queQuan = table.Rows[i][4].ToString().Trim();
-                            string maLop = table.Rows[i][5].ToString().Trim();
 
                             if (checkDuplicateMaSV(maSV)) continue; // Bỏ qua nếu trùng
 
@@ -1756,19 +1757,19 @@ namespace ThiTracNghiem
                 qlchtxtDapAnD.Text = row.Cells["DapAnD"].Value.ToString();
 
                 string dapAnDung = row.Cells["DapAnDung"].Value.ToString();
-                if (dapAnDung == qlchtxtDapAnA.Text)
+                if (dapAnDung == "A")
                 {
                     qlchradioA.Checked = true;
                 }
-                else if (dapAnDung == qlchtxtDapAnB.Text)
+                else if (dapAnDung == "B")
                 {
                     qlchradioB.Checked = true;
                 }
-                else if (dapAnDung == qlchtxtDapAnC.Text)
+                else if (dapAnDung == "C")
                 {
                     qlchradioC.Checked = true;
                 }
-                else if (dapAnDung == qlchtxtDapAnD.Text)
+                else if (dapAnDung == "D")
                 {
                     qlchradioD.Checked = true;
                 }               

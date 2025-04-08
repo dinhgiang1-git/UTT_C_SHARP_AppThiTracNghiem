@@ -70,13 +70,18 @@ CREATE TABLE DETHI (
 
 -- Tạo bảng BANGDIEM
 CREATE TABLE BANGDIEM (
-    MaBangDiem VARCHAR(10) PRIMARY KEY,
+    MaBangDiem INT IDENTITY(1,1) PRIMARY KEY,
     Diem FLOAT,
     MaDeThi VARCHAR(10), -- Không dùng foreign key
     MaMonHoc VARCHAR(10), -- Không dùng foreign key
-    MaSinhVien VARCHAR(10), -- Không dùng foreign key
+    MaSinhVien VARCHAR(20), -- Không dùng foreign key
     MaKhoa VARCHAR(10) -- Không dùng foreign key
 );
+
+ALTER TABLE BANGDIEM
+ALTER COLUMN MaSinhVien VARCHAR(20);
+
+drop table BANGDIEM
 
 INSERT INTO GIANGVIEN (MaGiangVien, HoTen, GioiTinh, NgaySinh, QueQuan, MatKhau, MaKhoa)
 VALUES 
@@ -125,19 +130,19 @@ select SINHVIEN.MaSinhVien, SINHVIEN.HoTen, SINHVIEN.GioiTinh, SINHVIEN.NgaySinh
 from SINHVIEN 
 join LOP on SINHVIEN.MaLop = LOP.MaLop 
 join KHOA on LOP.MaKhoa = KHOA.MaKhoa
-where SINHVIEN.MaSinhVien = 'qwe'
+where SINHVIEN.MaSinhVien = '73DCHT22115'
 
 select MONHOC.TenMonHoc, MONHOC.MaMonHoc 
 from MONHOC  join KHOA on KHOA.MaKhoa = MONHOC.MaKhoa  
 join LOP on LOP.MaKhoa = KHOA.MaKhoa 
 join SINHVIEN on SINHVIEN.MaLop = LOP.MaLop 
-where SINHVIEN.MaSinhVien = 'qwe'
+where SINHVIEN.MaSinhVien = '73DCHT22115'
 
 select DETHI.MaDeThi, DETHI.TenDeThi from DETHI  
 join MONHOC on MONHOC.MaMonHoc = DETHI.MaMonHoc  
 join LOP on LOP.MaLop = DETHI.MaLop 
 join SINHVIEN on SINHVIEN.MaLop = Lop.MaLop 
-where MONHOC.MaMonHoc = DETHI.MaMonHoc and SINHVIEN.MaSinhVien = 'qwe'
+where MONHOC.MaMonHoc = DETHI.MaMonHoc and SINHVIEN.MaSinhVien = '73DCHT22115'
 
 select BANGDIEM.MaBangDiem, DETHI.TenDeThi, BANGDIEM.Diem, DETHI.ThoiGianThi, DETHI.SoLuongCauHoi, DETHI.ThoiGianBatDau, DETHI.ThoiGianKetThuc
 from BANGDIEM 
@@ -176,3 +181,15 @@ from CAUHOI
 where CAUHOI.MaCauHoi = '1'
 
 select * from BANGDIEM
+delete BANGDIEM
+select * from DETHI
+select * from SINHVIEN
+select * from CAUHOI
+delete CAUHOI
+select * from SINHVIEN
+select * from GIANGVIEN
+select * from MONHOC
+
+delete SINHVIEN
+
+select SINHVIEN.MaSinhVien, SINHVIEN.HoTen, SINHVIEN.GioiTinh, SINHVIEN.NgaySinh, BANGDIEM.Diem  from SINHVIEN  join BANGDIEM on BANGDIEM.MaSinhVien = SINHVIEN.MaSinhVien where BANGDIEM.MaDeThi = 'DTCNTT054'
