@@ -2138,13 +2138,53 @@ namespace ThiTracNghiem
         //Menu TapControl
         private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            thongTinTaiKhoan tttk = new thongTinTaiKhoan(_MaGiangVien);
+            thongTinTaiKhoan tttk = new thongTinTaiKhoan(_MaGiangVien, "giangvien");
             tttk.Show();
         }
         private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            doiMatKhau change = new doiMatKhau(_MaGiangVien);
+            doiMatKhau change = new doiMatKhau(_MaGiangVien, "giangvien");
             change.Show();
+        }
+
+        private void tcdbtnExport_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx", FileName = "DanhSachDiemSinhVien.xlsx" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (XLWorkbook wb = new XLWorkbook())
+                        {
+                            DataTable dt = new DataTable();
+
+                            // Thêm tiêu đề cột từ DataGridView
+                            foreach (DataGridViewColumn col in dataTraCuuDiem.Columns)
+                            {
+                                dt.Columns.Add(col.HeaderText);
+                            }
+
+                            // Thêm từng hàng dữ liệu
+                            foreach (DataGridViewRow row in dataTraCuuDiem.Rows)
+                            {
+                                if (row.IsNewRow) continue;
+                                dt.Rows.Add(row.Cells.Cast<DataGridViewCell>().Select(c => c.Value?.ToString() ?? "").ToArray());
+                            }
+
+                            // Thêm sheet vào file Excel
+                            wb.Worksheets.Add(dt, "Danh sách sinh viên");
+                            wb.SaveAs(sfd.FileName);
+
+                            MessageBox.Show("Xuất Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xuất Excel: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

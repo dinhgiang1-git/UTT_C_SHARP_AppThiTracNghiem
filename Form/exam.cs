@@ -22,6 +22,9 @@ namespace ThiTracNghiem
         string g_maMonHoc = "";
         string g_maKhoa = "";
 
+        private Timer examTimer;
+        private TimeSpan remainingTime;
+
         List<string> danhSachMaCauHoi = new List<string>();
         int currentQuestionIndex = 0;
         Dictionary<string, string> dapAnChon = new Dictionary<string, string>();
@@ -86,6 +89,15 @@ namespace ThiTracNghiem
                         string thoigianthi = reader["ThoiGianThi"].ToString();
                         string tendethi = reader["TenDeThi"].ToString();
 
+                        int soPhut = int.Parse(thoigianthi);
+                        remainingTime = TimeSpan.FromMinutes(soPhut);
+                        examtxtThoiGianConLai.Text = remainingTime.ToString(@"mm\:ss");
+
+                        examTimer = new Timer();
+                        examTimer.Interval = 1000; // 1 giây
+                        examTimer.Tick += ExamTimer_Tick;
+                        examTimer.Start();
+
                         examtxtMaSinhVien.Text = masinhvien;
                         examtxtHoTen.Text = hoten;
                         examtxtMaDeThi.Text = madethi;
@@ -102,6 +114,22 @@ namespace ThiTracNghiem
             finally
             {
                 conn.Close();
+            }
+        }
+        private void ExamTimer_Tick(object sender, EventArgs e)
+        {
+            if (remainingTime.TotalSeconds > 0)
+            {
+                remainingTime = remainingTime.Subtract(TimeSpan.FromSeconds(1));
+                examtxtThoiGianConLai.Text = remainingTime.ToString(@"mm\:ss");
+            }
+            else
+            {
+                examTimer.Stop();
+                MessageBox.Show("Hết giờ làm bài!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // TODO: Gọi hàm nộp bài hoặc đóng form
+                this.Close(); // hoặc gọi SubmitExam();
             }
         }
         private void LoadDapAnDung(string maDeThi)
@@ -398,13 +426,6 @@ namespace ThiTracNghiem
         private void exambtnNopBai_Click(object sender, EventArgs e)
         {
             LuuDapAnSinhVien();
-            
-            if(!examcheckboxHoanThanhBaiKiemTra.Checked)
-            {
-                MessageBox.Show("Bạn chưa xác nhận hoàn thành bài kiểm tra.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
 
             if (!examcheckboxHoanThanhBaiKiemTra.Checked)
             {

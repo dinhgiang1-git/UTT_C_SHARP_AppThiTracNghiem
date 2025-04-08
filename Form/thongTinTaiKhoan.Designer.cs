@@ -140,6 +140,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tttktxtId);
             this.Controls.Add(this.label1);
+            this.MinimumSize = new System.Drawing.Size(576, 391);
             this.Name = "thongTinTaiKhoan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "thongTinTaiKhoan";

@@ -417,9 +417,9 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Location = new System.Drawing.Point(1204, 24);
+            this.groupBox4.Location = new System.Drawing.Point(1033, 19);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(475, 214);
+            this.groupBox4.Size = new System.Drawing.Size(646, 214);
             this.groupBox4.TabIndex = 33;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tìm kiếm";
@@ -562,6 +562,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(1745, 912);
             this.Name = "fSinhVienMain";
             this.Text = "Sinh Viên";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fSinhVienMain_FormClosed);

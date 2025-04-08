@@ -191,6 +191,7 @@
             this.thôngTinTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tcdbtnExport = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox18.SuspendLayout();
@@ -242,6 +243,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.tcdbtnExport);
             this.tabPage1.Controls.Add(this.groupBox18);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -273,7 +275,7 @@
             // 
             // tcdtxtMaKhoa
             // 
-            this.tcdtxtMaKhoa.Location = new System.Drawing.Point(75, 93);
+            this.tcdtxtMaKhoa.Location = new System.Drawing.Point(75, 117);
             this.tcdtxtMaKhoa.Margin = new System.Windows.Forms.Padding(2);
             this.tcdtxtMaKhoa.Name = "tcdtxtMaKhoa";
             this.tcdtxtMaKhoa.Size = new System.Drawing.Size(251, 20);
@@ -281,7 +283,7 @@
             // 
             // tcdtxtHoTen
             // 
-            this.tcdtxtHoTen.Location = new System.Drawing.Point(75, 57);
+            this.tcdtxtHoTen.Location = new System.Drawing.Point(75, 81);
             this.tcdtxtHoTen.Margin = new System.Windows.Forms.Padding(2);
             this.tcdtxtHoTen.Name = "tcdtxtHoTen";
             this.tcdtxtHoTen.Size = new System.Drawing.Size(251, 20);
@@ -290,7 +292,7 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(6, 93);
+            this.label44.Location = new System.Drawing.Point(6, 117);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(60, 15);
             this.label44.TabIndex = 4;
@@ -299,7 +301,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(6, 57);
+            this.label43.Location = new System.Drawing.Point(6, 81);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(50, 15);
             this.label43.TabIndex = 3;
@@ -307,7 +309,7 @@
             // 
             // tcdtxtMaGiangVien
             // 
-            this.tcdtxtMaGiangVien.Location = new System.Drawing.Point(75, 22);
+            this.tcdtxtMaGiangVien.Location = new System.Drawing.Point(75, 46);
             this.tcdtxtMaGiangVien.Margin = new System.Windows.Forms.Padding(2);
             this.tcdtxtMaGiangVien.Name = "tcdtxtMaGiangVien";
             this.tcdtxtMaGiangVien.Size = new System.Drawing.Size(251, 20);
@@ -316,7 +318,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(6, 25);
+            this.label42.Location = new System.Drawing.Point(6, 49);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(44, 15);
             this.label42.TabIndex = 0;
@@ -331,14 +333,14 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(335, 58);
+            this.groupBox2.Size = new System.Drawing.Size(335, 190);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tìm";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(88, 22);
+            this.textBox1.Location = new System.Drawing.Point(94, 39);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(199, 20);
@@ -348,7 +350,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(2, 21);
+            this.label6.Location = new System.Drawing.Point(8, 38);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 15);
@@ -366,7 +368,7 @@
             this.groupBox1.Controls.Add(this.tcdcbKhoa);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(898, 67);
+            this.groupBox1.Location = new System.Drawing.Point(898, 199);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -2011,14 +2013,14 @@
             // 
             this.thôngTinTàiKhoảnToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thôngTinTàiKhoảnToolStripMenuItem.Image")));
             this.thôngTinTàiKhoảnToolStripMenuItem.Name = "thôngTinTàiKhoảnToolStripMenuItem";
-            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản";
             // 
             // đổiMậtKhẩuToolStripMenuItem
             // 
             this.đổiMậtKhẩuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("đổiMậtKhẩuToolStripMenuItem.Image")));
             this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
             this.đổiMậtKhẩuToolStripMenuItem.Click += new System.EventHandler(this.đổiMậtKhẩuToolStripMenuItem_Click);
             // 
@@ -2026,8 +2028,18 @@
             // 
             this.đăngXuấtToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("đăngXuấtToolStripMenuItem.Image")));
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
+            // 
+            // tcdbtnExport
+            // 
+            this.tcdbtnExport.Location = new System.Drawing.Point(1028, 456);
+            this.tcdbtnExport.Name = "tcdbtnExport";
+            this.tcdbtnExport.Size = new System.Drawing.Size(123, 23);
+            this.tcdbtnExport.TabIndex = 8;
+            this.tcdbtnExport.Text = "Export Excel";
+            this.tcdbtnExport.UseVisualStyleBackColor = true;
+            this.tcdbtnExport.Click += new System.EventHandler(this.tcdbtnExport_Click);
             // 
             // fMain
             // 
@@ -2260,6 +2272,7 @@
         private System.Windows.Forms.RadioButton qlchradioA;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox qlchtxtMaCauHoi;
+        private System.Windows.Forms.Button tcdbtnExport;
     }
 }
 
