@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dmkMatKhauMoi = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.dmkNhapLaiMatKhauMoi = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.dmkbtnXacNhan = new System.Windows.Forms.Button();
+            this.dmkbtnHuy = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -47,12 +47,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mật khẩu mới";
             // 
-            // textBox1
+            // dmkMatKhauMoi
             // 
-            this.textBox1.Location = new System.Drawing.Point(157, 54);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(235, 20);
-            this.textBox1.TabIndex = 1;
+            this.dmkMatKhauMoi.Location = new System.Drawing.Point(157, 54);
+            this.dmkMatKhauMoi.Name = "dmkMatKhauMoi";
+            this.dmkMatKhauMoi.Size = new System.Drawing.Size(235, 20);
+            this.dmkMatKhauMoi.TabIndex = 1;
             // 
             // contextMenuStrip1
             // 
@@ -60,12 +60,12 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // textBox2
+            // dmkNhapLaiMatKhauMoi
             // 
-            this.textBox2.Location = new System.Drawing.Point(157, 99);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(235, 20);
-            this.textBox2.TabIndex = 4;
+            this.dmkNhapLaiMatKhauMoi.Location = new System.Drawing.Point(157, 99);
+            this.dmkNhapLaiMatKhauMoi.Name = "dmkNhapLaiMatKhauMoi";
+            this.dmkNhapLaiMatKhauMoi.Size = new System.Drawing.Size(235, 20);
+            this.dmkNhapLaiMatKhauMoi.TabIndex = 4;
             // 
             // label2
             // 
@@ -76,36 +76,39 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Nhạp lại mật khẩu mới";
             // 
-            // button1
+            // dmkbtnXacNhan
             // 
-            this.button1.Location = new System.Drawing.Point(180, 147);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Xác nhận";
-            this.button1.UseVisualStyleBackColor = true;
+            this.dmkbtnXacNhan.Location = new System.Drawing.Point(180, 147);
+            this.dmkbtnXacNhan.Name = "dmkbtnXacNhan";
+            this.dmkbtnXacNhan.Size = new System.Drawing.Size(75, 23);
+            this.dmkbtnXacNhan.TabIndex = 5;
+            this.dmkbtnXacNhan.Text = "Xác nhận";
+            this.dmkbtnXacNhan.UseVisualStyleBackColor = true;
+            this.dmkbtnXacNhan.Click += new System.EventHandler(this.dmkbtnXacNhan_Click);
             // 
-            // button2
+            // dmkbtnHuy
             // 
-            this.button2.Location = new System.Drawing.Point(297, 147);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Huỷ";
-            this.button2.UseVisualStyleBackColor = true;
+            this.dmkbtnHuy.Location = new System.Drawing.Point(297, 147);
+            this.dmkbtnHuy.Name = "dmkbtnHuy";
+            this.dmkbtnHuy.Size = new System.Drawing.Size(75, 23);
+            this.dmkbtnHuy.TabIndex = 6;
+            this.dmkbtnHuy.Text = "Huỷ";
+            this.dmkbtnHuy.UseVisualStyleBackColor = true;
+            this.dmkbtnHuy.Click += new System.EventHandler(this.dmkbtnHuy_Click);
             // 
             // doiMatKhau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 226);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.dmkbtnHuy);
+            this.Controls.Add(this.dmkbtnXacNhan);
+            this.Controls.Add(this.dmkNhapLaiMatKhauMoi);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dmkMatKhauMoi);
             this.Controls.Add(this.label1);
             this.Name = "doiMatKhau";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "doiMatKhau";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -115,11 +118,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox dmkMatKhauMoi;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox dmkNhapLaiMatKhauMoi;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button dmkbtnXacNhan;
+        private System.Windows.Forms.Button dmkbtnHuy;
     }
 }

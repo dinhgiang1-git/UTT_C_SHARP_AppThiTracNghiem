@@ -2116,5 +2116,21 @@ namespace ThiTracNghiem
             string maMonHoc = tcdcbMonHoc.SelectedValue.ToString();
             LoadCombox_DeThi(maMonHoc);
         }
+// <<<<<<< dinhgiang1-git
+
+
+//         //Menu TapControl
+//         private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+//         {
+//             thongTinTaiKhoan tttk = new thongTinTaiKhoan(_MaGiangVien);
+//             tttk.Show();
+//         }
+//         private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
+//         {
+//             doiMatKhau change = new doiMatKhau(_MaGiangVien);
+//             change.Show();
+//         }
+// =======
+// >>>>>>> master
     }
 }
