@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.examtxtMaDeThi = new System.Windows.Forms.TextBox();
             this.examtxtThoiGianConLai = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -53,6 +55,7 @@
             this.examradioC = new System.Windows.Forms.RadioButton();
             this.examradioD = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.exambtnXoaDanhDau = new System.Windows.Forms.Button();
             this.exambtnCauDau = new System.Windows.Forms.Button();
             this.exambtnCauTruoc = new System.Windows.Forms.Button();
             this.exambtnCauSau = new System.Windows.Forms.Button();
@@ -60,9 +63,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.examlvDanhSachCauHoi = new System.Windows.Forms.ListView();
             this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.examtxtMaDeThi = new System.Windows.Forms.TextBox();
-            this.exambtnXoaDanhDau = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -82,6 +82,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.examtxtMaDeThi);
@@ -106,8 +108,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
             // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(413, 24);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Mã đề thi:";
+            // 
+            // examtxtMaDeThi
+            // 
+            this.examtxtMaDeThi.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.examtxtMaDeThi.Location = new System.Drawing.Point(535, 21);
+            this.examtxtMaDeThi.Margin = new System.Windows.Forms.Padding(2);
+            this.examtxtMaDeThi.Name = "examtxtMaDeThi";
+            this.examtxtMaDeThi.Size = new System.Drawing.Size(296, 20);
+            this.examtxtMaDeThi.TabIndex = 17;
+            // 
             // examtxtThoiGianConLai
             // 
+            this.examtxtThoiGianConLai.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.examtxtThoiGianConLai.Location = new System.Drawing.Point(1000, 56);
             this.examtxtThoiGianConLai.Margin = new System.Windows.Forms.Padding(2);
             this.examtxtThoiGianConLai.Name = "examtxtThoiGianConLai";
@@ -116,6 +139,7 @@
             // 
             // label10
             // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(889, 59);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -126,6 +150,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(413, 63);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -136,6 +161,7 @@
             // 
             // examtxtSoLuongCauHoi
             // 
+            this.examtxtSoLuongCauHoi.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.examtxtSoLuongCauHoi.Location = new System.Drawing.Point(535, 60);
             this.examtxtSoLuongCauHoi.Margin = new System.Windows.Forms.Padding(2);
             this.examtxtSoLuongCauHoi.Name = "examtxtSoLuongCauHoi";
@@ -144,6 +170,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(888, 22);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -154,6 +181,7 @@
             // 
             // examtxtThoiGianLamBai
             // 
+            this.examtxtThoiGianLamBai.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.examtxtThoiGianLamBai.Location = new System.Drawing.Point(1000, 17);
             this.examtxtThoiGianLamBai.Margin = new System.Windows.Forms.Padding(2);
             this.examtxtThoiGianLamBai.Name = "examtxtThoiGianLamBai";
@@ -162,6 +190,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(4, 105);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -172,6 +201,7 @@
             // 
             // examtxtBaiKiemTra
             // 
+            this.examtxtBaiKiemTra.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.examtxtBaiKiemTra.Location = new System.Drawing.Point(97, 102);
             this.examtxtBaiKiemTra.Margin = new System.Windows.Forms.Padding(2);
             this.examtxtBaiKiemTra.Name = "examtxtBaiKiemTra";
@@ -180,6 +210,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(4, 63);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -190,6 +221,7 @@
             // 
             // examtxtHoTen
             // 
+            this.examtxtHoTen.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.examtxtHoTen.Location = new System.Drawing.Point(97, 60);
             this.examtxtHoTen.Margin = new System.Windows.Forms.Padding(2);
             this.examtxtHoTen.Name = "examtxtHoTen";
@@ -198,6 +230,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(4, 24);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -208,6 +241,7 @@
             // 
             // examtxtMaSinhVien
             // 
+            this.examtxtMaSinhVien.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.examtxtMaSinhVien.Location = new System.Drawing.Point(97, 22);
             this.examtxtMaSinhVien.Margin = new System.Windows.Forms.Padding(2);
             this.examtxtMaSinhVien.Name = "examtxtMaSinhVien";
@@ -216,6 +250,8 @@
             // 
             // exambtnNopBai
             // 
+            this.exambtnNopBai.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.exambtnNopBai.Location = new System.Drawing.Point(171, 72);
             this.exambtnNopBai.Margin = new System.Windows.Forms.Padding(2);
             this.exambtnNopBai.Name = "exambtnNopBai";
@@ -227,6 +263,8 @@
             // 
             // examcheckboxHoanThanhBaiKiemTra
             // 
+            this.examcheckboxHoanThanhBaiKiemTra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.examcheckboxHoanThanhBaiKiemTra.AutoSize = true;
             this.examcheckboxHoanThanhBaiKiemTra.Location = new System.Drawing.Point(9, 76);
             this.examcheckboxHoanThanhBaiKiemTra.Margin = new System.Windows.Forms.Padding(2);
@@ -238,6 +276,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
             this.groupBox2.Controls.Add(this.groupBox6);
             this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Controls.Add(this.groupBox4);
@@ -252,6 +294,8 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.examrichtxtNoiDungCauHoi);
             this.groupBox6.Location = new System.Drawing.Point(278, 19);
             this.groupBox6.Name = "groupBox6";
@@ -262,6 +306,9 @@
             // 
             // examrichtxtNoiDungCauHoi
             // 
+            this.examrichtxtNoiDungCauHoi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.examrichtxtNoiDungCauHoi.Location = new System.Drawing.Point(6, 19);
             this.examrichtxtNoiDungCauHoi.Name = "examrichtxtNoiDungCauHoi";
             this.examrichtxtNoiDungCauHoi.Size = new System.Drawing.Size(1206, 255);
@@ -270,6 +317,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.examradioA);
             this.groupBox5.Controls.Add(this.examradioB);
             this.groupBox5.Controls.Add(this.examradioC);
@@ -283,6 +332,7 @@
             // 
             // examradioA
             // 
+            this.examradioA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.examradioA.AutoSize = true;
             this.examradioA.Location = new System.Drawing.Point(6, 33);
             this.examradioA.Name = "examradioA";
@@ -293,6 +343,7 @@
             // 
             // examradioB
             // 
+            this.examradioB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.examradioB.AutoSize = true;
             this.examradioB.Location = new System.Drawing.Point(6, 103);
             this.examradioB.Name = "examradioB";
@@ -303,6 +354,7 @@
             // 
             // examradioC
             // 
+            this.examradioC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.examradioC.AutoSize = true;
             this.examradioC.Location = new System.Drawing.Point(6, 177);
             this.examradioC.Name = "examradioC";
@@ -313,6 +365,7 @@
             // 
             // examradioD
             // 
+            this.examradioD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.examradioD.AutoSize = true;
             this.examradioD.Location = new System.Drawing.Point(6, 251);
             this.examradioD.Name = "examradioD";
@@ -323,6 +376,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.exambtnXoaDanhDau);
             this.groupBox4.Controls.Add(this.exambtnCauDau);
             this.groupBox4.Controls.Add(this.exambtnCauTruoc);
@@ -337,8 +392,20 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Navigation";
             // 
+            // exambtnXoaDanhDau
+            // 
+            this.exambtnXoaDanhDau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exambtnXoaDanhDau.Location = new System.Drawing.Point(1030, 9);
+            this.exambtnXoaDanhDau.Name = "exambtnXoaDanhDau";
+            this.exambtnXoaDanhDau.Size = new System.Drawing.Size(191, 23);
+            this.exambtnXoaDanhDau.TabIndex = 14;
+            this.exambtnXoaDanhDau.Text = "Xoá đánh dấu câu trả lời";
+            this.exambtnXoaDanhDau.UseVisualStyleBackColor = true;
+            this.exambtnXoaDanhDau.Click += new System.EventHandler(this.exambtnXoaDanhDau_Click);
+            // 
             // exambtnCauDau
             // 
+            this.exambtnCauDau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.exambtnCauDau.Location = new System.Drawing.Point(751, 66);
             this.exambtnCauDau.Name = "exambtnCauDau";
             this.exambtnCauDau.Size = new System.Drawing.Size(113, 34);
@@ -349,6 +416,7 @@
             // 
             // exambtnCauTruoc
             // 
+            this.exambtnCauTruoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.exambtnCauTruoc.Location = new System.Drawing.Point(870, 66);
             this.exambtnCauTruoc.Name = "exambtnCauTruoc";
             this.exambtnCauTruoc.Size = new System.Drawing.Size(113, 34);
@@ -359,6 +427,7 @@
             // 
             // exambtnCauSau
             // 
+            this.exambtnCauSau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.exambtnCauSau.Location = new System.Drawing.Point(989, 66);
             this.exambtnCauSau.Name = "exambtnCauSau";
             this.exambtnCauSau.Size = new System.Drawing.Size(113, 34);
@@ -369,6 +438,7 @@
             // 
             // exambtnCauCuoi
             // 
+            this.exambtnCauCuoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.exambtnCauCuoi.Location = new System.Drawing.Point(1108, 66);
             this.exambtnCauCuoi.Name = "exambtnCauCuoi";
             this.exambtnCauCuoi.Size = new System.Drawing.Size(113, 34);
@@ -379,6 +449,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox3.Controls.Add(this.examlvDanhSachCauHoi);
             this.groupBox3.Location = new System.Drawing.Point(6, 19);
             this.groupBox3.Name = "groupBox3";
@@ -389,6 +461,8 @@
             // 
             // examlvDanhSachCauHoi
             // 
+            this.examlvDanhSachCauHoi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.examlvDanhSachCauHoi.HideSelection = false;
             this.examlvDanhSachCauHoi.Location = new System.Drawing.Point(6, 19);
             this.examlvDanhSachCauHoi.Name = "examlvDanhSachCauHoi";
@@ -404,34 +478,6 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 0;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(413, 24);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 13);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Mã đề thi:";
-            // 
-            // examtxtMaDeThi
-            // 
-            this.examtxtMaDeThi.Location = new System.Drawing.Point(535, 21);
-            this.examtxtMaDeThi.Margin = new System.Windows.Forms.Padding(2);
-            this.examtxtMaDeThi.Name = "examtxtMaDeThi";
-            this.examtxtMaDeThi.Size = new System.Drawing.Size(296, 20);
-            this.examtxtMaDeThi.TabIndex = 17;
-            // 
-            // exambtnXoaDanhDau
-            // 
-            this.exambtnXoaDanhDau.Location = new System.Drawing.Point(1030, 9);
-            this.exambtnXoaDanhDau.Name = "exambtnXoaDanhDau";
-            this.exambtnXoaDanhDau.Size = new System.Drawing.Size(191, 23);
-            this.exambtnXoaDanhDau.TabIndex = 14;
-            this.exambtnXoaDanhDau.Text = "Xoá đánh dấu câu trả lời";
-            this.exambtnXoaDanhDau.UseVisualStyleBackColor = true;
-            this.exambtnXoaDanhDau.Click += new System.EventHandler(this.exambtnXoaDanhDau_Click);
             // 
             // exam
             // 

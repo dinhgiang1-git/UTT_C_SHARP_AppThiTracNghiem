@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,19 @@ namespace ThiTracNghiem
             LoadExam_ThongTin(g_maSinhVien, g_maDeThi);
             LoadExam_DanhSachCauHoi(g_maDeThi);
             LoadDapAnDung(g_maDeThi);
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            Rectangle rc = ClientRectangle;
+            if (rc.IsEmpty)
+                return;
+            if (rc.Width == 0 || rc.Height == 0)
+                return;
+            using (LinearGradientBrush brush = new LinearGradientBrush(rc, Color.White, Color.FromArgb(196, 232, 250), 90F))
+            {
+                e.Graphics.FillRectangle(brush, rc);
+            }
         }
 
         private void LoadExam_ThongTin(string maSinhVien, string maDeThi)
@@ -384,13 +398,15 @@ namespace ThiTracNghiem
         private void exambtnNopBai_Click(object sender, EventArgs e)
         {
             LuuDapAnSinhVien();
-<<<<<<< HEAD
             
             if(!examcheckboxHoanThanhBaiKiemTra.Checked)
-=======
+            {
+                MessageBox.Show("Bạn chưa xác nhận hoàn thành bài kiểm tra.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
 
             if (!examcheckboxHoanThanhBaiKiemTra.Checked)
->>>>>>> a70f26b75d4484ff0ef68f3159557bca1e58b801
             {
                 MessageBox.Show("Bạn chưa xác nhận hoàn thành bài kiểm tra.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -419,11 +435,7 @@ namespace ThiTracNghiem
                 if (result == DialogResult.No)
                 {
                     return;
-<<<<<<< HEAD
-                }                
-=======
                 }
->>>>>>> a70f26b75d4484ff0ef68f3159557bca1e58b801
             }
             TinhDiemVaKetQua();
         }

@@ -250,22 +250,34 @@ namespace ThiTracNghiem
                 MessageBox.Show("Vui lòng chọn một đề thi để làm bài!");
                 return;
             }
-            DateTime now = DateTime.Now;
+            //DateTime now = DateTime.Now;
 
-            if (now < g_ThoiGianBatDau)
-            {
-                MessageBox.Show("Chưa đến thời gian làm bài. Vui lòng quay lại sau!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if (now < g_ThoiGianBatDau)
+            //{
+            //    MessageBox.Show("Chưa đến thời gian làm bài. Vui lòng quay lại sau!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
-            if (now > g_ThoiGianKetThuc)
-            {
-                MessageBox.Show("Thời gian làm bài đã kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if (now > g_ThoiGianKetThuc)
+            //{
+            //    MessageBox.Show("Thời gian làm bài đã kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             exam xam = new exam(maDeThi, maSinhVien, maMonHoc, maKhoa);
             xam.Show();
+        }
+
+        private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            thongTinTaiKhoan tttk = new thongTinTaiKhoan(maSinhVien, "sinhvien");
+            tttk.Show();
+        }
+
+        private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            doiMatKhau dmk = new doiMatKhau(maSinhVien, "sinhvien");
+            dmk.Show();
         }
     }
 }

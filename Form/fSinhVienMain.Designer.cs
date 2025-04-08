@@ -60,6 +60,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataDeThi = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btktxtMaDeThi = new System.Windows.Forms.TextBox();
+            this.bktbtnLamBaiThi = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btkcbMonHoc = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -77,8 +79,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.btktxtQueQuan = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.bktbtnLamBaiThi = new System.Windows.Forms.Button();
-            this.btktxtMaDeThi = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -113,19 +113,21 @@
             // thôngTinTàiKhoảnToolStripMenuItem
             // 
             this.thôngTinTàiKhoảnToolStripMenuItem.Name = "thôngTinTàiKhoảnToolStripMenuItem";
-            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản";
+            this.thôngTinTàiKhoảnToolStripMenuItem.Click += new System.EventHandler(this.thôngTinTàiKhoảnToolStripMenuItem_Click);
             // 
             // đổiMậtKhẩuToolStripMenuItem
             // 
             this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
+            this.đổiMậtKhẩuToolStripMenuItem.Click += new System.EventHandler(this.đổiMậtKhẩuToolStripMenuItem_Click);
             // 
             // đăngXuấtToolStripMenuItem
             // 
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             // 
             // tabControl1
@@ -396,6 +398,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin";
             // 
+            // btktxtMaDeThi
+            // 
+            this.btktxtMaDeThi.Location = new System.Drawing.Point(695, 146);
+            this.btktxtMaDeThi.Name = "btktxtMaDeThi";
+            this.btktxtMaDeThi.Size = new System.Drawing.Size(143, 20);
+            this.btktxtMaDeThi.TabIndex = 35;
+            // 
+            // bktbtnLamBaiThi
+            // 
+            this.bktbtnLamBaiThi.Location = new System.Drawing.Point(844, 144);
+            this.bktbtnLamBaiThi.Name = "bktbtnLamBaiThi";
+            this.bktbtnLamBaiThi.Size = new System.Drawing.Size(147, 23);
+            this.bktbtnLamBaiThi.TabIndex = 34;
+            this.bktbtnLamBaiThi.Text = "Làm Bài Thi";
+            this.bktbtnLamBaiThi.UseVisualStyleBackColor = true;
+            this.bktbtnLamBaiThi.Click += new System.EventHandler(this.bktbtnLamBaiThi_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.Location = new System.Drawing.Point(1204, 24);
@@ -534,23 +553,6 @@
             this.label18.Size = new System.Drawing.Size(57, 13);
             this.label18.TabIndex = 26;
             this.label18.Text = "Quê quán:";
-            // 
-            // bktbtnLamBaiThi
-            // 
-            this.bktbtnLamBaiThi.Location = new System.Drawing.Point(844, 144);
-            this.bktbtnLamBaiThi.Name = "bktbtnLamBaiThi";
-            this.bktbtnLamBaiThi.Size = new System.Drawing.Size(147, 23);
-            this.bktbtnLamBaiThi.TabIndex = 34;
-            this.bktbtnLamBaiThi.Text = "Làm Bài Thi";
-            this.bktbtnLamBaiThi.UseVisualStyleBackColor = true;
-            this.bktbtnLamBaiThi.Click += new System.EventHandler(this.bktbtnLamBaiThi_Click);
-            // 
-            // btktxtMaDeThi
-            // 
-            this.btktxtMaDeThi.Location = new System.Drawing.Point(695, 146);
-            this.btktxtMaDeThi.Name = "btktxtMaDeThi";
-            this.btktxtMaDeThi.Size = new System.Drawing.Size(143, 20);
-            this.btktxtMaDeThi.TabIndex = 35;
             // 
             // fSinhVienMain
             // 
