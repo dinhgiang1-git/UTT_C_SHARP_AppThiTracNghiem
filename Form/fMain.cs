@@ -1767,6 +1767,8 @@ namespace ThiTracNghiem
                 qlchtxtDapAnD.Text = row.Cells["DapAnD"].Value.ToString();
 
                 string dapAnDung = row.Cells["DapAnDung"].Value.ToString();
+
+                string maDeThi = tcdcbDeThi.SelectedValue.ToString();
                 if (dapAnDung == qlchtxtDapAnA.Text)
                 {
                     qlchradioA.Checked = true;
