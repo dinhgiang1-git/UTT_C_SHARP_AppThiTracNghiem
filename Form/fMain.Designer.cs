@@ -2044,7 +2044,7 @@
             // 
             this.thôngTinTàiKhoảnToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thôngTinTàiKhoảnToolStripMenuItem.Image")));
             this.thôngTinTàiKhoảnToolStripMenuItem.Name = "thôngTinTàiKhoảnToolStripMenuItem";
-            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản";
             // 
             // đổiMậtKhẩuToolStripMenuItem
@@ -2059,8 +2059,9 @@
             // 
             this.đăngXuấtToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("đăngXuấtToolStripMenuItem.Image")));
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
+            this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
             // 
             // groupBoxGiangVien
             // 
@@ -2218,6 +2219,7 @@
             this.dataGiangVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGiangVien.Size = new System.Drawing.Size(800, 300);
             this.dataGiangVien.TabIndex = 10;
+            this.dataGiangVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGiangVien_CellClick_1);
             // 
             // fMain
             // 

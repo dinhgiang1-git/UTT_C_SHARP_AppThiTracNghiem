@@ -16,6 +16,7 @@ using ExcelDataReader;
 using System.Configuration;
 using System.Drawing.Drawing2D;
 using Color = System.Drawing.Color;
+using System.Text.RegularExpressions;
 namespace ThiTracNghiem
 {
     
@@ -51,6 +52,7 @@ namespace ThiTracNghiem
             LoadData_SinhVien(maLop);
             LoadData_DeThi("MaLop", maLop_DT);
             LoadData_TraCuuDiem(g_maDeThi);
+            LoadData_GiangVien();
 
             Config_Component();
 
@@ -2147,7 +2149,6 @@ namespace ThiTracNghiem
             doiMatKhau change = new doiMatKhau(_MaGiangVien, "giangvien");
             change.Show();
         }
-
         private void tcdbtnExport_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx", FileName = "DanhSachDiemSinhVien.xlsx" })
@@ -2188,29 +2189,222 @@ namespace ThiTracNghiem
             }
         }
 
-        private void ClearGiangVienFields(object sender, EventArgs e)
+        //Quản lý giảng viên
+        private void LoadData_GiangVien()
         {
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT MaGiangVien, HoTen, GioiTinh, NgaySinh, QueQuan, MaKhoa FROM GIANGVIEN";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataGiangVien.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+        private void ClearGiangVienFields()
+        {
+            txtHoTenGV.Text = "";
+            cbGioiTinhGV.SelectedIndex = -1;
+            dtpNgaySinhGV.Value = DateTime.Now;
+            txtQueQuanGV.Text = "";
+            cbMaKhoaGV.SelectedIndex = -1;
 
         }
-
+        public string LocDau(string str)
+        {
+            str = str.ToLower();
+            str = Regex.Replace(str, "[àáạảãâầấậẩẫăằắặẳẵ]", "a");
+            str = Regex.Replace(str, "[èéẹẻẽêềếệểễ]", "e");
+            str = Regex.Replace(str, "[ìíịỉĩ]", "i");
+            str = Regex.Replace(str, "[òóọỏõôồốộổỗơờớợởỡ]", "o");
+            str = Regex.Replace(str, "[ùúụủũưừứựửữ]", "u");
+            str = Regex.Replace(str, "[ỳýỵỷỹ]", "y");
+            str = Regex.Replace(str, "đ", "d");
+            str = Regex.Replace(str, " ", "-");
+            str = str.Replace(",", "");
+            str = str.Replace(".", "");
+            return str;
+        }
+        private string GenerateMaGiangVien(string hoTen, DateTime ngaySinh)
+        {
+            string[] nameParts = hoTen.Trim().Split(' ');
+            string lastName = LocDau(nameParts[nameParts.Length - 1]);
+            return lastName.ToLower() + ngaySinh.Year.ToString();
+        }
         private void btnXoaGV_Click(object sender, EventArgs e)
         {
+            // Add implementation for deleting lecturer
+            if (dataGiangVien.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn giảng viên cần xóa!");
+                return;
+            }
 
+            if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên này?", "Xác nhận",
+                MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+
+            string maGV = dataGiangVien.SelectedRows[0].Cells["MaGiangVien"].Value.ToString();
+
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    // Then delete from GIANGVIEN
+                    string queryGV = "DELETE FROM GIANGVIEN WHERE MaGiangVien = @MaGV";
+                    SqlCommand cmdGV = new SqlCommand(queryGV, conn);
+                    cmdGV.Parameters.AddWithValue("@MaGV", maGV);
+                    cmdGV.ExecuteNonQuery();
+
+                    MessageBox.Show("Xóa giảng viên thành công!");
+                    LoadData_GiangVien();
+                    ClearGiangVienFields();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
         }
 
         private void btnSuaGV_Click(object sender, EventArgs e)
         {
+            // Add implementation for updating lecturer
+            if (dataGiangVien.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn giảng viên cần sửa!");
+                return;
+            }
 
+            string maGV = dataGiangVien.SelectedRows[0].Cells["MaGiangVien"].Value.ToString();
+
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"UPDATE GIANGVIEN 
+                           SET HoTen = @HoTen, GioiTinh = @GioiTinh, 
+                               NgaySinh = @NgaySinh, QueQuan = @QueQuan, 
+                               MaKhoa = @MaKhoa 
+                           WHERE MaGiangVien = @MaGV";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaGV", maGV);
+                    cmd.Parameters.AddWithValue("@HoTen", txtHoTenGV.Text.Trim());
+                    cmd.Parameters.AddWithValue("@GioiTinh", cbGioiTinhGV.Text);
+                    cmd.Parameters.AddWithValue("@NgaySinh", dtpNgaySinhGV.Value);
+                    cmd.Parameters.AddWithValue("@QueQuan", txtQueQuanGV.Text.Trim());
+                    cmd.Parameters.AddWithValue("@MaKhoa", cbMaKhoaGV.SelectedValue);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Cập nhật thông tin giảng viên thành công!");
+                    LoadData_GiangVien();
+                    ClearGiangVienFields();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
         }
 
         private void btnThemGV_Click(object sender, EventArgs e)
         {
+            // Add implementation for adding new lecturer
+            if (string.IsNullOrWhiteSpace(txtHoTenGV.Text) || cbGioiTinhGV.SelectedIndex == -1 ||
+        string.IsNullOrWhiteSpace(txtQueQuanGV.Text) || cbMaKhoaGV.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
 
+            using (SqlConnection conn = new SqlConnection(strConn))
+            {
+                try
+                {
+                    conn.Open();
+                    string maGV = GenerateMaGiangVien(txtHoTenGV.Text, dtpNgaySinhGV.Value);
+
+                    // Insert into GIANGVIEN table
+                    string queryGV = @"INSERT INTO GIANGVIEN (MaGiangVien, HoTen, GioiTinh, NgaySinh, QueQuan, MatKhau, MaKhoa) 
+                             VALUES (@MaGV, @HoTen, @GioiTinh, @NgaySinh, @QueQuan, 1, @MaKhoa)";
+
+                    SqlCommand cmdGV = new SqlCommand(queryGV, conn);
+                    cmdGV.Parameters.AddWithValue("@MaGV", maGV);
+                    cmdGV.Parameters.AddWithValue("@HoTen", txtHoTenGV.Text.Trim());
+                    cmdGV.Parameters.AddWithValue("@GioiTinh", cbGioiTinhGV.Text);
+                    cmdGV.Parameters.AddWithValue("@NgaySinh", dtpNgaySinhGV.Value);
+                    cmdGV.Parameters.AddWithValue("@QueQuan", txtQueQuanGV.Text.Trim());
+                    cmdGV.Parameters.AddWithValue("@MaKhoa", cbMaKhoaGV.SelectedValue);
+
+                    cmdGV.ExecuteNonQuery();
+
+                    // Insert into TAIKHOAN table
+                    // string queryTK = @"INSERT INTO TAIKHOAN (TenDangNhap, MatKhau, Quyen) 
+                    //          VALUES (@TenDN, @MatKhau, @Quyen)";
+
+                    // SqlCommand cmdTK = new SqlCommand(queryTK, conn);
+                    // cmdTK.Parameters.AddWithValue("@TenDN", maGV);
+                    // cmdTK.Parameters.AddWithValue("@MatKhau", "1");
+                    // cmdTK.Parameters.AddWithValue("@Quyen", "GiangVien");
+                    // cmdTK.ExecuteNonQuery();
+
+                    MessageBox.Show("Thêm giảng viên thành công!");
+                    LoadData_GiangVien();
+                    ClearGiangVienFields();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
         }
 
         private void dataGiangVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGiangVien.Rows[e.RowIndex];
+                txtHoTenGV.Text = row.Cells["HoTen"].Value.ToString();
+                cbGioiTinhGV.Text = row.Cells["GioiTinh"].Value.ToString();
+                dtpNgaySinhGV.Value = Convert.ToDateTime(row.Cells["NgaySinh"].Value);
+                txtQueQuanGV.Text = row.Cells["QueQuan"].Value.ToString();
+                cbMaKhoaGV.SelectedValue = row.Cells["MaKhoa"].Value.ToString();
+            }
+        }
+        private void ClearGiangVienFields(object sender, EventArgs e)
+        {
+            ClearGiangVienFields();
+        }
 
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận",
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Hide();
+                login loginForm = new login();
+                loginForm.Show();
+            }
+        }
+
+        private void dataGiangVien_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGiangVien_CellClick(sender, e);
         }
     }
 }

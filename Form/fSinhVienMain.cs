@@ -281,5 +281,16 @@ namespace ThiTracNghiem
             doiMatKhau dmk = new doiMatKhau(maSinhVien, "sinhvien");
             dmk.Show();
         }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận",
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Hide();
+                login loginForm = new login();
+                loginForm.Show();
+            }
+        }
     }
 }
