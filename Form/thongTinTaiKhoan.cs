@@ -20,6 +20,7 @@ namespace ThiTracNghiem
         {
             InitializeComponent();
             maSV_GV = id;
+            Load_ThongTin();
         }
 
         private void Load_ThongTin()
@@ -40,23 +41,28 @@ namespace ThiTracNghiem
                         {
                             string magiangvien = reader["MaGiangVien"].ToString();
                             string hoten = reader["HoTen"].ToString();
-                            string makhoa = reader["MaKhoa"].ToString();
+                            string gioitinh = reader["GioiTinh"].ToString();
+                            string ngaysinh = reader["NgaySinh"].ToString();
+                            string quequan = reader["QueQuan"].ToString();
 
-                            tcdtxtHoTen.Text = hoten;
-                            tcdtxtMaGiangVien.Text = magiangvien;
-                            tcdtxtMaKhoa.Text = makhoa;
+                            tttktxtId.Text = magiangvien;
+                            tttktxtHoTen.Text = hoten;
+                            tttktxtGioiTinh.Text = gioitinh;
+                            tttktxtNgaySinh.Text = ngaysinh;
+                            tttktxtQueQuan.Text = quequan;
+
                         }
                     }
 
 
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    throw new Exception("Error: " + ex.Message);
                 }
                 finally
                 {
-
+                    conn.Close();
                 }
             }
         }
