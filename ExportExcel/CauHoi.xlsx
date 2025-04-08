@@ -1,0 +1,31 @@
+NoiDungCauHoi | DapAnA | DapAnB | DapAnC | DapAnD | DapAnDung
+Ngôn ngữ lập trình C# được phát triển bởi công ty nào? | Microsoft | Apple | Google | IBM | A
+Trong C#, từ khóa nào được sử dụng để khai báo một biến không thể thay đổi giá trị? | final | const | static | readonly | B
+Phương thức Main() trong C# có vai trò gì? | Kết thúc chương trình | Điểm bắt đầu chương trình | Khởi tạo biến | Xử lý ngoại lệ | B
+Kiểu dữ liệu nào trong C# được sử dụng để lưu trữ giá trị true/false? | int | string | bool | char | C
+Namespace trong C# có tác dụng gì? | Tạo biến | Tổ chức code | Xử lý lỗi | Tính toán | B
+Từ khóa "using" trong C# được sử dụng để làm gì? | Khai báo biến | Import namespace | Tạo vòng lặp | Xử lý file | B
+Trong C#, để kế thừa từ một lớp khác ta sử dụng ký tự gì? | + | : | # | @ | B
+Phương thức khởi tạo trong C# có tên giống với gì? | Tên namespace | Tên class | Tên biến | Tên interface | B
+Để comment một dòng trong C# ta sử dụng ký tự nào? | // | /* */ | -- | ## | A
+Array trong C# bắt đầu từ index nào? | -1 | 0 | 1 | 2 | B
+Từ khóa nào được sử dụng để khai báo một interface trong C#? | class | struct | interface | enum | C
+Đâu là kiểu dữ liệu giá trị trong C#? | string | int | object | delegate | B
+Để xử lý ngoại lệ trong C#, ta sử dụng khối lệnh nào? | try-catch | if-else | switch-case | for-while | A
+Trong C#, từ khóa "virtual" được sử dụng để làm gì? | Khai báo biến | Cho phép ghi đè | Tạo interface | Xử lý lỗi | B
+Phương thức ToString() trong C# có tác dụng gì? | Chuyển đổi sang chuỗi | Tính tổng | Kiểm tra null | Xóa đối tượng | A
+Đâu là access modifier trong C#? | public | static | final | void | A
+Để khai báo một mảng trong C#, ta sử dụng ký tự nào? | () | {} | [] | <> | C
+Từ khóa "sealed" trong C# có tác dụng gì? | Ngăn kế thừa | Cho phép kế thừa | Tạo interface | Xử lý lỗi | A
+Garbage Collection trong C# là gì? | Thu gom rác | Xử lý lỗi | Tạo đối tượng | Khai báo biến | A
+Boxing trong C# là gì? | Chuyển value type sang reference type | Tạo mảng | Khai báo biến | Xử lý chuỗi | A
+Unboxing trong C# là gì? | Chuyển reference type sang value type | Xóa đối tượng | Tạo class | Xử lý số | A
+Delegate trong C# là gì? | Con trỏ hàm | Biến cục bộ | Hằng số | Interface | A
+Event trong C# được sử dụng để làm gì? | Xử lý sự kiện | Tính toán | Khai báo biến | Tạo mảng | A
+Generic trong C# là gì? | Kiểu dữ liệu tổng quát | Hằng số | Biến cục bộ | Interface | A
+LINQ trong C# là gì? | Ngôn ngữ truy vấn | Framework | Thư viện đồ họa | Cơ sở dữ liệu | A
+Từ khóa "ref" trong C# được sử dụng để làm gì? | Truyền tham chiếu | Khai báo biến | Tạo class | Xử lý lỗi | A
+Từ khóa "out" trong C# có tác dụng gì? | Truyền tham chiếu và trả về giá trị | Khai báo biến | Tạo interface | Xử lý chuỗi | A
+Lambda Expression trong C# là gì? | Biểu thức hàm ẩn danh | Vòng lặp | Điều kiện | Mảng | A
+Async/Await trong C# được sử dụng để làm gì? | Lập trình bất đồng bộ | Xử lý lỗi | Tạo interface | Khai báo biến | A
+Extension Method trong C# là gì? | Phương thức mở rộng | Kế thừa | Interface | Delegate | A

@@ -32,6 +32,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tcdbtnExport = new System.Windows.Forms.Button();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.tcdtxtMaKhoa = new System.Windows.Forms.TextBox();
             this.tcdtxtHoTen = new System.Windows.Forms.TextBox();
@@ -187,6 +188,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBoxGiangVien = new System.Windows.Forms.GroupBox();
+            this.whiteGV = new System.Windows.Forms.Button();
             this.btnXoaGV = new System.Windows.Forms.Button();
             this.btnSuaGV = new System.Windows.Forms.Button();
             this.btnThemGV = new System.Windows.Forms.Button();
@@ -206,8 +208,6 @@
             this.thôngTinTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tcdbtnExport = new System.Windows.Forms.Button();
-            this.whiteGV = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox18.SuspendLayout();
@@ -276,6 +276,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Tra cứu điểm";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tcdbtnExport
+            // 
+            this.tcdbtnExport.Location = new System.Drawing.Point(1028, 456);
+            this.tcdbtnExport.Name = "tcdbtnExport";
+            this.tcdbtnExport.Size = new System.Drawing.Size(123, 23);
+            this.tcdbtnExport.TabIndex = 8;
+            this.tcdbtnExport.Text = "Export Excel";
+            this.tcdbtnExport.UseVisualStyleBackColor = true;
+            this.tcdbtnExport.Click += new System.EventHandler(this.tcdbtnExport_Click);
             // 
             // groupBox18
             // 
@@ -2031,6 +2041,16 @@
             this.groupBoxGiangVien.TabStop = false;
             this.groupBoxGiangVien.Text = "Thông tin giảng viên";
             // 
+            // whiteGV
+            // 
+            this.whiteGV.Location = new System.Drawing.Point(350, 150);
+            this.whiteGV.Name = "whiteGV";
+            this.whiteGV.Size = new System.Drawing.Size(100, 23);
+            this.whiteGV.TabIndex = 13;
+            this.whiteGV.Text = "clear";
+            this.whiteGV.UseVisualStyleBackColor = true;
+            this.whiteGV.Click += new System.EventHandler(this.ClearGiangVienFields);
+            // 
             // btnXoaGV
             // 
             this.btnXoaGV.Location = new System.Drawing.Point(350, 110);
@@ -2184,16 +2204,14 @@
             // 
             this.thôngTinTàiKhoảnToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thôngTinTàiKhoảnToolStripMenuItem.Image")));
             this.thôngTinTàiKhoảnToolStripMenuItem.Name = "thôngTinTàiKhoảnToolStripMenuItem";
-            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
-            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản";
             // 
             // đổiMậtKhẩuToolStripMenuItem
             // 
             this.đổiMậtKhẩuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("đổiMậtKhẩuToolStripMenuItem.Image")));
             this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
             this.đổiMậtKhẩuToolStripMenuItem.Click += new System.EventHandler(this.đổiMậtKhẩuToolStripMenuItem_Click);
             // 
@@ -2201,35 +2219,15 @@
             // 
             this.đăngXuấtToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("đăngXuấtToolStripMenuItem.Image")));
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
-            // 
-            // tcdbtnExport
-            // 
-            this.tcdbtnExport.Location = new System.Drawing.Point(1028, 456);
-            this.tcdbtnExport.Name = "tcdbtnExport";
-            this.tcdbtnExport.Size = new System.Drawing.Size(123, 23);
-            this.tcdbtnExport.TabIndex = 8;
-            this.tcdbtnExport.Text = "Export Excel";
-            this.tcdbtnExport.UseVisualStyleBackColor = true;
-            this.tcdbtnExport.Click += new System.EventHandler(this.tcdbtnExport_Click);
-            // 
-            // whiteGV
-            // 
-            this.whiteGV.Location = new System.Drawing.Point(350, 150);
-            this.whiteGV.Name = "whiteGV";
-            this.whiteGV.Size = new System.Drawing.Size(100, 23);
-            this.whiteGV.TabIndex = 13;
-            this.whiteGV.Text = "clear";
-            this.whiteGV.UseVisualStyleBackColor = true;
-            this.whiteGV.Click += new System.EventHandler(this.ClearGiangVienFields);
+            this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
             // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1265, 773);
+            this.ClientSize = new System.Drawing.Size(1265, 775);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(2);

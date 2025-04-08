@@ -290,7 +290,7 @@ namespace ThiTracNghiem
         private void LoadData_TraCuuDiem(string maDeThi)
         {
 
-        }
+        
             using (SqlConnection conn = new SqlConnection(strConn))
             {
                 try
@@ -1809,7 +1809,9 @@ namespace ThiTracNghiem
             else if (qlchradioD.Checked)
             {
                 dapAnDung = dapAnD;
-            else if (qlchradioD.Checked) {
+            }
+            else if (qlchradioD.Checked)
+            {
                 dapAnDung = "D";
             }
             string maDeThi = qlchcbDeThi.SelectedValue.ToString();
@@ -2400,6 +2402,18 @@ namespace ThiTracNghiem
                         MessageBox.Show("Lỗi khi xuất Excel: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận",
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+                login loginForm = new login();
+                loginForm.Show();
+                this.Hide();
             }
         }
     }
