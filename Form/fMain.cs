@@ -14,6 +14,8 @@ using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Spreadsheet;
 using ExcelDataReader;
 using System.Configuration;
+using System.Drawing.Drawing2D;
+using Color = System.Drawing.Color;
 namespace ThiTracNghiem
 {
     
@@ -53,6 +55,20 @@ namespace ThiTracNghiem
             Config_Component();
 
             FormatDateTimePicker();
+        }
+
+        //Đổi màu nền back ground
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            Rectangle rc = ClientRectangle;
+            if (rc.IsEmpty)
+                return;
+            if (rc.Width == 0 || rc.Height == 0)
+                return;
+            using (LinearGradientBrush brush = new LinearGradientBrush(rc, Color.White, Color.FromArgb(196, 232, 250), 90F))
+            {
+                e.Graphics.FillRectangle(brush, rc);
+            }
         }
 
         private void Config_Component()
@@ -2126,7 +2142,7 @@ namespace ThiTracNghiem
         }
         private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            doiMatKhau change = new doiMatKhau(_MaGiangVien);
+            doiMatKhau change = new doiMatKhau(_MaGiangVien, "giangvien");
             change.Show();
         }
     }
