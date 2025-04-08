@@ -267,5 +267,11 @@ namespace ThiTracNghiem
             exam xam = new exam(maDeThi, maSinhVien, maMonHoc, maKhoa);
             xam.Show();
         }
+
+        private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            thongTinTaiKhoan tttk = new thongTinTaiKhoan(maSinhVien);
+            tttk.Show();
+        }
     }
 }

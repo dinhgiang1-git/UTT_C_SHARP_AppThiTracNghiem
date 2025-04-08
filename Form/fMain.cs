@@ -2121,7 +2121,7 @@ namespace ThiTracNghiem
         //Menu TapControl
         private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            thongTinTaiKhoan tttk = new thongTinTaiKhoan(_MaGiangVien);
+            thongTinTaiKhoan tttk = new thongTinTaiKhoan(_MaGiangVien, "giangvien");
             tttk.Show();
         }
         private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)

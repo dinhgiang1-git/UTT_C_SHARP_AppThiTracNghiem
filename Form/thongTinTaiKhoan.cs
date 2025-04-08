@@ -16,14 +16,24 @@ namespace ThiTracNghiem
     {
         string strConn = ConfigurationManager.ConnectionStrings["UTTConnection"].ConnectionString;
         string maSV_GV = "";
-        public thongTinTaiKhoan(string id)
+        string g_role = "";
+        public thongTinTaiKhoan(string id, string role)
         {
             InitializeComponent();
             maSV_GV = id;
-            Load_ThongTin();
+            g_role = role;                    
+            
+            if(role == "giangvien")
+            {
+            Load_ThongTinGV();
+            }
+            else
+            {
+
+            }
         }
 
-        private void Load_ThongTin()
+        private void Load_ThongTinGV()
         {
             using (SqlConnection conn = new SqlConnection(strConn)) 
             {
