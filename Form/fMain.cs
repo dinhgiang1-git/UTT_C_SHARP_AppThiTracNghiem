@@ -2134,15 +2134,16 @@ namespace ThiTracNghiem
         }
 
 
+
         //Menu TapControl
         private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            thongTinTaiKhoan tttk = new thongTinTaiKhoan(_MaGiangVien, "giangvien");
+            thongTinTaiKhoan tttk = new thongTinTaiKhoan(_MaGiangVien);
             tttk.Show();
         }
         private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            doiMatKhau change = new doiMatKhau(_MaGiangVien, "giangvien");
+            doiMatKhau change = new doiMatKhau(_MaGiangVien);
             change.Show();
         }
     }
