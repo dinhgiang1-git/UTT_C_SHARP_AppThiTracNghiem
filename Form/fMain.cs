@@ -2187,5 +2187,30 @@ namespace ThiTracNghiem
                 }
             }
         }
+
+        private void ClearGiangVienFields(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnXoaGV_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSuaGV_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThemGV_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGiangVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
